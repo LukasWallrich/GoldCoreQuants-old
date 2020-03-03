@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Getting started with Quantitative Research Methods and R</title>
+  <title>A Two more pipes | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="A Two more pipes | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="A Two more pipes | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="simple-and-multiple-linear-regression.html"/>
+<link rel="prev" href="accessing-online-data-sources.html"/>
+<link rel="next" href="expanding-the-tidyverse-the-exposition-pipe.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -201,22 +201,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Getting started with Quantitative Research Methods and R</h1>
-<p class="author"><em>Lukas Wallrich</em></p>
-<p class="date"><em>2020-03-03</em></p>
-</div>
-<div id="overview" class="section level1 unnumbered" number="">
-<h1>Overview</h1>
-<p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time.</strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
-<div id="further-sources" class="section level2" number="0.1">
-<h2><span class="header-section-number">0.1</span> Further sources</h2>
-<p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online books that offer a more comprehensive treatment of many of the aspects discussed here, including the following:</p>
-<ul>
-<li><em>To be written</em></li>
-</ul>
-
-</div>
+<div id="two-more-pipes" class="section level1" number="3">
+<h1><span class="header-section-number">A</span> Two more pipes</h1>
+<p>If you are clear on the pipe operator <code>%&gt;%</code> then two more pipes can help you save some typing and write more efficient code. However, neither are critical for this course. All of them require that you load the <code>magrittr</code> package explicitly - it is installed as part of the tidyverse, but not loaded.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="two-more-pipes.html#cb58-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb58-2"><a href="two-more-pipes.html#cb58-2"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb58-3"><a href="two-more-pipes.html#cb58-3"></a><span class="co">#Example data</span></span>
+<span id="cb58-4"><a href="two-more-pipes.html#cb58-4"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
 </div>
 <div class="psyteachr_footer">
   
@@ -328,8 +319,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="simple-and-multiple-linear-regression.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="accessing-online-data-sources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="expanding-the-tidyverse-the-exposition-pipe.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

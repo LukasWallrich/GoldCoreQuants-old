@@ -17,8 +17,10 @@ description: "These are some of the course materials for the Goldsmiths' Core Qu
 
 # Overview {-}
 
-This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. It is a living document and currently not more than a rough draft, but will grow over time. It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
+This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. **It is a living document and currently not more than a rough draft, but will grow over time.** It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
 
-## Aims
+## Further sources
+
+This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online books that offer a more comprehensive treatment of many of the aspects discussed here, including the following:
 
 * *To be written*

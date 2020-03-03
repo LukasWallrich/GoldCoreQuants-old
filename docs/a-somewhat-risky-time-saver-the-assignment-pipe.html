@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Getting started with Quantitative Research Methods and R</title>
+  <title>C A somewhat risky time-saver: the assignment pipe (%&lt;&gt;%) | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="C A somewhat risky time-saver: the assignment pipe (%&lt;&gt;%) | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="C A somewhat risky time-saver: the assignment pipe (%&lt;&gt;%) | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="expanding-the-tidyverse-the-exposition-pipe.html"/>
 
-<link rel="next" href="simple-and-multiple-linear-regression.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -201,22 +201,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Getting started with Quantitative Research Methods and R</h1>
-<p class="author"><em>Lukas Wallrich</em></p>
-<p class="date"><em>2020-03-03</em></p>
-</div>
-<div id="overview" class="section level1 unnumbered" number="">
-<h1>Overview</h1>
-<p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time.</strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
-<div id="further-sources" class="section level2" number="0.1">
-<h2><span class="header-section-number">0.1</span> Further sources</h2>
-<p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online books that offer a more comprehensive treatment of many of the aspects discussed here, including the following:</p>
-<ul>
-<li><em>To be written</em></li>
-</ul>
+<div id="a-somewhat-risky-time-saver-the-assignment-pipe" class="section level1" number="5">
+<h1><span class="header-section-number">C</span> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</h1>
+<p>Quite often, we want to edit an element in place, which leads to some repetition as you need to specify that you want to put it into the pipe and then save it back in place.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="a-somewhat-risky-time-saver-the-assignment-pipe.html#cb63-1"></a><span class="co">#Normal code</span></span>
+<span id="cb63-2"><a href="a-somewhat-risky-time-saver-the-assignment-pipe.html#cb63-2"></a>constituencies &lt;-<span class="st"> </span>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span>
+<span id="cb63-3"><a href="a-somewhat-risky-time-saver-the-assignment-pipe.html#cb63-3"></a></span>
+<span id="cb63-4"><a href="a-somewhat-risky-time-saver-the-assignment-pipe.html#cb63-4"></a><span class="co">#With assignment pipe</span></span>
+<span id="cb63-5"><a href="a-somewhat-risky-time-saver-the-assignment-pipe.html#cb63-5"></a>constituencies <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span></code></pre></div>
+<p>The assignment pipe here takes <code>constituencies</code>, puts it into the pipeline, and takes the result at the end to save back into <code>constituencies</code>. It can be particularly pleasant when you want to apply a function to a single variable, but be careful not to use it accidentally - if you type <code>%&lt;&gt;%</code> instead of <code>%&gt;%</code> you will create bugs in your code that are not easy to spot.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="a-somewhat-risky-time-saver-the-assignment-pipe.html#cb64-1"></a>constituencies<span class="op">$</span>ElectionWon <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref=</span><span class="st">&quot;Lab&quot;</span>)</span></code></pre></div>
 
-</div>
 </div>
 <div class="psyteachr_footer">
   
@@ -328,8 +323,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
+<a href="expanding-the-tidyverse-the-exposition-pipe.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="simple-and-multiple-linear-regression.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

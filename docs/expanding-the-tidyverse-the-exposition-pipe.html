@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Getting started with Quantitative Research Methods and R</title>
+  <title>B Expanding the tidyverse: the exposition pipe (%$%) | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="B Expanding the tidyverse: the exposition pipe (%$%) | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="B Expanding the tidyverse: the exposition pipe (%$%) | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="simple-and-multiple-linear-regression.html"/>
+<link rel="prev" href="two-more-pipes.html"/>
+<link rel="next" href="a-somewhat-risky-time-saver-the-assignment-pipe.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -201,22 +201,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Getting started with Quantitative Research Methods and R</h1>
-<p class="author"><em>Lukas Wallrich</em></p>
-<p class="date"><em>2020-03-03</em></p>
-</div>
-<div id="overview" class="section level1 unnumbered" number="">
-<h1>Overview</h1>
-<p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time.</strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
-<div id="further-sources" class="section level2" number="0.1">
-<h2><span class="header-section-number">0.1</span> Further sources</h2>
-<p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online books that offer a more comprehensive treatment of many of the aspects discussed here, including the following:</p>
-<ul>
-<li><em>To be written</em></li>
-</ul>
-
-</div>
+<div id="expanding-the-tidyverse-the-exposition-pipe" class="section level1" number="4">
+<h1><span class="header-section-number">B</span> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</h1>
+<p>Inside dplyr pipes, you do not need to use the <code>$</code> to access variables within the dataframe. However, that does not work in some base-R functions such as <code>cor.test()</code>. For them, <code>%$%</code> can expose the variables in a dataframe temporarily (until the end of that command) so that they can be accessed as if they were separate variables in your environment.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="expanding-the-tidyverse-the-exposition-pipe.html#cb59-1"></a><span class="co">#Normal code</span></span>
+<span id="cb59-2"><a href="expanding-the-tidyverse-the-exposition-pipe.html#cb59-2"></a><span class="kw">cor.test</span>(constituencies<span class="op">$</span>MedianAge, constituencies<span class="op">$</span>ElectionConShare)</span>
+<span id="cb59-3"><a href="expanding-the-tidyverse-the-exposition-pipe.html#cb59-3"></a></span>
+<span id="cb59-4"><a href="expanding-the-tidyverse-the-exposition-pipe.html#cb59-4"></a><span class="co">#With the exposition pipe</span></span>
+<span id="cb59-5"><a href="expanding-the-tidyverse-the-exposition-pipe.html#cb59-5"></a>constituencies <span class="op">%$%</span><span class="st"> </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  constituencies$MedianAge and constituencies$ElectionConShare
+## t = 16.454, df = 648, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.4862318 0.5949037
+## sample estimates:
+##      cor 
+## 0.542836 
+## 
+## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  MedianAge and ElectionConShare
+## t = 16.454, df = 648, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.4862318 0.5949037
+## sample estimates:
+##      cor 
+## 0.542836</code></pre>
+<p>Clearly in this case, the difference is slight but you might find it more readable as well. In other cases, this can spare you from having to save a filtered dataset or otherwise processed dataset into a new variable that you are only using once.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="expanding-the-tidyverse-the-exposition-pipe.html#cb61-1"></a>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ContType <span class="op">==</span><span class="st"> &quot;County&quot;</span>) <span class="op">%$%</span><span class="st"> </span></span>
+<span id="cb61-2"><a href="expanding-the-tidyverse-the-exposition-pipe.html#cb61-2"></a><span class="st">  </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  MedianAge and ElectionConShare
+## t = 7.4961, df = 366, p-value = 5.003e-13
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.2727644 0.4502600
+## sample estimates:
+##       cor 
+## 0.3648222</code></pre>
 </div>
 <div class="psyteachr_footer">
   
@@ -328,8 +357,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-
-<a href="simple-and-multiple-linear-regression.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="two-more-pipes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-somewhat-risky-time-saver-the-assignment-pipe.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
