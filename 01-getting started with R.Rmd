@@ -1,0 +1,8 @@
+# Getting started with R
+
+TK - find chapter to borrow for this
+
+## Install R on your computer
+
+R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow these detailed instructions in [Section 1.4 of the R for Data Science book](https://r4ds.had.co.nz/introduction.html) 
+
