@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Two more pipes | Getting started with Quantitative Research Methods and R</title>
+  <title>Topic 1 Getting started with R | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Two more pipes | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Topic 1 Getting started with R | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Two more pipes | Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Topic 1 Getting started with R | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="accessing-online-data-sources.html"/>
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="importing-and-describing-data.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -252,70 +252,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="two-more-pipes" class="section level1" number="9">
-<h1><span class="header-section-number">A</span> Two more pipes</h1>
-<p>If you are clear on the pipe operator <code>%&gt;%</code> then two more pipes can help you save some typing and write more efficient code. However, neither are critical for this course. All of them require that you load the <code>magrittr</code> package explicitly - it is installed as part of the tidyverse, but not loaded.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="two-more-pipes.html#cb100-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb100-2"><a href="two-more-pipes.html#cb100-2"></a><span class="kw">library</span>(magrittr)</span>
-<span id="cb100-3"><a href="two-more-pipes.html#cb100-3"></a><span class="co">#Example data</span></span>
-<span id="cb100-4"><a href="two-more-pipes.html#cb100-4"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
-<div id="expanding-the-tidyverse-the-exposition-pipe" class="section level2" number="9.1">
-<h2><span class="header-section-number">A.1</span> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</h2>
-<p>Inside dplyr pipes, you do not need to use the <code>$</code> to access variables within the dataframe. However, that does not work in some base-R functions such as <code>cor.test()</code>. For them, <code>%$%</code> can expose the variables in a dataframe temporarily (until the end of that command) so that they can be accessed as if they were separate variables in your environment.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="two-more-pipes.html#cb101-1"></a><span class="co">#Normal code</span></span>
-<span id="cb101-2"><a href="two-more-pipes.html#cb101-2"></a><span class="kw">cor.test</span>(constituencies<span class="op">$</span>MedianAge, constituencies<span class="op">$</span>ElectionConShare)</span>
-<span id="cb101-3"><a href="two-more-pipes.html#cb101-3"></a></span>
-<span id="cb101-4"><a href="two-more-pipes.html#cb101-4"></a><span class="co">#With the exposition pipe</span></span>
-<span id="cb101-5"><a href="two-more-pipes.html#cb101-5"></a>constituencies <span class="op">%$%</span><span class="st"> </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  constituencies$MedianAge and constituencies$ElectionConShare
-## t = 16.454, df = 648, p-value &lt; 2.2e-16
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.4862318 0.5949037
-## sample estimates:
-##      cor 
-## 0.542836 
-## 
-## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  MedianAge and ElectionConShare
-## t = 16.454, df = 648, p-value &lt; 2.2e-16
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.4862318 0.5949037
-## sample estimates:
-##      cor 
-## 0.542836</code></pre>
-<p>Clearly in this case, the difference is slight but you might find it more readable as well. In other cases, this can spare you from having to save a filtered dataset or otherwise processed dataset into a new variable that you are only using once.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="two-more-pipes.html#cb103-1"></a>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ContType <span class="op">==</span><span class="st"> &quot;County&quot;</span>) <span class="op">%$%</span><span class="st"> </span></span>
-<span id="cb103-2"><a href="two-more-pipes.html#cb103-2"></a><span class="st">  </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  MedianAge and ElectionConShare
-## t = 7.4961, df = 366, p-value = 5.003e-13
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.2727644 0.4502600
-## sample estimates:
-##       cor 
-## 0.3648222</code></pre>
+<div id="getting-started-with-r" class="section level1" number="1">
+<h1><span class="header-section-number">Topic 1</span> Getting started with R</h1>
+<div id="install-r-on-your-computer" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Install R on your computer</h2>
+<p>R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow these detailed instructions in <a href="https://r4ds.had.co.nz/introduction.html">Section 1.4 of the R for Data Science book</a></p>
+<p>Then <strong>start exploring</strong> - using R is a skill that comes with practice, not with reading about it. Most example from these notes can be copy-pasted or typed into R. Do that whenever possible to see what you are able to do and where you still have questions.</p>
 </div>
-<div id="a-somewhat-risky-time-saver-the-assignment-pipe" class="section level2" number="9.2">
-<h2><span class="header-section-number">A.2</span> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</h2>
-<p>Quite often, we want to edit an element in place, which leads to some repetition as you need to specify that you want to put it into the pipe and then save it back in place.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="two-more-pipes.html#cb105-1"></a><span class="co">#Normal code</span></span>
-<span id="cb105-2"><a href="two-more-pipes.html#cb105-2"></a>constituencies &lt;-<span class="st"> </span>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span>
-<span id="cb105-3"><a href="two-more-pipes.html#cb105-3"></a></span>
-<span id="cb105-4"><a href="two-more-pipes.html#cb105-4"></a><span class="co">#With assignment pipe</span></span>
-<span id="cb105-5"><a href="two-more-pipes.html#cb105-5"></a>constituencies <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span></code></pre></div>
-<p>The assignment pipe here takes <code>constituencies</code>, puts it into the pipeline, and takes the result at the end to save back into <code>constituencies</code>. It can be particularly pleasant when you want to apply a function to a single variable, but be careful not to use it accidentally - if you type <code>%&lt;&gt;%</code> instead of <code>%&gt;%</code> you will create bugs in your code that are not easy to spot.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="two-more-pipes.html#cb106-1"></a>constituencies<span class="op">$</span>ElectionWon <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref=</span><span class="st">&quot;Lab&quot;</span>)</span></code></pre></div>
+<div id="some-key-concepts" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Some key concepts</h2>
+<p>If you understand the following concepts, using R will make a lot more sense.</p>
+<div id="r-rstudio-and-r-packages" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> R, RStudio and R packages</h3>
+<p>You can think about the different parts of R in terms of a computer or smartphone. In that analogy:</p>
+<ul>
+<li><p><strong>R is the processor and operating system</strong> that carries out everything under the hood. It also contains many basic capabilities for everyday tasks</p></li>
+<li><p><strong>RStudio is the user interface.</strong> The following parts are most relevant:</p>
+<ul>
+<li><strong>Console</strong> to type and run commands (usually to try things out or do things that need to be done once only)</li>
+<li><strong>File editor</strong> to develop production code (i.e. code needed to reproduce your analyses and create reports). Here you edit .Rmd files (or plain .R scripts, not used in this course)</li>
+<li><strong>Environment</strong> shows a list of all variables you have created. For dataframes, it shows the number of observations (rows) and variables (columns). Clicking on the name opens the data, clicking on the arrow shows some details</li>
+<li><strong>History</strong> is a searchable list of all commands you have run - helpful if you want to resuse something done a while back.</li>
+</ul></li>
+<li><p><strong>R packages are the apps</strong></p>
+<ul>
+<li>Installed once, using <code>install.packages("name")</code></li>
+<li>Loaded in every session, using <code>library(name)</code></li>
+</ul></li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=kvaMhkQF0H4&amp;list=PLm5BFz6s4ylavu_ef4UaLSHksKUUgWeFe&amp;index=2&amp;t=0s"><img src="https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block" id="id" class="class" width="35" height="35" /></a>   For a more comprehensive introduction to R, you can <a href="https://www.youtube.com/watch?v=kvaMhkQF0H4&amp;list=PLm5BFz6s4ylavu_ef4UaLSHksKUUgWeFe&amp;index=2&amp;t=0s">watch this video</a></p>
+</div>
+<div id="data-and-variables-in-r" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Data and variables in R</h3>
+<p>Lines starting with a # are comments that are ignored by R. I use them below to explain parts of the code further.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started-with-r.html#cb1-1"></a><span class="co"># &lt;- saves the text &quot;value&quot; into the variable variableName</span></span>
+<span id="cb1-2"><a href="getting-started-with-r.html#cb1-2"></a>month &lt;-<span class="st"> &quot;January&quot;</span> </span>
+<span id="cb1-3"><a href="getting-started-with-r.html#cb1-3"></a></span>
+<span id="cb1-4"><a href="getting-started-with-r.html#cb1-4"></a><span class="co"># c() combines several values into one vector that can then be saved as a variable</span></span>
+<span id="cb1-5"><a href="getting-started-with-r.html#cb1-5"></a>weekend &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Saturday&quot;</span>, <span class="st">&quot;Sunday&quot;</span>) </span>
+<span id="cb1-6"><a href="getting-started-with-r.html#cb1-6"></a>sleepHrs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">9</span>)</span>
+<span id="cb1-7"><a href="getting-started-with-r.html#cb1-7"></a></span>
+<span id="cb1-8"><a href="getting-started-with-r.html#cb1-8"></a><span class="co">#Variables can then be combined into dataframes (sth like tables)</span></span>
+<span id="cb1-9"><a href="getting-started-with-r.html#cb1-9"></a>sleepData &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">day =</span> weekend, <span class="dt">hours =</span> sleepHrs)</span>
+<span id="cb1-10"><a href="getting-started-with-r.html#cb1-10"></a></span>
+<span id="cb1-11"><a href="getting-started-with-r.html#cb1-11"></a><span class="co">#Variables within dataframes are accessed using the $ operator</span></span>
+<span id="cb1-12"><a href="getting-started-with-r.html#cb1-12"></a><span class="kw">sum</span>(sleepData<span class="op">$</span>hours)</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<p><strong>Variable classes</strong> indicate what kind of data a variable contains. There are four main types</p>
+<ul>
+<li>numeric, integer or double (i.e. numbers, the differences are not relevant to us)</li>
+<li>character, i.e. any text</li>
+<li>logical, i.e. TRUE/FALSE values</li>
+<li>and factors, i.e. categorical variables, for example weekdays.</li>
+</ul>
+<p>The <code>class()</code> function shows the class of a single variable, the <code>str()</code> and <code>glimpse()</code> functions include the classes of all variables in a dataframe.</p>
+<p>Usually, R gets the classes right by itself and converts as required. If you need to change variable classes, you can use the <code>as.numeric()</code>, <code>as.character()</code>, <code>as.logical()</code>, <code>as.factor()</code> etc. functions. One thing to note: the <code>data.frame()</code> function and many functions that import data automatically change text to factors, which is often what we want (for instance, it correctly did this for weekdays above). To prevent this conversion, add <code>stringsAsFactors = FALSE</code> as an argument to the function, or convert the columns later using the <code>as.character()</code> function.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="getting-started-with-r.html#cb3-1"></a><span class="kw">class</span>(sleepData<span class="op">$</span>hours)</span>
+<span id="cb3-2"><a href="getting-started-with-r.html#cb3-2"></a><span class="kw">str</span>(sleepData)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;
+## &#39;data.frame&#39;:    2 obs. of  2 variables:
+##  $ day  : Factor w/ 2 levels &quot;Saturday&quot;,&quot;Sunday&quot;: 1 2
+##  $ hours: num  4 9</code></pre>
+</div>
+<div id="functions-in-r" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Functions in R</h3>
+<p>All work in R is based on calling functions that do something. A function is called by its name with () behind. If you just type the name, the function is printed out - you usually don’t want this.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="getting-started-with-r.html#cb5-1"></a><span class="co">#Some functions work without any additional arguments</span></span>
+<span id="cb5-2"><a href="getting-started-with-r.html#cb5-2"></a><span class="kw">timestamp</span>()</span>
+<span id="cb5-3"><a href="getting-started-with-r.html#cb5-3"></a><span class="co">#This shows the time this code segment was run - might be helpful if you create multiple reports</span></span>
+<span id="cb5-4"><a href="getting-started-with-r.html#cb5-4"></a></span>
+<span id="cb5-5"><a href="getting-started-with-r.html#cb5-5"></a><span class="co">#Functions that work with given data are more helpful - that data is given as an &#39;argument&#39;</span></span>
+<span id="cb5-6"><a href="getting-started-with-r.html#cb5-6"></a><span class="kw">print</span>(<span class="st">&quot;Hello&quot;</span>)</span>
+<span id="cb5-7"><a href="getting-started-with-r.html#cb5-7"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb5-8"><a href="getting-started-with-r.html#cb5-8"></a></span>
+<span id="cb5-9"><a href="getting-started-with-r.html#cb5-9"></a><span class="co">#Additionally, arguments can contain instructions to the function</span></span>
+<span id="cb5-10"><a href="getting-started-with-r.html#cb5-10"></a><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb5-11"><a href="getting-started-with-r.html#cb5-11"></a><span class="co">#NA is a missing value, na.rm tells the mean function to remove it before calculating the mean</span></span>
+<span id="cb5-12"><a href="getting-started-with-r.html#cb5-12"></a></span>
+<span id="cb5-13"><a href="getting-started-with-r.html#cb5-13"></a><span class="co">#To save the results of a function into a variable, use the &lt;- operator again</span></span>
+<span id="cb5-14"><a href="getting-started-with-r.html#cb5-14"></a>variableName &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## ##------ Thu Mar 12 15:45:13 2020 ------##
+## [1] &quot;Hello&quot;
+## [1] 2
+## [1] 2</code></pre>
+<p>To learn more about the arguments accepted by a specific function, use the <code>?</code> command to open the help page, e.g., by typing <code>?mean</code>. Arguments are matched by their name, as with <code>na.rm =</code> above; if no name is given, they are matched by their position in the function call. Usually, only very common arguments, typically the data, should be left unnamed.</p>
+</div>
+<div id="key-r-packages" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Key R packages</h3>
+<p>The most essential packages for this course are included in the <code>tidyverse</code> - a whole set of packages to make data manipulation and visualisation in R efficient and consistent. They include:</p>
+<ul>
+<li><code>dplyr</code>: a package to efficiently manipulate data and create summary statistics</li>
+<li><code>ggplot2</code>: a package to create all kinds of graphs</li>
+<li><code>readr</code>: a package to load table data into R that is formatted as text</li>
+</ul>
+<p>All these packages are loaded with the <code>library(tidyverse)</code> command. There are some additional packages in the tidyverse that need to be loaded separately, using <code>library(packagename)</code>. The most relevant for us are:</p>
+<ul>
+<li><code>readxl</code> and <code>haven</code>: package to load data from Excel and statistical software</li>
+<li><code>stringr</code>: a package to manipulate strings</li>
+<li><code>lubridate</code>: a package to convert, filter and analyse times and dates</li>
+</ul>
+</div>
+<div id="rmarkdown" class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> RMarkdown</h3>
+<p>A key strength of R are <strong>reproducible analyses.</strong> For that, we don’t want to type commands and just write down the results, but rather create scripts that can produce results again and again. That also makes changes much less painful, for instance if you’ve made a mistake at the start.</p>
+<p><strong>RMarkdown (.Rmd)</strong> files are such scripts that additionally allow to add text and split the code into separate chunks. Within them, <em>grey chunks</em> are code, anything else is not executed. It is just formatted (e.g., with headings and highlights) when you create the report. Markup symbols allow for easy formatting of the text, as per the instructions <a href="https://rmarkdown.rstudio.com/authoring_basics.html">here</a>. (Most of that is not required in this course, a couple of key symbols such as # to indicate headings will be introduced later.)</p>
+<p>Within <em>.Rmd</em> files, you need to <strong>Insert</strong> new code blocks for the major parts of the analysis. For that, use the insert button at the top of the File Editor window. When you want to test your code, you can also <strong>Run</strong> it there or by pressing <em>Ctrl+Enter</em> in the line you want to use (or after you have selected multiple lines to run). Finally, to create the report you need to <strong>Knit</strong> it, again using the button in the File Editor Without installing anything else, you can only knit to <em>HTML files</em>, but those can be opened in any internet browser, so are good to share with anyone.</p>
+</div>
+<div id="help-what-to-do-when-problems-appear" class="section level3" number="1.2.6">
+<h3><span class="header-section-number">1.2.6</span> HELP! What to do when problems appear?</h3>
+<p>When <strong>red text</strong> appears in the console, don’t panick. Some messages that are often entirely irrelevant are displayed in red, for example when packages are loaded. <strong>Warnings</strong> are more important, but they just alert you that something might be going wrong - read them, but then decide whether you need to worry. For instance, ggplot prints a warning when data is missing, which might or might not be a problem for you. Only <strong>Errors</strong> always need to be dealt with as they stop your commands from being executed and the .Rmd file from being knitted. Unfortunately, many R functions give rather cryptic error messages - if you are stuck, first check your code for typos, then Google the error message.</p>
+<p>Many errors occur due to <strong>common mistakes</strong>, that you need to pay attention to:</p>
+<ul>
+<li><strong>Missing brackets</strong> - make sure each <code>(</code> is matched by a <code>)</code> in the right place. When your cursor is at a closing bracket, R highlights the opening bracket it is matched with, which helps to check your syntax</li>
+<li><strong>Misspellings</strong> - variable names and functions need to be spelled correctly, which includes capitalisation, otherwise you might inadvertently create duplicates or cause other issues. Some functions are available in both American and British spelling (e.g., <code>summarise()</code>and <code>summarize()</code> in dplyr), but this is not always the case so that it might be sensible to always stick to American spelling</li>
+<li><strong>Missing library() calls</strong> to load packages - if a function is not found, run <code>library(packagename)</code></li>
+<li><strong>Function masking</strong> - many packages have functions of the same name, so that packages that are loaded later mask (i.e. “over-write”) the names of functions in packages loaded earlier (for example, dplyr’s <code>filter()</code> function masks the <code>filter()</code> function in base R). Often, that is exactly what we want, but if a function does not do what you expect it to do, it’s worth specifying the package it comes from to make sure you are not actually calling a different function that has masked it. You can do that by adding the package name and <code>::</code>, for example, by calling <code>dplyr::filter()</code> <em>Note</em>: If you only want to use a single function from a large package, this is an alternative to loading the full package.</li>
+</ul>
+<p>As you progress in R, <strong>do not try to remember everything</strong> - instead, look things up as needed, in particular things like argument names:</p>
+<ul>
+<li>Use <code>?functionName</code> to get help in R</li>
+<li>Refer to the <a href="https://rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a></li>
+<li>Google your questions and pay particular attention to results from r-bloggers.com and stackoverflow.com</li>
+</ul>
+<p>There is also a very active R user community that is willing to help - <a href="https://stackoverflow.com/">stackoverflow.com</a> is a good place to ask questions about R Code, while <a href="https://stats.stackexchange.com">stats.stackexchange.com</a> is the place to go with questions that are more generally about statistics. In both cases, it pays off to first google and then post questions that are as specific as possible.</p>
 
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -428,8 +489,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="accessing-online-data-sources.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="importing-and-describing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

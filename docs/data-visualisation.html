@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Two more pipes | Getting started with Quantitative Research Methods and R</title>
+  <title>Topic 3 Data visualisation | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Two more pipes | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Topic 3 Data visualisation | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Two more pipes | Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Topic 3 Data visualisation | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="accessing-online-data-sources.html"/>
-
+<link rel="prev" href="importing-and-describing-data.html"/>
+<link rel="next" href="simple-and-multiple-linear-regression.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -252,69 +252,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="two-more-pipes" class="section level1" number="9">
-<h1><span class="header-section-number">A</span> Two more pipes</h1>
-<p>If you are clear on the pipe operator <code>%&gt;%</code> then two more pipes can help you save some typing and write more efficient code. However, neither are critical for this course. All of them require that you load the <code>magrittr</code> package explicitly - it is installed as part of the tidyverse, but not loaded.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="two-more-pipes.html#cb100-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb100-2"><a href="two-more-pipes.html#cb100-2"></a><span class="kw">library</span>(magrittr)</span>
-<span id="cb100-3"><a href="two-more-pipes.html#cb100-3"></a><span class="co">#Example data</span></span>
-<span id="cb100-4"><a href="two-more-pipes.html#cb100-4"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
-<div id="expanding-the-tidyverse-the-exposition-pipe" class="section level2" number="9.1">
-<h2><span class="header-section-number">A.1</span> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</h2>
-<p>Inside dplyr pipes, you do not need to use the <code>$</code> to access variables within the dataframe. However, that does not work in some base-R functions such as <code>cor.test()</code>. For them, <code>%$%</code> can expose the variables in a dataframe temporarily (until the end of that command) so that they can be accessed as if they were separate variables in your environment.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="two-more-pipes.html#cb101-1"></a><span class="co">#Normal code</span></span>
-<span id="cb101-2"><a href="two-more-pipes.html#cb101-2"></a><span class="kw">cor.test</span>(constituencies<span class="op">$</span>MedianAge, constituencies<span class="op">$</span>ElectionConShare)</span>
-<span id="cb101-3"><a href="two-more-pipes.html#cb101-3"></a></span>
-<span id="cb101-4"><a href="two-more-pipes.html#cb101-4"></a><span class="co">#With the exposition pipe</span></span>
-<span id="cb101-5"><a href="two-more-pipes.html#cb101-5"></a>constituencies <span class="op">%$%</span><span class="st"> </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  constituencies$MedianAge and constituencies$ElectionConShare
-## t = 16.454, df = 648, p-value &lt; 2.2e-16
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.4862318 0.5949037
-## sample estimates:
-##      cor 
-## 0.542836 
-## 
-## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  MedianAge and ElectionConShare
-## t = 16.454, df = 648, p-value &lt; 2.2e-16
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.4862318 0.5949037
-## sample estimates:
-##      cor 
-## 0.542836</code></pre>
-<p>Clearly in this case, the difference is slight but you might find it more readable as well. In other cases, this can spare you from having to save a filtered dataset or otherwise processed dataset into a new variable that you are only using once.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="two-more-pipes.html#cb103-1"></a>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ContType <span class="op">==</span><span class="st"> &quot;County&quot;</span>) <span class="op">%$%</span><span class="st"> </span></span>
-<span id="cb103-2"><a href="two-more-pipes.html#cb103-2"></a><span class="st">  </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  MedianAge and ElectionConShare
-## t = 7.4961, df = 366, p-value = 5.003e-13
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.2727644 0.4502600
-## sample estimates:
-##       cor 
-## 0.3648222</code></pre>
+<div id="data-visualisation" class="section level1" number="3">
+<h1><span class="header-section-number">Topic 3</span> Data visualisation</h1>
+<p>Being able to look at the data is a key step in data exploration, during the analysis and in the communication of results. R has a range of powerful tools to create graphs quickly, and then to develop them into a publication-ready format where helpful.</p>
+<p><a href="TK"><img src="https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block" id="id" class="class" width="35" height="35" /></a>   For an introduction to the grammar of graphics and ggplot2, <a href="https://youtu.be/sk7TT5qM5Hw">watch/rewatch this video</a></p>
+<div id="ggplot2" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> ggplot2</h2>
+<p>We use the <code>ggplot2</code>-package because it offers a consistent way to create anything from simple exploratory plots to complex data visualisation. Each graph command needs certain parts:</p>
+<ul>
+<li>a call to the <code>ggplot</code>-function and the <strong>data</strong> as the first argument: <code>ggplot(gapminder,</code></li>
+<li>a mapping of the <strong>aesthetics</strong>, i.e. of variables to visual elements. This uses the <code>aes</code>-function that is given to <code>ggplot</code> as the second argument: <code>aes(x=infant_mortality, y=fertility, col=continent))</code> (Note that two closing brackets are needed as this also completes the ggplot function call)</li>
+<li>a <strong>geometry</strong>, i.e. a type of chart, that is added with a plus-symbol and the function call, e.g., ` + geom_point()`</li>
+<li>optional elements such as labels that are included again with plus-symbols and function calls, e.g., `+ ggtitle(“Association of infant mortality and fertility”, subtitle=“2010 data from gapminder.org”)`</li>
+</ul>
+<p>Multiple geometries can be layered on top of each other, for example to add trend lines to scatterplots. In that case, <code>aes()</code> functions can be included into the <code>geom_()</code>-functions to make some of the mappings specific to certain geometries. This is done in the example below to color the points by continent without applying that aestethic to the line - if it was included in the main aes() function, the plot would contain a separate coloured line for each continent.</p>
+<p><em>Note:</em> Line breaks are completely up to you and can be used to make the code readable as long as the command does not appear complete too early - to keep it simple, there should always be an open bracket, a comma or a + before a line break within the command to create a ggplot-chart</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-visualisation.html#cb17-1"></a><span class="kw">library</span>(dslabs)</span>
+<span id="cb17-2"><a href="data-visualisation.html#cb17-2"></a>gapminder2010 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2010</span>)</span>
+<span id="cb17-3"><a href="data-visualisation.html#cb17-3"></a></span>
+<span id="cb17-4"><a href="data-visualisation.html#cb17-4"></a><span class="kw">ggplot</span>(gapminder2010, <span class="kw">aes</span>(<span class="dt">x=</span>infant_mortality, <span class="dt">y=</span>fertility)) <span class="op">+</span></span>
+<span id="cb17-5"><a href="data-visualisation.html#cb17-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>continent)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>() <span class="op">+</span></span>
+<span id="cb17-6"><a href="data-visualisation.html#cb17-6"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Association of infant mortality and fertility&quot;</span>, </span>
+<span id="cb17-7"><a href="data-visualisation.html#cb17-7"></a>            <span class="dt">subtitle=</span><span class="st">&quot;2010 data from gapminder.org&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 7 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<img src="03-data-visualisation_files/figure-html/unnamed-chunk-1-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+<p class="caption">
+Figure 3.1: <strong>CAPTION THIS FIGURE!!</strong>
+</p>
 </div>
-<div id="a-somewhat-risky-time-saver-the-assignment-pipe" class="section level2" number="9.2">
-<h2><span class="header-section-number">A.2</span> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</h2>
-<p>Quite often, we want to edit an element in place, which leads to some repetition as you need to specify that you want to put it into the pipe and then save it back in place.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="two-more-pipes.html#cb105-1"></a><span class="co">#Normal code</span></span>
-<span id="cb105-2"><a href="two-more-pipes.html#cb105-2"></a>constituencies &lt;-<span class="st"> </span>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span>
-<span id="cb105-3"><a href="two-more-pipes.html#cb105-3"></a></span>
-<span id="cb105-4"><a href="two-more-pipes.html#cb105-4"></a><span class="co">#With assignment pipe</span></span>
-<span id="cb105-5"><a href="two-more-pipes.html#cb105-5"></a>constituencies <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span></code></pre></div>
-<p>The assignment pipe here takes <code>constituencies</code>, puts it into the pipeline, and takes the result at the end to save back into <code>constituencies</code>. It can be particularly pleasant when you want to apply a function to a single variable, but be careful not to use it accidentally - if you type <code>%&lt;&gt;%</code> instead of <code>%&gt;%</code> you will create bugs in your code that are not easy to spot.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="two-more-pipes.html#cb106-1"></a>constituencies<span class="op">$</span>ElectionWon <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref=</span><span class="st">&quot;Lab&quot;</span>)</span></code></pre></div>
+</div>
+<div id="further-resources" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Further resources</h2>
+<ul>
+<li>The <a href="https://r-graphics.org/">R Graphics Cookbook</a> by Winston Chang is available online with 150 “recipes” that cover everything from basic exploratory charts to colour-coded maps.</li>
+<li>The BBC graphics team has published their own <a href="https://bbc.github.io/rcookbook/">R Cookbook</a> with clear tips for making publishable charts that convey a clear message</li>
+</ul>
 
 </div>
 </div>
@@ -428,8 +403,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="accessing-online-data-sources.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="importing-and-describing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-and-multiple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

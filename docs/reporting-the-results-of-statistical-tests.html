@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Two more pipes | Getting started with Quantitative Research Methods and R</title>
+  <title>Topic 7 Reporting the results of statistical tests | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Two more pipes | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Topic 7 Reporting the results of statistical tests | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Two more pipes | Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Topic 7 Reporting the results of statistical tests | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="accessing-online-data-sources.html"/>
-
+<link rel="prev" href="chi-squared-tests-for-associations-between-categorical-variables.html"/>
+<link rel="next" href="accessing-online-data-sources.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -252,70 +252,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="two-more-pipes" class="section level1" number="9">
-<h1><span class="header-section-number">A</span> Two more pipes</h1>
-<p>If you are clear on the pipe operator <code>%&gt;%</code> then two more pipes can help you save some typing and write more efficient code. However, neither are critical for this course. All of them require that you load the <code>magrittr</code> package explicitly - it is installed as part of the tidyverse, but not loaded.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="two-more-pipes.html#cb100-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb100-2"><a href="two-more-pipes.html#cb100-2"></a><span class="kw">library</span>(magrittr)</span>
-<span id="cb100-3"><a href="two-more-pipes.html#cb100-3"></a><span class="co">#Example data</span></span>
-<span id="cb100-4"><a href="two-more-pipes.html#cb100-4"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
-<div id="expanding-the-tidyverse-the-exposition-pipe" class="section level2" number="9.1">
-<h2><span class="header-section-number">A.1</span> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</h2>
-<p>Inside dplyr pipes, you do not need to use the <code>$</code> to access variables within the dataframe. However, that does not work in some base-R functions such as <code>cor.test()</code>. For them, <code>%$%</code> can expose the variables in a dataframe temporarily (until the end of that command) so that they can be accessed as if they were separate variables in your environment.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="two-more-pipes.html#cb101-1"></a><span class="co">#Normal code</span></span>
-<span id="cb101-2"><a href="two-more-pipes.html#cb101-2"></a><span class="kw">cor.test</span>(constituencies<span class="op">$</span>MedianAge, constituencies<span class="op">$</span>ElectionConShare)</span>
-<span id="cb101-3"><a href="two-more-pipes.html#cb101-3"></a></span>
-<span id="cb101-4"><a href="two-more-pipes.html#cb101-4"></a><span class="co">#With the exposition pipe</span></span>
-<span id="cb101-5"><a href="two-more-pipes.html#cb101-5"></a>constituencies <span class="op">%$%</span><span class="st"> </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  constituencies$MedianAge and constituencies$ElectionConShare
-## t = 16.454, df = 648, p-value &lt; 2.2e-16
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.4862318 0.5949037
-## sample estimates:
-##      cor 
-## 0.542836 
-## 
-## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  MedianAge and ElectionConShare
-## t = 16.454, df = 648, p-value &lt; 2.2e-16
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.4862318 0.5949037
-## sample estimates:
-##      cor 
-## 0.542836</code></pre>
-<p>Clearly in this case, the difference is slight but you might find it more readable as well. In other cases, this can spare you from having to save a filtered dataset or otherwise processed dataset into a new variable that you are only using once.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="two-more-pipes.html#cb103-1"></a>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ContType <span class="op">==</span><span class="st"> &quot;County&quot;</span>) <span class="op">%$%</span><span class="st"> </span></span>
-<span id="cb103-2"><a href="two-more-pipes.html#cb103-2"></a><span class="st">  </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  MedianAge and ElectionConShare
-## t = 7.4961, df = 366, p-value = 5.003e-13
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.2727644 0.4502600
-## sample estimates:
-##       cor 
-## 0.3648222</code></pre>
+<div id="reporting-the-results-of-statistical-tests" class="section level1" number="7">
+<h1><span class="header-section-number">Topic 7</span> Reporting the results of statistical tests</h1>
+<p>Statistical test can often result in a lot of different numbers, but should also result in clear decisions and messages. To facilitate communication, there are sets of guidelines regarding what to report. In this course, we are using the APA guidelines, which are also commonly used in journals in psychology and beyond.</p>
+<div id="essential-pieces-of-information" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Essential pieces of information</h2>
+<p>When reporting inferential statistical tests, always make sure to:</p>
+<ul>
+<li>State whether the results were <strong>significant</strong> (or which results were), and what the exact <em>p</em>-values were (typically rounded to three decimal places; if smaller than .001 then reported as &lt; .001). Results with <em>p</em>-values between .05 and .1 can be reported as a trend, or as marginally significant, but that should at the very least only be done if the estimated effect size is substantial.</li>
+<li>Report <strong>which test</strong> you carried out, and how it was carried out, if you did anything non-standard (e.g., if <em>p</em>-values were simulated). For each test, relevant degrees of freedom and test statistics should be reported, see below.</li>
+<li>Include relevant <strong>descriptive statistics</strong>. If a difference is significant, the reader will want to know how large it was.</li>
+<li>Consider including <strong>effect sizes</strong>, ideally with confidence intervals, so that readers can judge how important the effect is. In reality, there will often be some statistically significant differences between groups, but not all are of a size that makes them interesting or practically significant.</li>
+</ul>
+<div id="what-to-include-for-specific-tests" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> What to include for specific tests</h3>
+<ul>
+<li><strong><em>t</em>-tests:</strong> <em>t</em>(df) = 1.23, <em>p</em> = .012. df stands for degrees of freedom and is shown in the <code>t.test()</code>-output. If equal variances are assumed, it is the sample size - 1; otherwise, a bit less. In any case, it describes which <em>t</em>-distribution was used to find the <em>p</em>-value.</li>
+<li><strong><em>F</em>-tests</strong> (for ANOVAs and model evaluation): <em>F</em>(df1, df2) = 1.23, <em>p</em> = .012. Here you have two degrees of freedom, df1 for the model and df2 for the error term. Both are provided in the output of various functions; a simple heuristic for checking whether you got them the right way round is that df2 should be the larger one in the vast majority of cases.</li>
+<li><strong>Correlations:</strong> <em>r</em> = .12, <em>p</em> = .012. Given that correlations are bounded by -1 and 1, the leading 0 is always ommitted. If you use Spearman’s rank order correlation, it is reported as <em>rho</em> = .12; the Greek letter <span class="math inline">\(\rho\)</span> is not typically used.</li>
+<li><strong><span class="math inline">\(\chi^2\)</span>-tests:</strong> <span class="math inline">\(\chi^2\)</span>(df) = 1.23, <em>p</em> = .012. Here the degrees of freedom are the number of frequency table rows - 1 * the number of columns - 1. When you <code>simulate.p.values</code>, R does not report it because it does not use a fixed <span class="math inline">\(\chi^2\)</span>-distribution to look up the <em>p</em>-values; you should report it nonetheless as it also gives an indication for the complexity of your table.</li>
+</ul>
+<p><strong>Examples</strong> can be found all over the internet; <a href="https://my.ilstu.edu/~jhkahn/apastats.html">this</a> might be a good place to start</p>
 </div>
-<div id="a-somewhat-risky-time-saver-the-assignment-pipe" class="section level2" number="9.2">
-<h2><span class="header-section-number">A.2</span> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</h2>
-<p>Quite often, we want to edit an element in place, which leads to some repetition as you need to specify that you want to put it into the pipe and then save it back in place.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="two-more-pipes.html#cb105-1"></a><span class="co">#Normal code</span></span>
-<span id="cb105-2"><a href="two-more-pipes.html#cb105-2"></a>constituencies &lt;-<span class="st"> </span>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span>
-<span id="cb105-3"><a href="two-more-pipes.html#cb105-3"></a></span>
-<span id="cb105-4"><a href="two-more-pipes.html#cb105-4"></a><span class="co">#With assignment pipe</span></span>
-<span id="cb105-5"><a href="two-more-pipes.html#cb105-5"></a>constituencies <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span></code></pre></div>
-<p>The assignment pipe here takes <code>constituencies</code>, puts it into the pipeline, and takes the result at the end to save back into <code>constituencies</code>. It can be particularly pleasant when you want to apply a function to a single variable, but be careful not to use it accidentally - if you type <code>%&lt;&gt;%</code> instead of <code>%&gt;%</code> you will create bugs in your code that are not easy to spot.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="two-more-pipes.html#cb106-1"></a>constituencies<span class="op">$</span>ElectionWon <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref=</span><span class="st">&quot;Lab&quot;</span>)</span></code></pre></div>
+<div id="formatting" class="section level3" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Formatting</h3>
+<ul>
+<li>Any <strong>Roman letters</strong> (<em>p, r, F, t, R</em>) that stand for specific statistics are printed in <em>italics</em></li>
+<li>If a statistic cannot have a value higher than 1 (i.e. for <em>p, r, rho, R^2</em>) the <strong>leading 0</strong> should be omitted, i.e. <em>p</em> = .04 rather than <em>p</em> = 0.04</li>
+<li>If you want to use <strong>Greek letters</strong> (e.g., <span class="math inline">\(\alpha, \beta, \chi, \Delta\)</span>) in RMarkdown, the easiest way to get them is to create an inline formula (an expression wrapped into dollar signs) and then type the name of the letter after a , for instance <code>\$\\alpha\$</code> You can use the same approach to show sums, fractions etc., though you would generally not need that in this course. The easiest way to get special characters like Greek letters into Word documents is to Google and copy-paste them.</li>
+<li>To insert a <strong>superscript</strong>, most often ^2, into RMarkdown, type ^2. In Word, there is a superscript button close to the font size selection box.</li>
+<li>When it comes to <strong>descriptive statistics</strong>, <em>N</em> typically denotes the number of cases/participants, <em>M</em> the mean, and <em>SD</em> the standard deviation</li>
+</ul>
+</div>
+<div id="rounding" class="section level3" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Rounding</h3>
+<p>It is important to round numbers consistently, partly because too many decimal places might convey a false impression of accuracy (does it help if I report that I spend 2.978536776 hours working on this book today), but also because numbers that do not convey relevant information can quicky clutter up papers and presentations.</p>
+<p>In general, test statistics and most descriptive statistics should be rounded to two decimal places (i.e. places after the decimal point) and <em>p</em>-values to three decimal places. If that leads to descriptive statistics or regression coefficients to be rounded down to 0.00, that is a strong indication that you should consider changing the scale of the variables (e.g., from hours to minutes). <em>p</em>-values by definition can never be equal to 0, so here you need to pay attention to report small <em>p</em>-values as &lt; .001 rather than = .000</p>
+<p><strong>How to round? (With one change to what you learned in school)</strong> Cross out all numbers after the last decimal place you want to keep. If the first number you crossed out is less than 5, then you are done. If it more than 5, then increase the last number you keep by 1. If it is 5 and any later number if more than 0, then also increase the last number you keep by one. If it is exactly 5 with only 0s following, then keep the last number unchanged if it is even, and increase it by 1 if it is odd. Some examples:</p>
+<ul>
+<li>1.2349 –&gt; 1.23</li>
+<li>1.2351 –&gt; 1.24</li>
+<li>1.2350 –&gt; 1.24</li>
+<li>1.2250 –&gt; 1.22 (!)</li>
+</ul>
+<p><em>Why not just round up 5</em> like we all learned in school? If we always did that, we would introduce a small but consistent bias into our numbers. Therefore, this would better be randomised. The rule set out here goes towards randomisation without being too complicated, and is therefore what the APA guidelines recommend.</p>
 
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -428,8 +410,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="accessing-online-data-sources.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="chi-squared-tests-for-associations-between-categorical-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="accessing-online-data-sources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

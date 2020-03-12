@@ -17,7 +17,8 @@ Multiple geometries can be layered on top of each other, for example to add tren
 
 *Note:* Line breaks are completely up to you and can be used to make the code readable as long as the command does not appear complete too early - to keep it simple, there should always be an open bracket, a comma or a + before a line break within the command to create a ggplot-chart
 
-```{r}
+
+```r
 library(dslabs)
 gapminder2010 <- gapminder %>% filter(year==2010)
 
@@ -26,6 +27,23 @@ ggplot(gapminder2010, aes(x=infant_mortality, y=fertility)) +
     ggtitle("Association of infant mortality and fertility", 
             subtitle="2010 data from gapminder.org")
 ```
+
+```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+```
+## Warning: Removed 7 rows containing non-finite values (stat_smooth).
+```
+
+```
+## Warning: Removed 7 rows containing missing values (geom_point).
+```
+
+<div class="figure" style="text-align: center">
+<img src="03-data-visualisation_files/figure-html/unnamed-chunk-1-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-1)**CAPTION THIS FIGURE!!**</p>
+</div>
 
 ## Further resources
 

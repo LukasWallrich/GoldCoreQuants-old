@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-03" />
+<meta name="date" content="2020-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 
-<link rel="next" href="simple-and-multiple-linear-regression.html"/>
+<link rel="next" href="getting-started-with-r.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,46 +137,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
 <ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#further-sources"><i class="fa fa-check"></i><b>0.1</b> Further sources</a></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html"><i class="fa fa-check"></i><b>1</b> Simple and multiple linear regression</a>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#further-sources"><i class="fa fa-check"></i><b>0.1</b> Further sources</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>1.1</b> Simple linear regression</a>
-<ul>
-<li class="chapter" data-level="1.1.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#plotting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>1.1.1</b> Plotting a simple linear regression model</a></li>
-<li class="chapter" data-level="1.1.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-representation-of-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>1.1.2</b> Mathematical representation of a simple linear regression model</a></li>
-<li class="chapter" data-level="1.1.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#fitting-a-simple-linear-regression-model-in-r"><i class="fa fa-check"></i><b>1.1.3</b> Fitting a simple linear regression model in R</a></li>
-</ul></li>
-<li class="chapter" data-level="1.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#bivariate-correlation"><i class="fa fa-check"></i><b>1.2</b> Bivariate correlation</a>
-<ul>
-<li class="chapter" data-level="1.2.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#calculating-the-correlation-coefficient"><i class="fa fa-check"></i><b>1.2.1</b> Calculating the correlation coefficient</a></li>
-<li class="chapter" data-level="1.2.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#equivalence-to-linear-regression"><i class="fa fa-check"></i><b>1.2.2</b> Equivalence to linear regression</a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>1.3</b> Multiple linear regression</a>
-<ul>
-<li class="chapter" data-level="1.3.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#dummy-coding-revisited"><i class="fa fa-check"></i><b>1.3.1</b> Dummy coding revisited</a></li>
-<li class="chapter" data-level="1.3.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-structure-of-multiple-linear-models"><i class="fa fa-check"></i><b>1.3.2</b> Mathematical structure of multiple linear models</a></li>
-<li class="chapter" data-level="1.3.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#running-multiple-linear-regression-models-in-r"><i class="fa fa-check"></i><b>1.3.3</b> Running multiple linear regression models in R</a></li>
-</ul></li>
-<li class="chapter" data-level="1.4" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#comparing-means-between-conditions-or-groups"><i class="fa fa-check"></i><b>1.4</b> Comparing means between conditions or groups</a>
-<ul>
-<li class="chapter" data-level="1.4.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#repeated-measures-or-independent-samples"><i class="fa fa-check"></i><b>1.4.1</b> Repeated measures or independent samples</a></li>
-<li class="chapter" data-level="1.4.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#two-independent-means"><i class="fa fa-check"></i><b>1.4.2</b> Two independent means</a></li>
-<li class="chapter" data-level="1.4.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#two-dependent-means"><i class="fa fa-check"></i><b>1.4.3</b> Two dependent means</a></li>
-<li class="chapter" data-level="1.4.4" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#more-than-two-independent-means"><i class="fa fa-check"></i><b>1.4.4</b> More than two independent means</a></li>
-<li class="chapter" data-level="1.4.5" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#more-than-two-means-from-repeated-measures"><i class="fa fa-check"></i><b>1.4.5</b> More than two means from repeated measures</a></li>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#free-online-books"><i class="fa fa-check"></i><b>0.1.1</b> Free online books</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#paperlibrary-books"><i class="fa fa-check"></i><b>0.1.2</b> Paper/library books</a></li>
+<li class="chapter" data-level="0.1.3" data-path="index.html"><a href="index.html#other-key-resources"><i class="fa fa-check"></i><b>0.1.3</b> Other key resources</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html"><i class="fa fa-check"></i><b>2</b> Accessing online data sources</a>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#world-bank-data"><i class="fa fa-check"></i><b>2.1</b> World Bank data</a></li>
-<li class="chapter" data-level="2.2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#wikidata"><i class="fa fa-check"></i><b>2.2</b> Wikidata</a></li>
-<li class="chapter" data-level="2.3" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#other-data-sources"><i class="fa fa-check"></i><b>2.3</b> Other data sources</a></li>
+<li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#install-r-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Install R on your computer</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#some-key-concepts"><i class="fa fa-check"></i><b>1.2</b> Some key concepts</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-rstudio-and-r-packages"><i class="fa fa-check"></i><b>1.2.1</b> R, RStudio and R packages</a></li>
+<li class="chapter" data-level="1.2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#data-and-variables-in-r"><i class="fa fa-check"></i><b>1.2.2</b> Data and variables in R</a></li>
+<li class="chapter" data-level="1.2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#functions-in-r"><i class="fa fa-check"></i><b>1.2.3</b> Functions in R</a></li>
+<li class="chapter" data-level="1.2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#key-r-packages"><i class="fa fa-check"></i><b>1.2.4</b> Key R packages</a></li>
+<li class="chapter" data-level="1.2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rmarkdown"><i class="fa fa-check"></i><b>1.2.5</b> RMarkdown</a></li>
+<li class="chapter" data-level="1.2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#help-what-to-do-when-problems-appear"><i class="fa fa-check"></i><b>1.2.6</b> HELP! What to do when problems appear?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html"><i class="fa fa-check"></i><b>2</b> Importing and describing data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Importing data into R</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data"><i class="fa fa-check"></i><b>2.2</b> Manipulating data</a></li>
+<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#functions-to-view-and-summarise-data"><i class="fa fa-check"></i><b>2.3</b> Functions to view and summarise data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>3.1</b> ggplot2</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>3.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Simple and multiple linear regression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>4.1</b> Simple linear regression</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#plotting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.1.1</b> Plotting a simple linear regression model</a></li>
+<li class="chapter" data-level="4.1.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-representation-of-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.1.2</b> Mathematical representation of a simple linear regression model</a></li>
+<li class="chapter" data-level="4.1.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#fitting-a-simple-linear-regression-model-in-r"><i class="fa fa-check"></i><b>4.1.3</b> Fitting a simple linear regression model in R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#bivariate-correlation"><i class="fa fa-check"></i><b>4.2</b> Bivariate correlation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#calculating-the-correlation-coefficient"><i class="fa fa-check"></i><b>4.2.1</b> Calculating the correlation coefficient</a></li>
+<li class="chapter" data-level="4.2.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#equivalence-to-linear-regression"><i class="fa fa-check"></i><b>4.2.2</b> Equivalence to linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>4.3</b> Multiple linear regression</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#dummy-coding-revisited"><i class="fa fa-check"></i><b>4.3.1</b> Dummy coding revisited</a></li>
+<li class="chapter" data-level="4.3.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-structure-of-multiple-linear-models"><i class="fa fa-check"></i><b>4.3.2</b> Mathematical structure of multiple linear models</a></li>
+<li class="chapter" data-level="4.3.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#running-multiple-linear-regression-models-in-r"><i class="fa fa-check"></i><b>4.3.3</b> Running multiple linear regression models in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html"><i class="fa fa-check"></i><b>5</b> Comparing means between conditions or groups</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#repeated-measures-or-independent-samples"><i class="fa fa-check"></i><b>5.0.1</b> Repeated measures or independent samples</a></li>
+<li class="chapter" data-level="5.0.2" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-independent-means"><i class="fa fa-check"></i><b>5.0.2</b> Two independent means</a></li>
+<li class="chapter" data-level="5.0.3" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-dependent-means"><i class="fa fa-check"></i><b>5.0.3</b> Two dependent means</a></li>
+<li class="chapter" data-level="5.0.4" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-independent-means"><i class="fa fa-check"></i><b>5.0.4</b> More than two independent means</a></li>
+<li class="chapter" data-level="5.0.5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-means-from-repeated-measures"><i class="fa fa-check"></i><b>5.0.5</b> More than two means from repeated measures</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html"><i class="fa fa-check"></i><b>6</b> Chi-squared tests for associations between categorical variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#tables-of-frequencies-and-proportions"><i class="fa fa-check"></i><b>6.1</b> Tables of frequencies and proportions</a></li>
+<li class="chapter" data-level="6.2" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-null-hypothesis-and-the-chi2-statistic"><i class="fa fa-check"></i><b>6.2</b> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</a></li>
+<li class="chapter" data-level="6.3" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-chisq.test-function"><i class="fa fa-check"></i><b>6.3</b> The chisq.test() function</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#dealing-with-small-samples"><i class="fa fa-check"></i><b>6.3.1</b> Dealing with small samples</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#post-hoc-tests"><i class="fa fa-check"></i><b>6.4</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="6.5" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#effect-sizes"><i class="fa fa-check"></i><b>6.5</b> Effect sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html"><i class="fa fa-check"></i><b>7</b> Reporting the results of statistical tests</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#essential-pieces-of-information"><i class="fa fa-check"></i><b>7.1</b> Essential pieces of information</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#what-to-include-for-specific-tests"><i class="fa fa-check"></i><b>7.1.1</b> What to include for specific tests</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#formatting"><i class="fa fa-check"></i><b>7.1.2</b> Formatting</a></li>
+<li class="chapter" data-level="7.1.3" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#rounding"><i class="fa fa-check"></i><b>7.1.3</b> Rounding</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html"><i class="fa fa-check"></i><b>8</b> Accessing online data sources</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#world-bank-data"><i class="fa fa-check"></i><b>8.1</b> World Bank data</a></li>
+<li class="chapter" data-level="8.2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#wikidata"><i class="fa fa-check"></i><b>8.2</b> Wikidata</a></li>
+<li class="chapter" data-level="8.3" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#other-data-sources"><i class="fa fa-check"></i><b>8.3</b> Other data sources</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
-<li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a></li>
-<li class="chapter" data-level="B" data-path="expanding-the-tidyverse-the-exposition-pipe.html"><a href="expanding-the-tidyverse-the-exposition-pipe.html"><i class="fa fa-check"></i><b>B</b> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</a></li>
-<li class="chapter" data-level="C" data-path="a-somewhat-risky-time-saver-the-assignment-pipe.html"><a href="a-somewhat-risky-time-saver-the-assignment-pipe.html"><i class="fa fa-check"></i><b>C</b> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</a></li>
+<li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="two-more-pipes.html"><a href="two-more-pipes.html#expanding-the-tidyverse-the-exposition-pipe"><i class="fa fa-check"></i><b>A.1</b> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</a></li>
+<li class="chapter" data-level="A.2" data-path="two-more-pipes.html"><a href="two-more-pipes.html#a-somewhat-risky-time-saver-the-assignment-pipe"><i class="fa fa-check"></i><b>A.2</b> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
     target="blank"><img alt="Creative Commons License" 
@@ -204,18 +255,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Getting started with Quantitative Research Methods and R</h1>
 <p class="author"><em>Lukas Wallrich</em></p>
-<p class="date"><em>2020-03-03</em></p>
+<p class="date"><em>2020-03-12</em></p>
 </div>
 <div id="overview" class="section level1 unnumbered" number="">
 <h1>Overview</h1>
 <p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time.</strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
 <div id="further-sources" class="section level2" number="0.1">
 <h2><span class="header-section-number">0.1</span> Further sources</h2>
-<p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online books that offer a more comprehensive treatment of many of the aspects discussed here, including the following:</p>
+<p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online resources that go further.</p>
+<div id="free-online-books" class="section level3" number="0.1.1">
+<h3><span class="header-section-number">0.1.1</span> Free online books</h3>
 <ul>
-<li><em>To be written</em></li>
+<li>Hadley Wickham, the leading brain behind the tidyverse packages, has co-authored <a href="https://r4ds.had.co.nz/index.html"><em>R for Data Science</em></a> (with Garrett Grolemund). This book does not cover inferential statistics, but explains how to use R to process, describe and visualise data in line with the aproach taken in this course.</li>
+<li>The <a href="https://learningstatisticswithr.com/book/"><em>Learning statistics with R</em></a> book by Danielle Navarro focuses on explaining the different statistical tests and their application in quite a lot of detail, including the underlying maths. It is written by a psychologist, and might therefore be particularly helpful for people from that discipline.</li>
+</ul>
+</div>
+<div id="paperlibrary-books" class="section level3" number="0.1.2">
+<h3><span class="header-section-number">0.1.2</span> Paper/library books</h3>
+<ul>
+<li>Charles Wheelan’s <em>Naked Statistics: Stripping the Dread from the Data</em> is an easy-to-read and entertaining New York Times bestseller that introduces statistical thinking and some key concepts without distracting details.</li>
+<li>Neil Burdess’ <em>Starting Statistics: A short clear guide</em> covers the basic ground with more practical and technical detail.</li>
+<li>Also have a look at the <strong>Module Guide</strong> on the <a href="TK">learn.gold Module Page</a> that contains further recommendations, especially with regard to research methods.</li>
+</ul>
+</div>
+<div id="other-key-resources" class="section level3" number="0.1.3">
+<h3><span class="header-section-number">0.1.3</span> Other key resources</h3>
+<ul>
+<li>The RStudio team created and collected a very helpful set of Cheatsheets that cover the key elements of various R packages - have a look here. For this course, the sheets on <code>dplyr</code>, <code>ggplot2</code>, <code>dplyr</code></li>
+<li><a href="https://stackoverflow.com/questions/tagged/r">Stackoverflow</a> is an online forum with a great and welcoming support community. However, make sure to use Google and their search function first to check that your question hasn’t already been answered and show what you already understand - if the same questions keep on getting asked or if the questions are very unclear, people volunteering their time to help can get a bit testy.</li>
 </ul>
 
+</div>
 </div>
 </div>
 <div class="psyteachr_footer">
@@ -329,7 +399,7 @@ window.onload = function() {
         </div>
       </div>
 
-<a href="simple-and-multiple-linear-regression.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="getting-started-with-r.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
