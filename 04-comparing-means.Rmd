@@ -1,4 +1,4 @@
-## Comparing means between conditions or groups
+# Comparing means between conditions or groups
 
 [![](https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block){#id .class width=35 height=35px}](https://youtu.be/L69HyBnvQRQ) &nbsp; [Watch/rewatch this video](https://youtu.be/L69HyBnvQRQ) for an introduction to testing for differences between two means and to the differences between repeated measures and independent samples designs.
 

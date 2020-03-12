@@ -10,7 +10,7 @@ constituencies <- read_csv(url("http://empower-training.de/Gold/ConstituencyData
 
 ```
 
-# Expanding the tidyverse: the exposition pipe (`%$%`)
+## Expanding the tidyverse: the exposition pipe (`%$%`)
 
 Inside dplyr pipes, you do not need to use the `$` to access variables within the dataframe. However, that does not work in some base-R functions such as `cor.test()`. For them, `%$%` can expose the variables in a dataframe temporarily (until the end of that command) so that they can be accessed as if they were separate variables in your environment.
 
@@ -31,7 +31,7 @@ constituencies %>% filter(ContType == "County") %$%
 
 ```
 
-# A somewhat risky time-saver: the assignment pipe (`%<>%`)
+## A somewhat risky time-saver: the assignment pipe (`%<>%`)
 
 Quite often, we want to edit an element in place, which leads to some repetition as you need to specify that you want to put it into the pipe and then save it back in place.
 
