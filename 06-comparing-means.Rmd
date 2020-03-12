@@ -1,0 +1,162 @@
+# Comparing means between conditions or groups
+
+[![](https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block){#id .class width=35 height=35px}](https://youtu.be/L69HyBnvQRQ) &nbsp; [Watch/rewatch this video](https://youtu.be/L69HyBnvQRQ) for an introduction to testing for differences between two means and to the differences between repeated measures and independent samples designs.
+
+[![](https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block){#id .class width=35 height=35px}](https://youtu.be/r96FYPLQ1l0) &nbsp; [Watch/rewatch this video](https://youtu.be/r96FYPLQ1l0) for an introduction to testing for differences between *more than* two means.
+
+### Repeated measures or independent samples
+
+The first question always needs to be whether each participant contributes one or several data points to the dependent variable that is compared. If they contribute only one, we have an *independent samples* or *between-participants* design; if they contribute several, the design is *repeated measures* or *within participants.* In the latter case, we need to account for the relationships between some of the measurements in our analysis.
+
+### Two independent means
+
+Going back to the European Social Survey 2014 data, we might be curious whether social trust differs between men and women in the UK. For that, we should always first calculate the descriptive statistics:
+
+```{r}
+ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
+ess <- ess %>% mutate(soctrust = (ppltrst + pplfair + pplhlp)/3)
+essUK <- ess %>% filter(cntry=="GB")
+essUK %>% group_by(gndr) %>% summarise(mean(soctrust, na.rm = TRUE))
+```
+
+Those means look very close. Nevertheless, we might want to know how likely we would have been to see a difference this large under the null-hypothesis, i.e. if social trust did not differ between men and women. For that, we can run a t-test.
+
+```{r}
+t.test(soctrust ~ gndr, data=essUK, var.equal = TRUE)
+```
+
+This is just a special case of a linear model, so we could also use the `lm()` function:
+
+```{r}
+lm(soctrust ~ gndr, data=essUK) %>% summary()
+```
+
+Both show, as expected, that the difference we observed could easily have been due to chance. If this is the only test you conduct, you would conventionally usually report the result of the t-test, saying: there was no significant difference in social trust between men and women, *t*(2248) = -0.21, *p* = .83.
+
+### Two dependent means
+
+In the ESS data, participants were asked how much they drank when they last drank during a weekday and during a weekend. Here the same participants provided two alcohol measures, so that these data points represent repeated measures. If we ignore that in the analysis, we violate a key assumption of linear models - namely the independence of observations. Therefore, we need to use a paired t-test. But as always, first descriptive statistics.
+
+```{r}
+essUK %>% summarise(weekday = mean(alcwkdy, na.rm=T), weekend=mean(alcwknd, na.rm = T)) %>% mutate(diff = weekend - weekday)
+```
+
+So there seems to be a large difference in the average amount people drink during a single session on weekdays and weekends. Is the difference statistically significant?
+
+```{r}
+t.test(essUK$alcwknd, essUK$alcwkdy, paired = TRUE)
+```
+
+The paired t-test - as it says in the output - tests whether the mean of the differences between the two variables is significantly different from 0. We could also specify that condition directly:
+
+```{r}
+t.test(essUK$alcwknd - essUK$alcwkdy, mu = 0)
+```
+
+### More than two independent means
+
+We might be interested whether levels of life satisfaction differ between the European countries we could reach by ferry from the UK. First, let's look at the descriptive statistics.
+
+```{r}
+essF <- ess %>% filter(cntry %in% c("FR", "ES", "IE", "BE", "NL"))
+essF %>% group_by(cntry) %>% summarise(mean(stflife, na.rm = T))
+```
+
+There seem to be some differences - but are they statistically significant? Here we actually have two questions:
+
+* do the countries together explain a significant share of the variance in life satisfaction? (*omnibus test*)
+* are the levels of life satisfaction in any two countries significantly different from each other? (*pairwise comparisons*)
+
+#### Omnibus test (ANOVA)
+
+```{r}
+#Set the reference level, so that we know what the coefficients mean
+essF$cntry <- factor(essF$cntry) %>% relevel(ref = "FR")
+lm(stflife ~ cntry, data = essF) %>% summary()
+```
+
+Here we just want to see whether the country variable explains a significant share of the variance. That is shown by the last line, so that we would report: There was an overall effects of country on life satisfaction, *F*(4, 9869) = 106.4, *p*<.001.
+
+If you are so inclined, note that this is identical to a one-way ANOVA. To see that, you can replace summary() by car::Anova() - however, this is only truly essential if you are a psychologist, most other disciplines prefer the plain linear models when they suffice.
+
+```{r}
+lm(stflife ~ cntry, data = essF) %>% car::Anova()
+```
+
+#### Pairwise comparisons
+
+Now that we know that some of the countries are different, we will want to locate the differences. That is where pairwise t-tests come in. 
+
+```{r}
+pairwise.t.test(essF$stflife, essF$cntry, p.adjust.method = "bonferroni")
+```
+
+This gives us *p*-values for all tests, that are adjusted for the fact that we are doing many (i.e. 10) comparisons and thus running a greater risk of getting a false positive. The bonferroni adjustment, selected here, multiplies each *p*-value by the number of comparisons, unless the resulting value would exceed 1 and thus be an impossible probability.
+
+Combining this with the descriptive statistics, we can say, for instance, that the people in the Netherlands and Belgium are more satisfied with life than those in any of the other countries, but that their satisfaction levels do not differ significantly from each other.
+
+### More than two means from repeated measures
+
+Here I will revert to the simulated example from the video linked above. In that, the effect of four conditions during studying on test score was tested, namely whether participants were exposed to instrumental music, vocal music, white noise or silence.
+
+```{r echo=FALSE}
+set.seed(300688)
+noiseDataWide <- data.frame(baseline = rnorm(25, 8, 3) + + rnorm(25, 0, 1),
+                            vocals = rnorm(25, 2, 1) + rnorm(25, 0, 1),
+                            instrumental = rnorm(25, 3.5, 1) + rnorm(25, 0, 1),
+                        whiteNoise = rnorm(25, 5.2, 1) + rnorm(25, 0, 1),
+                        silence = rnorm(25, 5, 1) + rnorm(25, 0, 1))
+
+noiseDataWide <- noiseDataWide %>% mutate_at(vars(-baseline), ~(.+baseline)) %>% select(-baseline) %>% rowid_to_column(var="participantID")
+noiseData <- noiseDataWide %>% gather(-participantID, key="condition", value="score") 
+
+```
+
+Note that the data for repeated measures analaysis in R generally needs to be formatted in a way that each row shows one observation rather than multiple observations from one participant ("long" format). If you have data in a "wide" format, you can reshape it with the `gather()` function.
+
+To analyse whether there are differences between the conditions, as always, we start with descriptive statistics.
+```{r}
+noiseData %>% group_by(condition) %>% summarise(mean(score))
+```
+
+It looks like there are some differences, but to be able to judge statistical significance, we would again be interested in omnibus tests and then pairwise comparisons.
+
+#### Omnibus test
+
+Testing whether the conditions make a difference is a little bit harder with repeated measures because the observations are not independent. Therefore, we need to run a model that takes into account the relationships between the observations taken from a single participant. This does not work with `lm()`; instead we need to use an additional package that allows for multi-level modeling where some observations are clustered together, `lme4` is the most frequently used such package for this purpose.
+
+In the case of repeated measures, we were comparing our model with the group variable as a predictor implicitly to the model that only has the overall mean as a predictor (that is what the `lm()` F-test is doing). Here, the null model uses each participant's own overall mean as the prediction for their performance in any one condition. We need to set up that null model explicitly and then compare it to the model that considers groups. 
+
+```{r}
+#install.packages(lme4)
+library(lme4)
+
+#Set reference level explicitly
+noiseData$condition <- noiseData$condition %>% factor() %>% relevel("silence")
+
+#Run null model - predicting only an individual intercept per participant
+model0 <- lmer((score ~ (1 | participantID)),	data = noiseData)
+
+#Run hypothesized model - adding the groups as a predictor
+model1 <- lmer((score ~ condition + (1 | participantID)),	data = noiseData)
+
+#Comparing the two models
+anova(model0, model1)
+
+```
+
+Here we can see that the hypothesised model showed a significantly better fit. This is tested with a $\chi^2$-test, which we will look at further later in the course.
+
+#### Pairwise comparisons
+
+Now that we know that there is a difference between some of the conditions, we will want to know which are different. For that, we can again run pairwise t-tests; we just need to specify that they are run on paired data by setting `paired = TRUE`.
+
+```{r}
+pairwise.t.test(noiseData$score, noiseData$condition,	p.adj = "bonferroni", paired=TRUE)
+
+```
+
+This indicates that the scores of participants in the white noise and silence conditions were not significantly different from each other, while the other comparisons were significant.
+
+
+
