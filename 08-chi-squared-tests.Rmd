@@ -1,6 +1,8 @@
 # Chi-squared tests for associations between categorical variables
 
-TK: add video
+Watch this video for an introduction to this topic:
+
+![]https://youtu.be/h1oq6HjlyjI
 
 When we want to see whether two categorical variables are associated with each other, typical linear models won't work. Instead, we need a new way to decide whether a difference between the data we observe and that which we expect under the null-hypothesis is unlikely to occur due to chance. But before we get to that, we should look at the data.
 

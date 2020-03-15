@@ -13,7 +13,7 @@ The World Bank offers a rich dataset with a particular focus on indicators relev
 
 Here, I will explore the question whether life expectancy and literacy have increased in line with GDP in the BRICS countries (Brasil, Russia, India, China and South Africa, a group that has often been seen as representing emerging economies).
 
-```{r}
+```{r cache=TRUE}
 #install.packages("wbstats") - needs to be run only once
 library(wbstats)
 
@@ -29,7 +29,7 @@ wbsearch("gdp.*capita.*PPP", cache = new_wb_cache)
 
 Once we know the names of the indicators, we can download them.
 
-```{r}
+```{r cache=TRUE}
 #Note: to get the country names, you can download all countries once and then check the names
 #wb_dat <- wb(indicator = c("NY.GDP.PCAP.PP.KD", "SI.POV.GINI"), country = "all")
 #wb_dat %>% count(iso2c, country) %>% view()            
@@ -43,7 +43,7 @@ Now we have the data in a "long" format - with one combination of countries, ind
 
 A simple way of comparing the data is plotting the indicators side-by-side. One interesting take-away is that Brazil massively improved life expectancy and expanded education, even though  GDP growth was rather modest, while South Africa stagnated in comparison.
 
-```{r}
+```{r cache=TRUE}
 #Our GDP series only starts in 1990 - so it does not make sense to consider earlier life expectancy
 wb_datF <- wb_dat %>% filter(as.numeric(date)>=1990)
 
@@ -66,7 +66,7 @@ Wikidata is based on data items that are connected by multiple relationships. So
 
 I got curious about what share of the world's population lives in countries with a female head of government, and how that varies by region. For that, I used the following code.
 
-```{r}
+```{r cache=TRUE}
 #install.packages("WikidataQueryServiceR")
 library(WikidataQueryServiceR)
 
