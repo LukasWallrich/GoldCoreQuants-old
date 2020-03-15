@@ -28,7 +28,7 @@ You can think about the different parts of R in terms of a computer or smartphon
 
 For a more comprehensive introduction to R, you can watch this video:
 
-<iframe src=" http://www.youtube.com/embed/kvaMhkQF0H4?rel=0 " allowfullscreen width=80% height=350></iframe>
+<iframe src=" https://www.youtube.com/embed/kvaMhkQF0H4?rel=0 " allowfullscreen width=80% height=350></iframe>
 
 
 ### Data and variables in R
@@ -102,7 +102,7 @@ variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```
-## ##------ Sun Mar 15 21:12:55 2020 ------##
+## ##------ Sun Mar 15 21:26:16 2020 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2

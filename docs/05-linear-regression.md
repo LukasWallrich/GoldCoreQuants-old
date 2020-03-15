@@ -10,7 +10,7 @@ library(tidyverse)
 ## Simple linear regression
 
 For an introduction to simple linear regression and correlation, watch this video:
-<iframe src=" http://www.youtube.com/embed/uoMjSFApBTY?rel=0 " allowfullscreen width=80% height=350></iframe>
+<iframe src=" https://www.youtube.com/embed/uoMjSFApBTY?rel=0 " allowfullscreen width=80% height=350></iframe>
 
 When considering the relationship between two continuous variables, we should always start with a scatterplot - for example, of the relationship between social trust and life satisfaction at the national level in European countries (data from the European Social Survey 2014).
 
@@ -191,7 +191,7 @@ Linear models can easily be extended to multiple predictor variables. Here I wil
 
 You can watch this video to take you through the process of extending simple linear regression to include multiple variables step-by-step:
 
-<iframe src=" http://www.youtube.com/embed/6lcDzTlsGVE?rel=0 " allowfullscreen width=80% height=350></iframe>
+<iframe src=" https://www.youtube.com/embed/6lcDzTlsGVE?rel=0 " allowfullscreen width=80% height=350></iframe>
 
 
 ### Dummy coding revisited

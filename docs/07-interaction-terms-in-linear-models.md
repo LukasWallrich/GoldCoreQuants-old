@@ -2,7 +2,7 @@
 
 Watch this video for an introduction to interaction terms in linear models:
 
-<iframe src=" http://www.youtube.com/embed/coyXicRccSg?rel=0 " allowfullscreen width=80% height=350></iframe>
+<iframe src=" https://www.youtube.com/embed/coyXicRccSg?rel=0 " allowfullscreen width=80% height=350></iframe>
 
 
 

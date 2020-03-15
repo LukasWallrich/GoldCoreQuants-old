@@ -5,5 +5,5 @@ video <- function(url) {
 }
 
 video_code <- function(code) {
-  video(paste0("http://www.youtube.com/embed/", code, "?rel=0"))
+  video(paste0("https://www.youtube.com/embed/", code, "?rel=0"))
 }
