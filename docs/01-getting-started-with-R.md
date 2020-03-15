@@ -2,7 +2,7 @@
 
 ## Install R on your computer
 
-R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow these detailed instructions in [Section 1.4 of the R for Data Science book](https://r4ds.had.co.nz/introduction.html) 
+R is highly customizable, so that your life is a lot easier if you use your own copy rather than a shared copy on a university computer. To install it on your computer, follow these detailed instructions in [Section 1.4 of the R for Data Science book](https://r4ds.had.co.nz/introduction.html){target="_blank"} 
 
 Then **start exploring** - using R is a skill that comes with practice, not with reading about it. Most example from these notes can be copy-pasted or typed into R. Do that whenever possible to see what you are able to do and where you still have questions.
 
@@ -26,8 +26,9 @@ You can think about the different parts of R in terms of a computer or smartphon
   + Installed once, using `install.packages("name")`
   + Loaded in every session, using `library(name)`
 
-[![](https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block){#id .class width=35 height=35px}](https://www.youtube.com/watch?v=kvaMhkQF0H4&list=PLm5BFz6s4ylavu_ef4UaLSHksKUUgWeFe&index=2&t=0s) &nbsp; For a more comprehensive introduction to R, you can [watch this video](https://www.youtube.com/watch?v=kvaMhkQF0H4&list=PLm5BFz6s4ylavu_ef4UaLSHksKUUgWeFe&index=2&t=0s)
+For a more comprehensive introduction to R, you can watch this video:
 
+![]https://www.youtube.com/watch?v=kvaMhkQF0H4
 
 
 ### Data and variables in R
@@ -101,7 +102,7 @@ variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```
-## ##------ Thu Mar 12 15:45:13 2020 ------##
+## ##------ Sun Mar 15 20:32:34 2020 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2

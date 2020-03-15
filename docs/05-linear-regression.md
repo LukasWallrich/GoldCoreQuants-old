@@ -9,7 +9,8 @@ library(tidyverse)
 
 ## Simple linear regression
 
-[![](https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block){#id .class width=35 height=35px}](https://youtu.be/uoMjSFApBTY) &nbsp; For an introduction to simple linear regression and correlation, [watch/rewatch this video](https://youtu.be/uoMjSFApBTY)
+For an introduction to simple linear regression and correlation, watch this video:
+![]https://youtu.be/uoMjSFApBTY
 
 When considering the relationship between two continuous variables, we should always start with a scatterplot - for example, of the relationship between social trust and life satisfaction at the national level in European countries (data from the European Social Survey 2014).
 
@@ -188,7 +189,9 @@ Note that the regression coefficient for the scaled variable is now exactly iden
 
 Linear models can easily be extended to multiple predictor variables. Here I will focus on a few key points that particularly focus on linear models that include categorical predictor variables.
 
-[![](https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block){#id .class width=35 height=35px}](https://youtu.be/6lcDzTlsGVE) &nbsp; You can [watch/rewatch this video](https://youtu.be/6lcDzTlsGVE) this video to take you through the conceptual process and some examples step-by-step.
+You can watch this video to take you through the process of extending simple linear regression to include multiple variables step-by-step:
+
+![]https://youtu.be/6lcDzTlsGVE
 
 ### Dummy coding revisited
 

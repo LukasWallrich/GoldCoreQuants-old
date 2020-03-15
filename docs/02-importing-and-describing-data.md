@@ -118,7 +118,9 @@ gapminder %>%
 
 *Just as an aside:* consider the differences between the two ways of calculating averages per continent. One focuses on the average of country values, and thus yields the average national income per capita. The other takes population sizes into account and thus yields the average personal income per capita. For most continents, the difference in results is huge. Both approaches are used in the media - so it's always worth looking a little closer at summary statistics.
 
-[![](https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block){#id .class width=35 height=35px}](https://www.youtube.com/watch?v=QtQE-b5iMUQ&list=PLm5BFz6s4ylavu_ef4UaLSHksKUUgWeFe&index=2) &nbsp; For an introduction to dplyr, you can [watch this video](https://www.youtube.com/watch?v=QtQE-b5iMUQ&list=PLm5BFz6s4ylavu_ef4UaLSHksKUUgWeFe&index=2)
+For an introduction to `dplyr`, you can watch this video:
+
+![]https://www.youtube.com/watch?v=QtQE-b5iMUQ
 
 ## Functions to view and summarise data
 

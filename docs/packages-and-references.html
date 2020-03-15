@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topic 5 Comparing means between conditions or groups | Getting started with Quantitative Research Methods and R</title>
+  <title>Topic 11 Packages and references | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topic 5 Comparing means between conditions or groups | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Topic 11 Packages and references | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topic 5 Comparing means between conditions or groups | Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Topic 11 Packages and references | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link rel="prev" href="simple-and-multiple-linear-regression.html"/>
-<link rel="next" href="interaction-terms-in-linear-models.html"/>
+<link rel="prev" href="dealing-with-missing-data.html"/>
+<link rel="next" href="two-more-pipes.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -268,286 +268,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="comparing-means-between-conditions-or-groups" class="section level1" number="5">
-<h1><span class="header-section-number">Topic 5</span> Comparing means between conditions or groups</h1>
-<p>Watch this video for an introduction to testing for differences between two means and the differences between repeated measures and independent samples:</p>
-<p>[]<a href="https://youtu.be/L69HyBnvQRQ" class="uri">https://youtu.be/L69HyBnvQRQ</a></p>
-<p>Watch this video for an introduction to testing for differences between <em>more than</em> two means:</p>
-<p>[]<a href="https://youtu.be/r96FYPLQ1l0" class="uri">https://youtu.be/r96FYPLQ1l0</a></p>
-<div id="repeated-measures-or-independent-samples" class="section level3" number="5.0.1">
-<h3><span class="header-section-number">5.0.1</span> Repeated measures or independent samples</h3>
-<p>The first question always needs to be whether each participant contributes one or several data points to the dependent variable that is compared. If they contribute only one, we have an <em>independent samples</em> or <em>between-participants</em> design; if they contribute several, the design is <em>repeated measures</em> or <em>within participants.</em> In the latter case, we need to account for the relationships between some of the measurements in our analysis.</p>
+<div id="packages-and-references" class="section level1" number="11">
+<h1><span class="header-section-number">Topic 11</span> Packages and references</h1>
+<div id="refs" class="references hanging-indent">
+<div>
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
 </div>
-<div id="two-independent-means" class="section level3" number="5.0.2">
-<h3><span class="header-section-number">5.0.2</span> Two independent means</h3>
-<p>Going back to the European Social Survey 2014 data, we might be curious whether social trust differs between men and women in the UK. For that, we should always first calculate the descriptive statistics:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="comparing-means-between-conditions-or-groups.html#cb38-1"></a>ess &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/round7.RDS&quot;</span>))</span>
-<span id="cb38-2"><a href="comparing-means-between-conditions-or-groups.html#cb38-2"></a>ess &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">soctrust =</span> (ppltrst <span class="op">+</span><span class="st"> </span>pplfair <span class="op">+</span><span class="st"> </span>pplhlp)<span class="op">/</span><span class="dv">3</span>)</span>
-<span id="cb38-3"><a href="comparing-means-between-conditions-or-groups.html#cb38-3"></a>essUK &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cntry<span class="op">==</span><span class="st">&quot;GB&quot;</span>)</span>
-<span id="cb38-4"><a href="comparing-means-between-conditions-or-groups.html#cb38-4"></a>essUK <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(gndr) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(soctrust, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 2
-##   gndr   `mean(soctrust, na.rm = TRUE)`
-##   &lt;fct&gt;                           &lt;dbl&gt;
-## 1 Male                             5.70
-## 2 Female                           5.72</code></pre>
-<p>Those means look very close. Nevertheless, we might want to know how likely we would have been to see a difference this large under the null-hypothesis, i.e. if social trust did not differ between men and women. For that, we can run a t-test.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="comparing-means-between-conditions-or-groups.html#cb40-1"></a><span class="kw">t.test</span>(soctrust <span class="op">~</span><span class="st"> </span>gndr, <span class="dt">data=</span>essUK, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Two Sample t-test
-## 
-## data:  soctrust by gndr
-## t = -0.2116, df = 2248, p-value = 0.8324
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -0.1601569  0.1289597
-## sample estimates:
-##   mean in group Male mean in group Female 
-##             5.702288             5.717886</code></pre>
-<p>This is just a special case of a linear model, so we could also use the <code>lm()</code> function:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="comparing-means-between-conditions-or-groups.html#cb42-1"></a><span class="kw">lm</span>(soctrust <span class="op">~</span><span class="st"> </span>gndr, <span class="dt">data=</span>essUK) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = soctrust ~ gndr, data = essUK)
-## 
-## Residuals:
-## &lt;Labelled double&gt;: Most people can be trusted or you can&#39;t be too careful
-##     Min      1Q  Median      3Q     Max 
-## -5.7179 -1.0512  0.2821  1.2821  4.2977 
-## 
-## Labels:
-##  value                      label
-##      0   You can&#39;t be too careful
-##      1                          1
-##      2                          2
-##      3                          3
-##      4                          4
-##      5                          5
-##      6                          6
-##      7                          7
-##      8                          8
-##      9                          9
-##     10 Most people can be trusted
-##  NA(b)                    Refusal
-##  NA(c)                 Don&#39;t know
-##  NA(d)                  No answer
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  5.70229    0.05450 104.623   &lt;2e-16 ***
-## gndrFemale   0.01560    0.07372   0.212    0.832    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 1.741 on 2248 degrees of freedom
-##   (14 observations deleted due to missingness)
-## Multiple R-squared:  1.992e-05,  Adjusted R-squared:  -0.0004249 
-## F-statistic: 0.04478 on 1 and 2248 DF,  p-value: 0.8324</code></pre>
-<p>Both show, as expected, that the difference we observed could easily have been due to chance. If this is the only test you conduct, you would conventionally usually report the result of the t-test, saying: there was no significant difference in social trust between men and women, <em>t</em>(2248) = -0.21, <em>p</em> = .83.</p>
+<div>
+<p>Barr, Dale, and Lisa DeBruine. 2019. <em>Webex: Create Interactive Web Exercises in ’R Markdown’</em>. <a href="https://CRAN.R-project.org/package=webex">https://CRAN.R-project.org/package=webex</a>.</p>
 </div>
-<div id="two-dependent-means" class="section level3" number="5.0.3">
-<h3><span class="header-section-number">5.0.3</span> Two dependent means</h3>
-<p>In the ESS data, participants were asked how much they drank when they last drank during a weekday and during a weekend. Here the same participants provided two alcohol measures, so that these data points represent repeated measures. If we ignore that in the analysis, we violate a key assumption of linear models - namely the independence of observations. Therefore, we need to use a paired t-test. But as always, first descriptive statistics.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="comparing-means-between-conditions-or-groups.html#cb44-1"></a>essUK <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">weekday =</span> <span class="kw">mean</span>(alcwkdy, <span class="dt">na.rm=</span>T), <span class="dt">weekend=</span><span class="kw">mean</span>(alcwknd, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">diff =</span> weekend <span class="op">-</span><span class="st"> </span>weekday)</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 3
-##   weekday weekend  diff
-##     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1    36.3    62.4  26.1</code></pre>
-<p>So there seems to be a large difference in the average amount people drink during a single session on weekdays and weekends. Is the difference statistically significant?</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="comparing-means-between-conditions-or-groups.html#cb46-1"></a><span class="kw">t.test</span>(essUK<span class="op">$</span>alcwknd, essUK<span class="op">$</span>alcwkdy, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Paired t-test
-## 
-## data:  essUK$alcwknd and essUK$alcwkdy
-## t = 13.119, df = 1800, p-value &lt; 2.2e-16
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  22.23332 30.04986
-## sample estimates:
-## mean of the differences 
-##                26.14159</code></pre>
-<p>The paired t-test - as it says in the output - tests whether the mean of the differences between the two variables is significantly different from 0. We could also specify that condition directly:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="comparing-means-between-conditions-or-groups.html#cb48-1"></a><span class="kw">t.test</span>(essUK<span class="op">$</span>alcwknd <span class="op">-</span><span class="st"> </span>essUK<span class="op">$</span>alcwkdy, <span class="dt">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  essUK$alcwknd - essUK$alcwkdy
-## t = 13.119, df = 1800, p-value &lt; 2.2e-16
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  22.23332 30.04986
-## sample estimates:
-## mean of x 
-##  26.14159</code></pre>
+<div>
+<p>Henry, Lionel, and Hadley Wickham. 2019. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.</p>
 </div>
-<div id="more-than-two-independent-means" class="section level3" number="5.0.4">
-<h3><span class="header-section-number">5.0.4</span> More than two independent means</h3>
-<p>We might be interested whether levels of life satisfaction differ between the European countries we could reach by ferry from the UK. First, let’s look at the descriptive statistics.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="comparing-means-between-conditions-or-groups.html#cb50-1"></a>essF &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cntry <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;FR&quot;</span>, <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;IE&quot;</span>, <span class="st">&quot;BE&quot;</span>, <span class="st">&quot;NL&quot;</span>))</span>
-<span id="cb50-2"><a href="comparing-means-between-conditions-or-groups.html#cb50-2"></a>essF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cntry) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(stflife, <span class="dt">na.rm =</span> T))</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 2
-##   cntry `mean(stflife, na.rm = T)`
-##   &lt;fct&gt;                      &lt;dbl&gt;
-## 1 BE                          7.45
-## 2 ES                          6.96
-## 3 FR                          6.39
-## 4 IE                          6.94
-## 5 NL                          7.60</code></pre>
-<p>There seem to be some differences - but are they statistically significant? Here we actually have two questions:</p>
-<ul>
-<li>do the countries together explain a significant share of the variance in life satisfaction? (<em>omnibus test</em>)</li>
-<li>are the levels of life satisfaction in any two countries significantly different from each other? (<em>pairwise comparisons</em>)</li>
-</ul>
-<div id="omnibus-test-anova" class="section level4" number="5.0.4.1">
-<h4><span class="header-section-number">5.0.4.1</span> Omnibus test (ANOVA)</h4>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="comparing-means-between-conditions-or-groups.html#cb52-1"></a><span class="co">#Set the reference level, so that we know what the coefficients mean</span></span>
-<span id="cb52-2"><a href="comparing-means-between-conditions-or-groups.html#cb52-2"></a>essF<span class="op">$</span>cntry &lt;-<span class="st"> </span><span class="kw">factor</span>(essF<span class="op">$</span>cntry) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref =</span> <span class="st">&quot;FR&quot;</span>)</span>
-<span id="cb52-3"><a href="comparing-means-between-conditions-or-groups.html#cb52-3"></a><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>cntry, <span class="dt">data =</span> essF) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = stflife ~ cntry, data = essF)
-## 
-## Residuals:
-## &lt;Labelled double&gt;: How satisfied with life as a whole
-##     Min      1Q  Median      3Q     Max 
-## -7.6017 -0.9646  0.3983  1.3983  3.6054 
-## 
-## Labels:
-##  value                  label
-##      0 Extremely dissatisfied
-##      1                      1
-##      2                      2
-##      3                      3
-##      4                      4
-##      5                      5
-##      6                      6
-##      7                      7
-##      8                      8
-##      9                      9
-##     10    Extremely satisfied
-##  NA(b)                Refusal
-##  NA(c)             Don&#39;t know
-##  NA(d)              No answer
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  6.39456    0.04612 138.663   &lt;2e-16 ***
-## cntryBE      1.05711    0.06651  15.893   &lt;2e-16 ***
-## cntryES      0.57006    0.06512   8.753   &lt;2e-16 ***
-## cntryIE      0.54832    0.06192   8.856   &lt;2e-16 ***
-## cntryNL      1.20711    0.06516  18.526   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 2.016 on 9896 degrees of freedom
-##   (19 observations deleted due to missingness)
-## Multiple R-squared:  0.04125,    Adjusted R-squared:  0.04086 
-## F-statistic: 106.4 on 4 and 9896 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Here we just want to see whether the country variable explains a significant share of the variance. That is shown by the last line, so that we would report: There was an overall effects of country on life satisfaction, <em>F</em>(4, 9869) = 106.4, <em>p</em>&lt;.001.</p>
-<p>If you are so inclined, note that this is identical to a one-way ANOVA. To see that, you can replace summary() by car::Anova() - however, this is only truly essential if you are a psychologist, most other disciplines prefer the plain linear models when they suffice.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="comparing-means-between-conditions-or-groups.html#cb54-1"></a><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>cntry, <span class="dt">data =</span> essF) <span class="op">%&gt;%</span><span class="st"> </span>car<span class="op">::</span><span class="kw">Anova</span>()</span></code></pre></div>
-<pre><code>## Anova Table (Type II tests)
-## 
-## Response: stflife
-##           Sum Sq   Df F value    Pr(&gt;F)    
-## cntry       1730    4  106.45 &lt; 2.2e-16 ***
-## Residuals  40218 9896                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div>
+<p>Lakens, Daniël, Anne M. Scheel, and Peder M. Isager. 2018. “Equivalence Testing for Psychological Research: A Tutorial.” <em>Advances in Methods and Practices in Psychological Science</em> 1 (2): 259–69. <a href="https://doi.org/10.1177/2515245918770963">https://doi.org/10.1177/2515245918770963</a>.</p>
 </div>
-<div id="pairwise-comparisons" class="section level4" number="5.0.4.2">
-<h4><span class="header-section-number">5.0.4.2</span> Pairwise comparisons</h4>
-<p>Now that we know that some of the countries are different, we will want to locate the differences. That is where pairwise t-tests come in.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="comparing-means-between-conditions-or-groups.html#cb56-1"></a><span class="kw">pairwise.t.test</span>(essF<span class="op">$</span>stflife, essF<span class="op">$</span>cntry, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
-<pre><code>## 
-##  Pairwise comparisons using t tests with pooled SD 
-## 
-## data:  essF$stflife and essF$cntry 
-## 
-##    FR      BE      ES      IE     
-## BE &lt; 2e-16 -       -       -      
-## ES &lt; 2e-16 2.4e-12 -       -      
-## IE &lt; 2e-16 1.0e-14 1.00    -      
-## NL &lt; 2e-16 0.24    &lt; 2e-16 &lt; 2e-16
-## 
-## P value adjustment method: bonferroni</code></pre>
-<p>This gives us <em>p</em>-values for all tests, that are adjusted for the fact that we are doing many (i.e. 10) comparisons and thus running a greater risk of getting a false positive. The bonferroni adjustment, selected here, multiplies each <em>p</em>-value by the number of comparisons, unless the resulting value would exceed 1 and thus be an impossible probability.</p>
-<p>Combining this with the descriptive statistics, we can say, for instance, that the people in the Netherlands and Belgium are more satisfied with life than those in any of the other countries, but that their satisfaction levels do not differ significantly from each other.</p>
+<div>
+<p>Müller, Kirill, and Hadley Wickham. 2019. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>.</p>
+</div>
+<div>
+<p>R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.</p>
+</div>
+<div>
+<p>———. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div>
+<p>———. 2019a. <em>Stringr: Simple, Consistent Wrappers for Common String Operations</em>. <a href="https://CRAN.R-project.org/package=stringr">https://CRAN.R-project.org/package=stringr</a>.</p>
+</div>
+<div>
+<p>———. 2019b. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div>
+<p>———. 2020. <em>Forcats: Tools for Working with Categorical Variables (Factors)</em>. <a href="https://CRAN.R-project.org/package=forcats">https://CRAN.R-project.org/package=forcats</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. “Welcome to the tidyverse.” <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, and Hiroaki Yutani. 2019. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2020. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2020. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Jim Hester, and Romain Francois. 2018. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.</p>
+</div>
+<div>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown">https://github.com/rstudio/bookdown</a>.</p>
+</div>
+<div>
+<p>———. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
 </div>
 </div>
-<div id="more-than-two-means-from-repeated-measures" class="section level3" number="5.0.5">
-<h3><span class="header-section-number">5.0.5</span> More than two means from repeated measures</h3>
-<p>Here I will revert to the simulated example from the video linked above. In that, the effect of four conditions during studying on test score was tested, namely whether participants were exposed to instrumental music, vocal music, white noise or silence.</p>
-<p>Note that the data for repeated measures analaysis in R generally needs to be formatted in a way that each row shows one observation rather than multiple observations from one participant (“long” format). If you have data in a “wide” format, you can reshape it with the <code>gather()</code> function.</p>
-<p>To analyse whether there are differences between the conditions, as always, we start with descriptive statistics.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="comparing-means-between-conditions-or-groups.html#cb58-1"></a>noiseData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(score))</span></code></pre></div>
-<pre><code>## # A tibble: 4 x 2
-##   condition    `mean(score)`
-##   &lt;chr&gt;                &lt;dbl&gt;
-## 1 instrumental          11.6
-## 2 silence               13.0
-## 3 vocals                10.8
-## 4 whiteNoise            13.5</code></pre>
-<p>It looks like there are some differences, but to be able to judge statistical significance, we would again be interested in omnibus tests and then pairwise comparisons.</p>
-<div id="omnibus-test" class="section level4" number="5.0.5.1">
-<h4><span class="header-section-number">5.0.5.1</span> Omnibus test</h4>
-<p>Testing whether the conditions make a difference is a little bit harder with repeated measures because the observations are not independent. Therefore, we need to run a model that takes into account the relationships between the observations taken from a single participant. This does not work with <code>lm()</code>; instead we need to use an additional package that allows for multi-level modeling where some observations are clustered together, <code>lme4</code> is the most frequently used such package for this purpose.</p>
-<p>In the case of repeated measures, we were comparing our model with the group variable as a predictor implicitly to the model that only has the overall mean as a predictor (that is what the <code>lm()</code> F-test is doing). Here, the null model uses each participant’s own overall mean as the prediction for their performance in any one condition. We need to set up that null model explicitly and then compare it to the model that considers groups.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="comparing-means-between-conditions-or-groups.html#cb60-1"></a><span class="co">#install.packages(lme4)</span></span>
-<span id="cb60-2"><a href="comparing-means-between-conditions-or-groups.html#cb60-2"></a><span class="kw">library</span>(lme4)</span></code></pre></div>
-<pre><code>## Loading required package: Matrix</code></pre>
-<pre><code>## 
-## Attaching package: &#39;Matrix&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:tidyr&#39;:
-## 
-##     expand, pack, unpack</code></pre>
-<pre><code>## Registered S3 methods overwritten by &#39;lme4&#39;:
-##   method                          from
-##   cooks.distance.influence.merMod car 
-##   influence.merMod                car 
-##   dfbeta.influence.merMod         car 
-##   dfbetas.influence.merMod        car</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="comparing-means-between-conditions-or-groups.html#cb65-1"></a><span class="co">#Set reference level explicitly</span></span>
-<span id="cb65-2"><a href="comparing-means-between-conditions-or-groups.html#cb65-2"></a>noiseData<span class="op">$</span>condition &lt;-<span class="st"> </span>noiseData<span class="op">$</span>condition <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">factor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="st">&quot;silence&quot;</span>)</span>
-<span id="cb65-3"><a href="comparing-means-between-conditions-or-groups.html#cb65-3"></a></span>
-<span id="cb65-4"><a href="comparing-means-between-conditions-or-groups.html#cb65-4"></a><span class="co">#Run null model - predicting only an individual intercept per participant</span></span>
-<span id="cb65-5"><a href="comparing-means-between-conditions-or-groups.html#cb65-5"></a>model0 &lt;-<span class="st"> </span><span class="kw">lmer</span>((score <span class="op">~</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>participantID)),   <span class="dt">data =</span> noiseData)</span>
-<span id="cb65-6"><a href="comparing-means-between-conditions-or-groups.html#cb65-6"></a></span>
-<span id="cb65-7"><a href="comparing-means-between-conditions-or-groups.html#cb65-7"></a><span class="co">#Run hypothesized model - adding the groups as a predictor</span></span>
-<span id="cb65-8"><a href="comparing-means-between-conditions-or-groups.html#cb65-8"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>((score <span class="op">~</span><span class="st"> </span>condition <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>participantID)),   <span class="dt">data =</span> noiseData)</span>
-<span id="cb65-9"><a href="comparing-means-between-conditions-or-groups.html#cb65-9"></a></span>
-<span id="cb65-10"><a href="comparing-means-between-conditions-or-groups.html#cb65-10"></a><span class="co">#Comparing the two models</span></span>
-<span id="cb65-11"><a href="comparing-means-between-conditions-or-groups.html#cb65-11"></a><span class="kw">anova</span>(model0, model1)</span></code></pre></div>
-<pre><code>## refitting model(s) with ML (instead of REML)</code></pre>
-<pre><code>## Data: noiseData
-## Models:
-## model0: score ~ (1 | participantID)
-## model1: score ~ condition + (1 | participantID)
-##        Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)    
-## model0  3 480.29 488.10 -237.14   474.29                             
-## model1  6 447.31 462.94 -217.66   435.31 38.978      3  1.754e-08 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Here we can see that the hypothesised model showed a significantly better fit. This is tested with a <span class="math inline">\(\chi^2\)</span>-test, which we will look at further later in the course.</p>
-</div>
-<div id="pairwise-comparisons-1" class="section level4" number="5.0.5.2">
-<h4><span class="header-section-number">5.0.5.2</span> Pairwise comparisons</h4>
-<p>Now that we know that there is a difference between some of the conditions, we will want to know which are different. For that, we can again run pairwise t-tests; we just need to specify that they are run on paired data by setting <code>paired = TRUE</code>.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="comparing-means-between-conditions-or-groups.html#cb68-1"></a><span class="kw">pairwise.t.test</span>(noiseData<span class="op">$</span>score, noiseData<span class="op">$</span>condition,   <span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## 
-##  Pairwise comparisons using paired t tests 
-## 
-## data:  noiseData$score and noiseData$condition 
-## 
-##              silence instrumental vocals 
-## instrumental 0.045   -            -      
-## vocals       8.2e-06 0.423        -      
-## whiteNoise   1.000   0.001        2.0e-05
-## 
-## P value adjustment method: bonferroni</code></pre>
-<p>This indicates that the scores of participants in the white noise and silence conditions were not significantly different from each other, while the other comparisons were significant.</p>
 
 </div>
-</div>
+
+
+
 </div>
 <div class="psyteachr_footer">
   
@@ -659,8 +445,8 @@ window.onload = function() {
           </div>
         </div>
       </div>
-<a href="simple-and-multiple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="interaction-terms-in-linear-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dealing-with-missing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="two-more-pipes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

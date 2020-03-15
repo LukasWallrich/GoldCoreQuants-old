@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Topic 8 Accessing online data sources | Getting started with Quantitative Research Methods and R</title>
+  <title>Topic 9 Accessing online data sources | Getting started with Quantitative Research Methods and R</title>
   <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Topic 8 Accessing online data sources | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:title" content="Topic 9 Accessing online data sources | Getting started with Quantitative Research Methods and R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Topic 8 Accessing online data sources | Getting started with Quantitative Research Methods and R" />
+  <meta name="twitter:title" content="Topic 9 Accessing online data sources | Getting started with Quantitative Research Methods and R" />
   
   <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be added to regularly." />
   
@@ -24,15 +24,15 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-12" />
+<meta name="date" content="2020-03-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="reporting-the-results-of-statistical-tests.html"/>
-<link rel="next" href="two-more-pipes.html"/>
+<link rel="next" href="dealing-with-missing-data.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -196,32 +196,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.0.4" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-independent-means"><i class="fa fa-check"></i><b>5.0.4</b> More than two independent means</a></li>
 <li class="chapter" data-level="5.0.5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-means-from-repeated-measures"><i class="fa fa-check"></i><b>5.0.5</b> More than two means from repeated measures</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html"><i class="fa fa-check"></i><b>6</b> Chi-squared tests for associations between categorical variables</a>
+<li class="chapter" data-level="6" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html"><i class="fa fa-check"></i><b>6</b> Interaction terms in linear models</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#tables-of-frequencies-and-proportions"><i class="fa fa-check"></i><b>6.1</b> Tables of frequencies and proportions</a></li>
-<li class="chapter" data-level="6.2" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-null-hypothesis-and-the-chi2-statistic"><i class="fa fa-check"></i><b>6.2</b> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</a></li>
-<li class="chapter" data-level="6.3" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-chisq.test-function"><i class="fa fa-check"></i><b>6.3</b> The chisq.test() function</a>
+<li class="chapter" data-level="6.1" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-1-memory-and-chess"><i class="fa fa-check"></i><b>6.1</b> Example 1: Memory and chess</a></li>
+<li class="chapter" data-level="6.2" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-2-link-between-obesity-and-negative-emotions-in-the-european-social-survey"><i class="fa fa-check"></i><b>6.2</b> Example 2: link between obesity and negative emotions in the European Social Survey</a></li>
+<li class="chapter" data-level="6.3" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-3-link-between-working-hours-income-and-life-satisfaction"><i class="fa fa-check"></i><b>6.3</b> Example 3: link between working hours, income and life satisfaction</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html"><i class="fa fa-check"></i><b>7</b> Chi-squared tests for associations between categorical variables</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#dealing-with-small-samples"><i class="fa fa-check"></i><b>6.3.1</b> Dealing with small samples</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#post-hoc-tests"><i class="fa fa-check"></i><b>6.4</b> Post-hoc tests</a></li>
-<li class="chapter" data-level="6.5" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#effect-sizes"><i class="fa fa-check"></i><b>6.5</b> Effect sizes</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html"><i class="fa fa-check"></i><b>7</b> Reporting the results of statistical tests</a>
+<li class="chapter" data-level="7.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#tables-of-frequencies-and-proportions"><i class="fa fa-check"></i><b>7.1</b> Tables of frequencies and proportions</a></li>
+<li class="chapter" data-level="7.2" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-null-hypothesis-and-the-chi2-statistic"><i class="fa fa-check"></i><b>7.2</b> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</a></li>
+<li class="chapter" data-level="7.3" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-chisq.test-function"><i class="fa fa-check"></i><b>7.3</b> The chisq.test() function</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#essential-pieces-of-information"><i class="fa fa-check"></i><b>7.1</b> Essential pieces of information</a>
+<li class="chapter" data-level="7.3.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#dealing-with-small-samples"><i class="fa fa-check"></i><b>7.3.1</b> Dealing with small samples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.4</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="7.5" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#effect-sizes"><i class="fa fa-check"></i><b>7.5</b> Effect sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html"><i class="fa fa-check"></i><b>8</b> Reporting the results of statistical tests</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#what-to-include-for-specific-tests"><i class="fa fa-check"></i><b>7.1.1</b> What to include for specific tests</a></li>
-<li class="chapter" data-level="7.1.2" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#formatting"><i class="fa fa-check"></i><b>7.1.2</b> Formatting</a></li>
-<li class="chapter" data-level="7.1.3" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#rounding"><i class="fa fa-check"></i><b>7.1.3</b> Rounding</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html"><i class="fa fa-check"></i><b>8</b> Accessing online data sources</a>
+<li class="chapter" data-level="8.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#essential-pieces-of-information"><i class="fa fa-check"></i><b>8.1</b> Essential pieces of information</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#world-bank-data"><i class="fa fa-check"></i><b>8.1</b> World Bank data</a></li>
-<li class="chapter" data-level="8.2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#wikidata"><i class="fa fa-check"></i><b>8.2</b> Wikidata</a></li>
-<li class="chapter" data-level="8.3" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#other-data-sources"><i class="fa fa-check"></i><b>8.3</b> Other data sources</a></li>
+<li class="chapter" data-level="8.1.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#what-to-include-for-specific-tests"><i class="fa fa-check"></i><b>8.1.1</b> What to include for specific tests</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#formatting"><i class="fa fa-check"></i><b>8.1.2</b> Formatting</a></li>
+<li class="chapter" data-level="8.1.3" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#rounding"><i class="fa fa-check"></i><b>8.1.3</b> Rounding</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html"><i class="fa fa-check"></i><b>9</b> Accessing online data sources</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#world-bank-data"><i class="fa fa-check"></i><b>9.1</b> World Bank data</a></li>
+<li class="chapter" data-level="9.2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#wikidata"><i class="fa fa-check"></i><b>9.2</b> Wikidata</a></li>
+<li class="chapter" data-level="9.3" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#other-data-sources"><i class="fa fa-check"></i><b>9.3</b> Other data sources</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>10</b> Dealing with missing data</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#example"><i class="fa fa-check"></i><b>10.1</b> Example</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#case-deletion"><i class="fa fa-check"></i><b>10.1.1</b> Case deletion</a></li>
+<li class="chapter" data-level="10.1.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation"><i class="fa fa-check"></i><b>10.1.2</b> Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-resources-1"><i class="fa fa-check"></i><b>10.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>11</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
 <ul>
@@ -252,105 +268,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="accessing-online-data-sources" class="section level1" number="8">
-<h1><span class="header-section-number">Topic 8</span> Accessing online data sources</h1>
+<div id="accessing-online-data-sources" class="section level1" number="9">
+<h1><span class="header-section-number">Topic 9</span> Accessing online data sources</h1>
 <p>This section introduces some examples of R packages that allow you to access large secondary datasets. They are often a good way to understand wider trends, and thereby provide a high-level justification for doing research into a specific question. However, they can also be data sources for research projects in their own right.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="accessing-online-data-sources.html#cb92-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<div id="world-bank-data" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> World Bank data</h2>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="accessing-online-data-sources.html#cb112-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div id="world-bank-data" class="section level2" number="9.1">
+<h2><span class="header-section-number">9.1</span> World Bank data</h2>
 <p>The World Bank offers a rich dataset with a particular focus on indicators relevant for the study of poverty, inequality and global development (in fact, much of gapminder is based on World Bank data). You can explore their data online on <a href="https://data.worldbank.com">data.worldbank.com</a>, or access it directly from R using the <code>wbstats</code> package.</p>
 <p>Here, I will explore the question whether life expectancy and literacy have increased in line with GDP in the BRICS countries (Brasil, Russia, India, China and South Africa, a group that has often been seen as representing emerging economies).</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="accessing-online-data-sources.html#cb93-1"></a><span class="co">#install.packages(&quot;wbstats&quot;) - needs to be run only once</span></span>
-<span id="cb93-2"><a href="accessing-online-data-sources.html#cb93-2"></a><span class="kw">library</span>(wbstats)</span>
-<span id="cb93-3"><a href="accessing-online-data-sources.html#cb93-3"></a></span>
-<span id="cb93-4"><a href="accessing-online-data-sources.html#cb93-4"></a><span class="co">#Download current list of indicators</span></span>
-<span id="cb93-5"><a href="accessing-online-data-sources.html#cb93-5"></a>new_wb_cache &lt;-<span class="st"> </span><span class="kw">wbcache</span>()</span>
-<span id="cb93-6"><a href="accessing-online-data-sources.html#cb93-6"></a></span>
-<span id="cb93-7"><a href="accessing-online-data-sources.html#cb93-7"></a><span class="co">#Search for indicators - you can best do this on data.worldbank.com and find the IndicatorID in the URL. The wbsearch() function often returns to many hits.</span></span>
-<span id="cb93-8"><a href="accessing-online-data-sources.html#cb93-8"></a></span>
-<span id="cb93-9"><a href="accessing-online-data-sources.html#cb93-9"></a><span class="co">#GDP per capita, purchasing power adjusted (to remove effect of exchange rates)</span></span>
-<span id="cb93-10"><a href="accessing-online-data-sources.html#cb93-10"></a><span class="kw">wbsearch</span>(<span class="st">&quot;gdp.*capita.*PPP&quot;</span>, <span class="dt">cache =</span> new_wb_cache)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="accessing-online-data-sources.html#cb113-1"></a><span class="co">#install.packages(&quot;wbstats&quot;) - needs to be run only once</span></span>
+<span id="cb113-2"><a href="accessing-online-data-sources.html#cb113-2"></a><span class="kw">library</span>(wbstats)</span>
+<span id="cb113-3"><a href="accessing-online-data-sources.html#cb113-3"></a></span>
+<span id="cb113-4"><a href="accessing-online-data-sources.html#cb113-4"></a><span class="co">#Download current list of indicators</span></span>
+<span id="cb113-5"><a href="accessing-online-data-sources.html#cb113-5"></a>new_wb_cache &lt;-<span class="st"> </span><span class="kw">wbcache</span>()</span>
+<span id="cb113-6"><a href="accessing-online-data-sources.html#cb113-6"></a></span>
+<span id="cb113-7"><a href="accessing-online-data-sources.html#cb113-7"></a><span class="co">#Search for indicators - you can best do this on data.worldbank.com and find the IndicatorID in the URL. The wbsearch() function often returns to many hits.</span></span>
+<span id="cb113-8"><a href="accessing-online-data-sources.html#cb113-8"></a></span>
+<span id="cb113-9"><a href="accessing-online-data-sources.html#cb113-9"></a><span class="co">#GDP per capita, purchasing power adjusted (to remove effect of exchange rates)</span></span>
+<span id="cb113-10"><a href="accessing-online-data-sources.html#cb113-10"></a><span class="kw">wbsearch</span>(<span class="st">&quot;gdp.*capita.*PPP&quot;</span>, <span class="dt">cache =</span> new_wb_cache)</span></code></pre></div>
 <pre><code>##                indicatorID                                            indicator
 ## 647     6.0.GDPpc_constant GDP per capita, PPP (constant 2011 international $) 
-## 10077    NY.GDP.PCAP.PP.CD        GDP per capita, PPP (current international $)
-## 10078    NY.GDP.PCAP.PP.KD  GDP per capita, PPP (constant 2011 international $)
-## 10079 NY.GDP.PCAP.PP.KD.87  GDP per capita, PPP (constant 1987 international $)
-## 10080 NY.GDP.PCAP.PP.KD.ZG                GDP per capita, PPP annual growth (%)</code></pre>
+## 10122    NY.GDP.PCAP.PP.CD        GDP per capita, PPP (current international $)
+## 10123    NY.GDP.PCAP.PP.KD  GDP per capita, PPP (constant 2011 international $)
+## 10124 NY.GDP.PCAP.PP.KD.87  GDP per capita, PPP (constant 1987 international $)
+## 10125 NY.GDP.PCAP.PP.KD.ZG                GDP per capita, PPP annual growth (%)</code></pre>
 <p>Once we know the names of the indicators, we can download them.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="accessing-online-data-sources.html#cb95-1"></a><span class="co">#Note: to get the country names, you can download all countries once and then check the names</span></span>
-<span id="cb95-2"><a href="accessing-online-data-sources.html#cb95-2"></a><span class="co">#wb_dat &lt;- wb(indicator = c(&quot;NY.GDP.PCAP.PP.KD&quot;, &quot;SI.POV.GINI&quot;), country = &quot;all&quot;)</span></span>
-<span id="cb95-3"><a href="accessing-online-data-sources.html#cb95-3"></a><span class="co">#wb_dat %&gt;% count(iso2c, country) %&gt;% view()            </span></span>
-<span id="cb95-4"><a href="accessing-online-data-sources.html#cb95-4"></a>                            </span>
-<span id="cb95-5"><a href="accessing-online-data-sources.html#cb95-5"></a>wb_dat &lt;-<span class="st"> </span><span class="kw">wb</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.PCAP.PP.KD&quot;</span>, <span class="st">&quot;SP.DYN.LE00.IN&quot;</span>, <span class="st">&quot;SE.TER.ENRR&quot;</span>), </span>
-<span id="cb95-6"><a href="accessing-online-data-sources.html#cb95-6"></a>             <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;IN&quot;</span>, <span class="st">&quot;BR&quot;</span>, <span class="st">&quot;CN&quot;</span>, <span class="st">&quot;ZA&quot;</span>, <span class="st">&quot;RU&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="accessing-online-data-sources.html#cb115-1"></a><span class="co">#Note: to get the country names, you can download all countries once and then check the names</span></span>
+<span id="cb115-2"><a href="accessing-online-data-sources.html#cb115-2"></a><span class="co">#wb_dat &lt;- wb(indicator = c(&quot;NY.GDP.PCAP.PP.KD&quot;, &quot;SI.POV.GINI&quot;), country = &quot;all&quot;)</span></span>
+<span id="cb115-3"><a href="accessing-online-data-sources.html#cb115-3"></a><span class="co">#wb_dat %&gt;% count(iso2c, country) %&gt;% view()            </span></span>
+<span id="cb115-4"><a href="accessing-online-data-sources.html#cb115-4"></a>                            </span>
+<span id="cb115-5"><a href="accessing-online-data-sources.html#cb115-5"></a>wb_dat &lt;-<span class="st"> </span><span class="kw">wb</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.PCAP.PP.KD&quot;</span>, <span class="st">&quot;SP.DYN.LE00.IN&quot;</span>, <span class="st">&quot;SE.TER.ENRR&quot;</span>), </span>
+<span id="cb115-6"><a href="accessing-online-data-sources.html#cb115-6"></a>             <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;IN&quot;</span>, <span class="st">&quot;BR&quot;</span>, <span class="st">&quot;CN&quot;</span>, <span class="st">&quot;ZA&quot;</span>, <span class="st">&quot;RU&quot;</span>))</span></code></pre></div>
 <p>Now we have the data in a “long” format - with one combination of countries, indicators and years per row. That is a good layout for plotting, for other analyses you would need to reshape the data into a wide format where each indicator is in its own variable - look for the spread() function if you need that.</p>
 <p>A simple way of comparing the data is plotting the indicators side-by-side. One interesting take-away is that Brazil massively improved life expectancy and expanded education, even though GDP growth was rather modest, while South Africa stagnated in comparison.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="accessing-online-data-sources.html#cb96-1"></a><span class="co">#Our GDP series only starts in 1990 - so it does not make sense to consider earlier life expectancy</span></span>
-<span id="cb96-2"><a href="accessing-online-data-sources.html#cb96-2"></a>wb_datF &lt;-<span class="st"> </span>wb_dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">as.numeric</span>(date)<span class="op">&gt;=</span><span class="dv">1990</span>)</span>
-<span id="cb96-3"><a href="accessing-online-data-sources.html#cb96-3"></a></span>
-<span id="cb96-4"><a href="accessing-online-data-sources.html#cb96-4"></a><span class="kw">ggplot</span>(wb_datF, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as.numeric</span>(date), <span class="dt">y=</span>value, <span class="dt">col=</span>country)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb96-5"><a href="accessing-online-data-sources.html#cb96-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb96-6"><a href="accessing-online-data-sources.html#cb96-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>indicator, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">labeller =</span> <span class="kw">labeller</span>(<span class="dt">indicator =</span> <span class="kw">label_wrap_gen</span>(<span class="dv">25</span>))) <span class="op">+</span></span>
-<span id="cb96-7"><a href="accessing-online-data-sources.html#cb96-7"></a><span class="st">  </span><span class="co">#scales = &quot;free&quot; means that each indicator has its own y-axis, the labeller() function is needed for line breaks in the facet titles</span></span>
-<span id="cb96-8"><a href="accessing-online-data-sources.html#cb96-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Uneven progress in BRICS countries&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;World Bank data&quot;</span>, </span>
-<span id="cb96-9"><a href="accessing-online-data-sources.html#cb96-9"></a>       <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Country&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="accessing-online-data-sources.html#cb116-1"></a><span class="co">#Our GDP series only starts in 1990 - so it does not make sense to consider earlier life expectancy</span></span>
+<span id="cb116-2"><a href="accessing-online-data-sources.html#cb116-2"></a>wb_datF &lt;-<span class="st"> </span>wb_dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">as.numeric</span>(date)<span class="op">&gt;=</span><span class="dv">1990</span>)</span>
+<span id="cb116-3"><a href="accessing-online-data-sources.html#cb116-3"></a></span>
+<span id="cb116-4"><a href="accessing-online-data-sources.html#cb116-4"></a><span class="kw">ggplot</span>(wb_datF, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as.numeric</span>(date), <span class="dt">y=</span>value, <span class="dt">col=</span>country)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb116-5"><a href="accessing-online-data-sources.html#cb116-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb116-6"><a href="accessing-online-data-sources.html#cb116-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(.<span class="op">~</span>indicator, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">labeller =</span> <span class="kw">labeller</span>(<span class="dt">indicator =</span> <span class="kw">label_wrap_gen</span>(<span class="dv">25</span>))) <span class="op">+</span></span>
+<span id="cb116-7"><a href="accessing-online-data-sources.html#cb116-7"></a><span class="st">  </span><span class="co">#scales = &quot;free&quot; means that each indicator has its own y-axis, the labeller() function is needed for line breaks in the facet titles</span></span>
+<span id="cb116-8"><a href="accessing-online-data-sources.html#cb116-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Uneven progress in BRICS countries&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;World Bank data&quot;</span>, </span>
+<span id="cb116-9"><a href="accessing-online-data-sources.html#cb116-9"></a>       <span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;Country&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
 <img src="10-accessing-online-data_files/figure-html/unnamed-chunk-4-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
 <p class="caption">
-Figure 8.1: <strong>CAPTION THIS FIGURE!!</strong>
+Figure 6.1: <strong>CAPTION THIS FIGURE!!</strong>
 </p>
 </div>
 <p>You can find a similar but slightly more detailed example for how to use the package <a href="https://cengel.github.io/gearup2016/worldbank.html">here</a> and very clear instructions in the the full <a href="https://github.com/nset-ornl/wbstats/blob/master/README.md">README file of the package</a>.</p>
 </div>
-<div id="wikidata" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Wikidata</h2>
+<div id="wikidata" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Wikidata</h2>
 <p>Wikidata is where most data from Wikipedia and much else lives. So if there are Wikipedia articles on the topic you are interested in, you can likely find underlying data on Wikidata. For example, this might be used to quickly extract data on the gender of heads of government of many countries.</p>
 <p>Wikidata is based on data items that are connected by multiple relationships. So there will be an item for <em>Germany</em>, an item for <em>Angela Merkel</em> and a relationship for <em>is the head of government of.</em> Similarly, there is an item for <em>country</em> and a relationship for <em>is an instance of</em> that connects it to <em>Germany.</em> SPARQL queries are used to get the data - this <a href="https://towardsdatascience.com/a-brief-introduction-to-wikidata-bb4e66395eb1">article</a> explains the logic quite well, but unless you want to spend a couple more weeks learning how to code, you can just take <a href="https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples">examples from Wikidata</a> and adjust them as needed. For adjusting them, the online <a href="https://query.wikidata.org/">Wikidata Query Service</a> works well, as it allows you to run the query again and again, until you get the data you need.</p>
 <p>I got curious about what share of the world’s population lives in countries with a female head of government, and how that varies by region. For that, I used the following code.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="accessing-online-data-sources.html#cb97-1"></a><span class="co">#install.packages(&quot;WikidataQueryServiceR&quot;)</span></span>
-<span id="cb97-2"><a href="accessing-online-data-sources.html#cb97-2"></a><span class="kw">library</span>(WikidataQueryServiceR)</span>
-<span id="cb97-3"><a href="accessing-online-data-sources.html#cb97-3"></a></span>
-<span id="cb97-4"><a href="accessing-online-data-sources.html#cb97-4"></a>headsOfGov &lt;-<span class="st"> </span><span class="kw">query_wikidata</span>(<span class="st">&#39;</span></span>
-<span id="cb97-5"><a href="accessing-online-data-sources.html#cb97-5"></a><span class="st">SELECT ?country ?head ?gender ?countryLabel ?headLabel ?genderLabel  ?continentLabel ?governmentLabel ?population</span></span>
-<span id="cb97-6"><a href="accessing-online-data-sources.html#cb97-6"></a><span class="st">WHERE</span></span>
-<span id="cb97-7"><a href="accessing-online-data-sources.html#cb97-7"></a><span class="st">{</span></span>
-<span id="cb97-8"><a href="accessing-online-data-sources.html#cb97-8"></a><span class="st">    ?country wdt:P31 wd:Q6256 .</span></span>
-<span id="cb97-9"><a href="accessing-online-data-sources.html#cb97-9"></a><span class="st">    ?country wdt:P6 ?head .</span></span>
-<span id="cb97-10"><a href="accessing-online-data-sources.html#cb97-10"></a><span class="st">    ?head wdt:P21 ?gender .  </span></span>
-<span id="cb97-11"><a href="accessing-online-data-sources.html#cb97-11"></a><span class="st">    ?country wdt:P30 ?continent . </span></span>
-<span id="cb97-12"><a href="accessing-online-data-sources.html#cb97-12"></a><span class="st">    ?country wdt:P1082 ?population .</span></span>
-<span id="cb97-13"><a href="accessing-online-data-sources.html#cb97-13"></a><span class="st">    SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;en&quot; }</span></span>
-<span id="cb97-14"><a href="accessing-online-data-sources.html#cb97-14"></a><span class="st">}</span></span>
-<span id="cb97-15"><a href="accessing-online-data-sources.html#cb97-15"></a><span class="st">ORDER BY ?countryLabel</span></span>
-<span id="cb97-16"><a href="accessing-online-data-sources.html#cb97-16"></a><span class="st">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="accessing-online-data-sources.html#cb117-1"></a><span class="co">#install.packages(&quot;WikidataQueryServiceR&quot;)</span></span>
+<span id="cb117-2"><a href="accessing-online-data-sources.html#cb117-2"></a><span class="kw">library</span>(WikidataQueryServiceR)</span>
+<span id="cb117-3"><a href="accessing-online-data-sources.html#cb117-3"></a></span>
+<span id="cb117-4"><a href="accessing-online-data-sources.html#cb117-4"></a>headsOfGov &lt;-<span class="st"> </span><span class="kw">query_wikidata</span>(<span class="st">&#39;</span></span>
+<span id="cb117-5"><a href="accessing-online-data-sources.html#cb117-5"></a><span class="st">SELECT ?country ?head ?gender ?countryLabel ?headLabel ?genderLabel  ?continentLabel ?governmentLabel ?population</span></span>
+<span id="cb117-6"><a href="accessing-online-data-sources.html#cb117-6"></a><span class="st">WHERE</span></span>
+<span id="cb117-7"><a href="accessing-online-data-sources.html#cb117-7"></a><span class="st">{</span></span>
+<span id="cb117-8"><a href="accessing-online-data-sources.html#cb117-8"></a><span class="st">    ?country wdt:P31 wd:Q6256 .</span></span>
+<span id="cb117-9"><a href="accessing-online-data-sources.html#cb117-9"></a><span class="st">    ?country wdt:P6 ?head .</span></span>
+<span id="cb117-10"><a href="accessing-online-data-sources.html#cb117-10"></a><span class="st">    ?head wdt:P21 ?gender .  </span></span>
+<span id="cb117-11"><a href="accessing-online-data-sources.html#cb117-11"></a><span class="st">    ?country wdt:P30 ?continent . </span></span>
+<span id="cb117-12"><a href="accessing-online-data-sources.html#cb117-12"></a><span class="st">    ?country wdt:P1082 ?population .</span></span>
+<span id="cb117-13"><a href="accessing-online-data-sources.html#cb117-13"></a><span class="st">    SERVICE wikibase:label { bd:serviceParam wikibase:language &quot;en&quot; }</span></span>
+<span id="cb117-14"><a href="accessing-online-data-sources.html#cb117-14"></a><span class="st">}</span></span>
+<span id="cb117-15"><a href="accessing-online-data-sources.html#cb117-15"></a><span class="st">ORDER BY ?countryLabel</span></span>
+<span id="cb117-16"><a href="accessing-online-data-sources.html#cb117-16"></a><span class="st">&#39;</span>)</span></code></pre></div>
 <pre><code>## 171 rows were returned by WDQS</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="accessing-online-data-sources.html#cb99-1"></a>regional &lt;-<span class="st"> </span>headsOfGov <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(continentLabel, genderLabel) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(population), <span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()</span>
-<span id="cb99-2"><a href="accessing-online-data-sources.html#cb99-2"></a></span>
-<span id="cb99-3"><a href="accessing-online-data-sources.html#cb99-3"></a>world &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">continentLabel =</span> <span class="st">&quot;World&quot;</span>, </span>
-<span id="cb99-4"><a href="accessing-online-data-sources.html#cb99-4"></a>               headsOfGov <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(genderLabel) <span class="op">%&gt;%</span></span>
-<span id="cb99-5"><a href="accessing-online-data-sources.html#cb99-5"></a><span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">pop=</span><span class="kw">sum</span>(population), <span class="dt">n=</span><span class="kw">n</span>()), <span class="dt">stringsAsFactors =</span> F</span>
-<span id="cb99-6"><a href="accessing-online-data-sources.html#cb99-6"></a>               )</span>
-<span id="cb99-7"><a href="accessing-online-data-sources.html#cb99-7"></a></span>
-<span id="cb99-8"><a href="accessing-online-data-sources.html#cb99-8"></a></span>
-<span id="cb99-9"><a href="accessing-online-data-sources.html#cb99-9"></a>world <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ShareOfCountries =</span> n<span class="op">/</span><span class="kw">sum</span>(n)<span class="op">*</span><span class="dv">100</span>, <span class="dt">ShareOfPopulation =</span> pop<span class="op">/</span><span class="kw">sum</span>(pop)<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(genderLabel <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(ShareOfCountries, ShareOfPopulation) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>kableExtra<span class="op">::</span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;&lt;b&gt;Women rule (%)&lt;/b&gt;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>kableExtra<span class="op">::</span><span class="kw">kable_styling</span>(<span class="dt">full_width =</span> F)</span>
-<span id="cb99-10"><a href="accessing-online-data-sources.html#cb99-10"></a></span>
-<span id="cb99-11"><a href="accessing-online-data-sources.html#cb99-11"></a>regionalAndWorld &lt;-<span class="st"> </span><span class="kw">rbind</span>(regional, world)</span>
-<span id="cb99-12"><a href="accessing-online-data-sources.html#cb99-12"></a></span>
-<span id="cb99-13"><a href="accessing-online-data-sources.html#cb99-13"></a><span class="kw">ggplot</span>(regionalAndWorld, <span class="kw">aes</span>(<span class="dt">x=</span>continentLabel, <span class="dt">y=</span>pop, <span class="dt">fill=</span>genderLabel)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb99-14"><a href="accessing-online-data-sources.html#cb99-14"></a><span class="st">    </span><span class="co">#Turns chart into bars rather than columns</span></span>
-<span id="cb99-15"><a href="accessing-online-data-sources.html#cb99-15"></a><span class="st">    </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
-<span id="cb99-16"><a href="accessing-online-data-sources.html#cb99-16"></a><span class="st">    </span><span class="co">#Show percentages rather than fractions on y-axis (now shown as x-axis)</span></span>
-<span id="cb99-17"><a href="accessing-online-data-sources.html#cb99-17"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span></span>
-<span id="cb99-18"><a href="accessing-online-data-sources.html#cb99-18"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Only a small fraction of the world&#39;s population is ruled by women&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Source: WikiData, February 2020&quot;</span>, <span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Share of population&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;Head of government&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="accessing-online-data-sources.html#cb119-1"></a>regional &lt;-<span class="st"> </span>headsOfGov <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(continentLabel, genderLabel) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">pop =</span> <span class="kw">sum</span>(population), <span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ungroup</span>()</span>
+<span id="cb119-2"><a href="accessing-online-data-sources.html#cb119-2"></a></span>
+<span id="cb119-3"><a href="accessing-online-data-sources.html#cb119-3"></a>world &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">continentLabel =</span> <span class="st">&quot;World&quot;</span>, </span>
+<span id="cb119-4"><a href="accessing-online-data-sources.html#cb119-4"></a>               headsOfGov <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(genderLabel) <span class="op">%&gt;%</span></span>
+<span id="cb119-5"><a href="accessing-online-data-sources.html#cb119-5"></a><span class="st">                 </span><span class="kw">summarise</span>(<span class="dt">pop=</span><span class="kw">sum</span>(population), <span class="dt">n=</span><span class="kw">n</span>()), <span class="dt">stringsAsFactors =</span> F</span>
+<span id="cb119-6"><a href="accessing-online-data-sources.html#cb119-6"></a>               )</span>
+<span id="cb119-7"><a href="accessing-online-data-sources.html#cb119-7"></a></span>
+<span id="cb119-8"><a href="accessing-online-data-sources.html#cb119-8"></a></span>
+<span id="cb119-9"><a href="accessing-online-data-sources.html#cb119-9"></a>world <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">ShareOfCountries =</span> n<span class="op">/</span><span class="kw">sum</span>(n)<span class="op">*</span><span class="dv">100</span>, <span class="dt">ShareOfPopulation =</span> pop<span class="op">/</span><span class="kw">sum</span>(pop)<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(genderLabel <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(ShareOfCountries, ShareOfPopulation) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>kableExtra<span class="op">::</span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;&lt;b&gt;Women rule (%)&lt;/b&gt;&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>kableExtra<span class="op">::</span><span class="kw">kable_styling</span>(<span class="dt">full_width =</span> F)</span>
+<span id="cb119-10"><a href="accessing-online-data-sources.html#cb119-10"></a></span>
+<span id="cb119-11"><a href="accessing-online-data-sources.html#cb119-11"></a>regionalAndWorld &lt;-<span class="st"> </span><span class="kw">rbind</span>(regional, world)</span>
+<span id="cb119-12"><a href="accessing-online-data-sources.html#cb119-12"></a></span>
+<span id="cb119-13"><a href="accessing-online-data-sources.html#cb119-13"></a><span class="kw">ggplot</span>(regionalAndWorld, <span class="kw">aes</span>(<span class="dt">x=</span>continentLabel, <span class="dt">y=</span>pop, <span class="dt">fill=</span>genderLabel)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>(<span class="dt">position=</span><span class="st">&quot;fill&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb119-14"><a href="accessing-online-data-sources.html#cb119-14"></a><span class="st">    </span><span class="co">#Turns chart into bars rather than columns</span></span>
+<span id="cb119-15"><a href="accessing-online-data-sources.html#cb119-15"></a><span class="st">    </span><span class="kw">coord_flip</span>() <span class="op">+</span></span>
+<span id="cb119-16"><a href="accessing-online-data-sources.html#cb119-16"></a><span class="st">    </span><span class="co">#Show percentages rather than fractions on y-axis (now shown as x-axis)</span></span>
+<span id="cb119-17"><a href="accessing-online-data-sources.html#cb119-17"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span></span>
+<span id="cb119-18"><a href="accessing-online-data-sources.html#cb119-18"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Only a small fraction of the world&#39;s population is ruled by women&quot;</span>, <span class="dt">subtitle=</span><span class="st">&quot;Source: WikiData, February 2020&quot;</span>, <span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Share of population&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;Head of government&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
 <img src="10-accessing-online-data_files/figure-html/unnamed-chunk-5-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
 <p class="caption">
-Figure 8.2: <strong>CAPTION THIS FIGURE!!</strong>
+Figure 9.1: <strong>CAPTION THIS FIGURE!!</strong>
 </p>
 </div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-5">Table 8.1: </span><b>Women rule (%)</b>
+<span id="tab:unnamed-chunk-5">Table 9.1: </span><b>Women rule (%)</b>
 </caption>
 <thead>
 <tr>
@@ -374,8 +390,8 @@ ShareOfPopulation
 </tbody>
 </table>
 </div>
-<div id="other-data-sources" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Other data sources</h2>
+<div id="other-data-sources" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Other data sources</h2>
 <p>Beyond the examples here, there are many other datasets to access. You might want to check out some of the following:</p>
 <ul>
 <li>The extensive <a href="https://github.com/erikgahner/PolData">list of political datasets</a> compiled by Erik Gahner, with lots of current and historical data on anything from terrorism to government revenues and gender in politics. At the bottom, it also has a list of links to other lists of datasets.</li>
@@ -386,10 +402,6 @@ ShareOfPopulation
 </ul>
 
 </div>
-</div>
-
-
-
 </div>
 <div class="psyteachr_footer">
   
@@ -502,7 +514,7 @@ window.onload = function() {
         </div>
       </div>
 <a href="reporting-the-results-of-statistical-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="two-more-pipes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dealing-with-missing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

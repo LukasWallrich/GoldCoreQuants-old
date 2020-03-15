@@ -31,10 +31,10 @@ wbsearch("gdp.*capita.*PPP", cache = new_wb_cache)
 ```
 ##                indicatorID                                            indicator
 ## 647     6.0.GDPpc_constant GDP per capita, PPP (constant 2011 international $) 
-## 10077    NY.GDP.PCAP.PP.CD        GDP per capita, PPP (current international $)
-## 10078    NY.GDP.PCAP.PP.KD  GDP per capita, PPP (constant 2011 international $)
-## 10079 NY.GDP.PCAP.PP.KD.87  GDP per capita, PPP (constant 1987 international $)
-## 10080 NY.GDP.PCAP.PP.KD.ZG                GDP per capita, PPP annual growth (%)
+## 10122    NY.GDP.PCAP.PP.CD        GDP per capita, PPP (current international $)
+## 10123    NY.GDP.PCAP.PP.KD  GDP per capita, PPP (constant 2011 international $)
+## 10124 NY.GDP.PCAP.PP.KD.87  GDP per capita, PPP (constant 1987 international $)
+## 10125 NY.GDP.PCAP.PP.KD.ZG                GDP per capita, PPP annual growth (%)
 ```
 
 Once we know the names of the indicators, we can download them.
