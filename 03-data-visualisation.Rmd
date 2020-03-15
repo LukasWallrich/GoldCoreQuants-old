@@ -2,7 +2,9 @@
 
 Being able to look at the data is a key step in data exploration, during the analysis and in the communication of results. R has a range of powerful tools to create graphs quickly, and then to develop them into a publication-ready format where helpful.
 
-[![](https://i1.pngguru.com/preview/158/556/881/tuts-icon-youtube-alt-png-clipart.jpg?display=inline-block){#id .class width=35 height=35px}](TK) &nbsp; For an introduction to the grammar of graphics and ggplot2, [watch/rewatch this video](https://youtu.be/sk7TT5qM5Hw)
+For an introduction to the Grammar of Graphics and ggplot2, watch this video:
+
+![]https://youtu.be/sk7TT5qM5Hw
 
 ## ggplot2
 
@@ -29,5 +31,5 @@ ggplot(gapminder2010, aes(x=infant_mortality, y=fertility)) +
 
 ## Further resources
 
-* The [R Graphics Cookbook](https://r-graphics.org/) by Winston Chang is available online with 150 "recipes" that cover everything from basic exploratory charts to colour-coded maps.
-* The BBC graphics team has published their own [R Cookbook](https://bbc.github.io/rcookbook/) with clear tips for making publishable charts that convey a clear message
+* The [R Graphics Cookbook](https://r-graphics.org/){target="_blank"} by Winston Chang is available online with 150 "recipes" that cover everything from basic exploratory charts to colour-coded maps.
+* The BBC graphics team has published their own [R Cookbook](https://bbc.github.io/rcookbook/){target="_blank"} with clear tips for making publishable charts that convey a clear message
