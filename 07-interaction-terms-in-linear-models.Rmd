@@ -1,0 +1,141 @@
+# Interaction terms in linear models
+
+Watch this video for an introduction to interaction terms in linear models:
+
+![]https://youtu.be/coyXicRccSg
+
+The section below essentially contains the code needed for the examples in the video, with some further annotations. Before that, just one note on terminology:
+
+* Generally, if two variables interact, then the effect that one has on the predictor (the regression slope) depends on the value of the other. Mathematically, that relationship is symetrical - if A interacts with B, then B interacts with A.
+* For interpretation, we often designate one of the variables as the *moderator*. That just means that we are primarily interested in the effect of the other variable on the outcome and in how the moderator changes that effect. Often, demographic variables such as age or gender serve as moderators. 
+
+## Example 1: Memory and chess
+
+The first example draws on research by Gobet & Simon (1996) but uses simulated data.
+
+```{r webex.hide="Click here to see the code that simulates the data"}
+library(tidyverse)
+
+#Generate data (errors committed) - *roughly* based on Gobet & Simon 1996
+set.seed(300688) #for reproducible results
+ER <- rnorm(50,4.9,3.5) + rnorm(50, 0, 2)
+NR <- rnorm(50, 15.7, 4.0) + rnorm(50, 0, 2)
+EF <- rnorm(50, 21.4, 5) + rnorm(50, 0, 2)
+NF <- rnorm(50, 21.8, 5) + rnorm(50, 0, 2)
+
+obs <- data.frame(player = "expert", type = "real", errors = ER, stringsAsFactors = F) %>% 
+  rbind(data.frame(player = "novice", type = "real", errors = NR, stringsAsFactors = F)) %>%
+  rbind(data.frame(player = "expert", type = "fake", errors = EF, stringsAsFactors = F)) %>%
+  rbind(data.frame(player = "novice", type = "fake", errors = NF, stringsAsFactors = F)) %>% 
+  mutate(type=factor(type), player = factor(player, levels = c("novice", "expert")))
+
+
+#Adding the centrally mirrored condition
+EM <- rnorm(50, 7.8, 3.5) + rnorm(50, 0, 2)
+NM <- rnorm(50, 18, 3.5) + rnorm(50, 0, 2)
+
+
+obs2 <- data.frame(player = "expert", type = "real", errors = ER, stringsAsFactors = F) %>% 
+  rbind(data.frame(player = "novice", type = "real", errors = NR, stringsAsFactors = F)) %>%
+  rbind(data.frame(player = "expert", type = "fake", errors = EF, stringsAsFactors = F)) %>%
+  rbind(data.frame(player = "novice", type = "fake", errors = NF, stringsAsFactors = F)) %>% 
+  rbind(data.frame(player = "expert", type = "mirrored", errors = EM, stringsAsFactors = F)) %>% 
+  rbind(data.frame(player = "novice", type = "mirrored", errors = NM, stringsAsFactors = F)) %>% 
+  mutate(type=factor(type), player = factor(player, levels = c("novice", "expert")))
+
+```
+
+The first model tests whether player level and position type interact. That is the case, based on the very small *p*-value of the interaction term. Then we use a plot to understand the nature of that interaction further - because the predictor is categorical, we use the `cat_plot()` function.
+
+```{r fig.cap='Simple interaction plot - lines are not parallel'}
+mod <- lm(errors ~ player + type + player:type, obs)
+summary(mod)
+
+library(interactions)
+cat_plot(mod, pred="player", modx = "type", geom="line")
+
+```
+Next we consider a third condition - chess positions that are neither quite real nor entirely fake, but positions that are mirrored. With that, we get multiple dummy interaction terms. To test whether they are collectively significant, we need to use the `Anova()` function from the `car` package.
+
+```{r}
+mod <- lm(errors ~ player + type + player:type, obs2)
+summary(mod)
+car::Anova(mod, type=3)
+```
+An interaction plot can then help again to understand what is going on. Here it shows that two of the three conditions are very similar.
+
+```{r fig.cap='Simple interaction plot - now 2 lines are parallel'}
+cat_plot(mod, pred="player", modx = "type", geom="line")
+```
+
+## Example 2: link between obesity and negative emotions in the European Social Survey
+
+In this example, I considered the link between obesity and negative emotions in Germany in the European Social Survey 2014. Note that this relationship does not appear in the UK, which indicates that it should probably be treated as an interesting observation rather than a likely general relationship for now.
+
+```{r webex.hide="Click here to see the code that loads and prepares the data", cache=TRUE, warning=FALSE}
+
+ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
+
+a <- ess %>% select(cldgng, fltsd, enjlf, fltlnl, wrhpp, slprl, flteeff, fltdpr) %>% psych::alpha(check.keys = TRUE)
+
+ess$depr <- a$scores
+
+ess$bmi <- ess$weight/((ess$height/100)^2)
+
+#Filter for Germans with realistic BMI who are not underweight and reported their gender
+essDE <- ess %>% filter(bmi < 60, bmi>=19, gndr != "No answer", cntry=="DE")
+
+#Data prep for example 3 - strip unnecessary labels
+ess$stflife <- haven::zap_labels(ess$stflife)
+
+```
+
+The `lm()` output shows that there is a significant interaction between gender and BMI, with women having a stronger relationship between BMI and the frequency of experiencing negative emotions. This is again shown in an interaction plot - as the predictor variable is continuous, we now use the `interact_plot()` function.
+
+```{r fig.cap='interact_plot shows different slope for men and women'}
+mod <- lm(depr ~ bmi + gndr + bmi:gndr, essDE)
+summary(mod)
+interact_plot(mod, pred="bmi", modx = "gndr")
+```
+
+Note that `ggplot2` automatically includes an interaction when fitting regression lines when a categorical variable is mappes to the `colour` (or `linetype`) aesthetic.
+
+```{r fig.cap='ggplot automatically includes interaction'}
+ggplot(essDE, aes(x=bmi, y=depr, colour=gndr)) + geom_smooth(method="lm", se=FALSE)
+```
+
+## Example 3: link between working hours, income and life satisfaction
+
+This example considers whether working hours affect the link between income and life satisfaction - i.e. does working very long hours make income less valuable? This time, the effect appeared in the UK data in the 2014 European Social Survey - again, the question might be whether that is just an incident of spurious data mining, or whether it reveals a broader relationship.
+
+In any case, let's have a look at the interaction. Note that `*` in the `lm()` formula is an abbreviation for `+` and `:`, so that the command below could also be written as `lm(stflife ~ wkhtot + hinctnta + wkhtot:hinctnta)`
+
+```{r}
+essUK <- filter(ess, cntry == "GB")
+mod <- lm(stflife ~ wkhtot*hinctnta, essUK) 
+summary(mod)
+```
+
+We can see that while income positively predicts life satisfaction, this effects appears to be weaker when both income andd working hours are high. However, we need to be careful with interpretation here - technically, the coefficients for income and working hours now reflect the impact of that variable when the other variable is 0, and are thus unlikely to be meaningful. Therefore, it is better to look at the interaction plot and at simple slopes analyses. Both can now be done in two ways, depending on which variable we see as the primary predictor/variable of interest.
+
+```{r fig.cap='Option A: strong positive effect of income, tempered by working hours'}
+interact_plot(mod, pred="hinctnta", modx = "wkhtot")
+```
+
+```{r fig.cap='Option B: very different effects of working hours, depending on income'}
+interact_plot(mod, pred="wkhtot", modx = "hinctnta")
+```
+
+Simple slopes analyses (`sim_slopes()`) offer similar information together with significance tests and thus help to decide which of the slopes should really be interpreted. They contain the Johnson-Neyman interval, which is the range of values of the moderator for which the predictor has a significant effect on the outcome.
+
+```{r}
+sim_slopes(mod, pred="hinctnta", modx = "wkhtot")
+sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
+```
+
+Finally, the `johnson_neyman()` function creates a plot showing the slope of one variable depending on the value of the other, while highlighting the regions of significance. This can help with an understanding of the relationship, but is not (yet?) widely used.
+
+```{r}
+johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
+```
+
