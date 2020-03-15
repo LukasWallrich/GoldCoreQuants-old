@@ -6,8 +6,7 @@ library(webex)
 
 Missing data can pose serious problems for any data analysis.
 
-ADD VIDEO
-
+`r video_code("FT6oYGyWTGY")`
 
 ## Example
 

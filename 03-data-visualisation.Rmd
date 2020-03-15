@@ -4,7 +4,8 @@ Being able to look at the data is a key step in data exploration, during the ana
 
 For an introduction to the Grammar of Graphics and ggplot2, watch this video:
 
-![]https://youtu.be/sk7TT5qM5Hw
+`r video_code("sk7TT5qM5Hw")`
+
 
 ## ggplot2
 

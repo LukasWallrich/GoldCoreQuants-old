@@ -2,11 +2,13 @@
 
 Watch this video for an introduction to testing for differences between two means and the differences between repeated measures and independent samples:
 
-![]https://youtu.be/L69HyBnvQRQ
+
+`r video_code("L69HyBnvQRQ")`
 
 Watch this video for an introduction to testing for differences between *more than* two means:
 
-![]https://youtu.be/r96FYPLQ1l0
+`r video_code("r96FYPLQ1l0")`
+
 
 ### Repeated measures or independent samples
 

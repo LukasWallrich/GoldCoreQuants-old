@@ -2,7 +2,7 @@
 
 Watch this video for an introduction to this topic:
 
-![]https://youtu.be/h1oq6HjlyjI
+<iframe src=" http://www.youtube.com/embed/h1oq6HjlyjI?rel=0 " allowfullscreen width=80% height=350></iframe>
 
 When we want to see whether two categorical variables are associated with each other, typical linear models won't work. Instead, we need a new way to decide whether a difference between the data we observe and that which we expect under the null-hypothesis is unlikely to occur due to chance. But before we get to that, we should look at the data.
 

@@ -103,7 +103,7 @@ gapminder %>%
 
 For an introduction to `dplyr`, you can watch this video:
 
-![]https://www.youtube.com/watch?v=QtQE-b5iMUQ
+`r video_code("QtQE-b5iMUQ")`
 
 ## Functions to view and summarise data
 

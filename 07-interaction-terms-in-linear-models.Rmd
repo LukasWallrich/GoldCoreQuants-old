@@ -2,7 +2,9 @@
 
 Watch this video for an introduction to interaction terms in linear models:
 
-![]https://youtu.be/coyXicRccSg
+`r video_code("coyXicRccSg")`
+
+
 
 The section below essentially contains the code needed for the examples in the video, with some further annotations. Before that, just one note on terminology:
 

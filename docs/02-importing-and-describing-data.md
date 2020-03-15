@@ -120,7 +120,7 @@ gapminder %>%
 
 For an introduction to `dplyr`, you can watch this video:
 
-![]https://www.youtube.com/watch?v=QtQE-b5iMUQ
+<iframe src=" http://www.youtube.com/embed/QtQE-b5iMUQ?rel=0 " allowfullscreen width=80% height=350></iframe>
 
 ## Functions to view and summarise data
 

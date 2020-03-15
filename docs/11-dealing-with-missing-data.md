@@ -4,8 +4,7 @@
 
 Missing data can pose serious problems for any data analysis.
 
-ADD VIDEO
-
+<iframe src=" http://www.youtube.com/embed/FT6oYGyWTGY?rel=0 " allowfullscreen width=80% height=350></iframe>
 
 ## Example
 

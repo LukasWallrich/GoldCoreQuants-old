@@ -28,7 +28,7 @@ You can think about the different parts of R in terms of a computer or smartphon
 
 For a more comprehensive introduction to R, you can watch this video:
 
-![]https://www.youtube.com/watch?v=kvaMhkQF0H4
+`r video_code("kvaMhkQF0H4")`
 
 
 ### Data and variables in R
