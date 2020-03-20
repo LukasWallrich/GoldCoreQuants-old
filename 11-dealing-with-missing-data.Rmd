@@ -103,5 +103,5 @@ This time, we get the correct result - there is no difference between boys and g
 
 ## Further resources
 
-* Similarly, the [official vignette](https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html) for `naniar` provides provides good step-by-step instructions for exploring and visualising missing data
-* The [official vignette](https://cran.r-project.org/web/packages/simputation/vignettes/intro.html) for `simputation` contains details on how to use different imputation models and how to impute several variables at once
+* The [official vignette](https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html) for `naniar` provides provides good step-by-step instructions for exploring and visualising missing data
+* Similarly, the [official vignette](https://cran.r-project.org/web/packages/simputation/vignettes/intro.html) for `simputation` contains details on how to use different imputation models and how to impute several variables at once
