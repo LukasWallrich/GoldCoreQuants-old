@@ -93,16 +93,16 @@ The probability for the first child to be a girl is 50% ($\frac{1}{2}$). For the
 </div>
 
 
-Quite often we are interested in the **likelihood of something occurring at least once,** rather than on every attempt. So we might want to know how likely it is that a family with three children has at least one boy among them. Assuming that gender is binary, that is the same as saying that they do not have three girls. Given that they either have 3 girls or at least one boy, we know that these probabilities add up to 1 (certainty) - such events are known as complementary events. Therefore, the probability of having at least one boy is 1 - 12.5% = 77.5%
+Quite often we are interested in the **likelihood of something occurring at least once,** rather than on every attempt. So we might want to know how likely it is that a family with three children has at least one boy among them. Assuming that gender is binary, that is the same as saying that they do not have three girls. Given that they either have 3 girls or at least one boy, we know that these probabilities add up to 1 (certainty) - such events are known as *complementary* events. Therefore, the probability of having at least one boy is 1 - 12.5% = 77.5%
 
-This idea that **something happening at least once is the *complement* of it never happening** is a very helpful, as it is much easier to calculate the chance of something never happening across a given number (n) of procedures. It is $P(notA)^n$. We have already discussed this in the context of multiple comparisons. 
+Remembering that **something happening at least once is the *complement* of it never happening** is very helpful, because it is much easier to calculate the chance of something never happening across a given number (n) of procedures. It is $P(notA)^n$. We have already discussed this in the context of multiple comparisons. 
 
 Over to you. If the chance of finding a false positive is 5% on each attempt, what is the chance of finding a false positive in at least one of seven tests? For that, you will need a calculator. Note that $x^n$ should be entered as `x^n` in R or the Google search box. Enter your answer in percent, rounded to the nearest whole number: <input class='solveme nospaces ignorecase' size='4' data-answer='["30","30%","30 %"]'/>
 
 
 <div class='solution'><button>I need a hint</button>
 
-The answer is 100% - the probability of not getting a false positive 7 times in a row.
+The answer is 100% minus the probability of not getting a false positive 7 times in a row.
 
 </div>
 
@@ -118,11 +118,11 @@ $0.95^7=0.70$ of getting *no* false positives. Given that getting at least one f
 
 ## Updating our beliefs - Bayes' theorem
 
-What you have looked at so far are the basic rules of probability that are good to remember (and that you will might have seen a while ago in school). So far, we have treated probabilities as something abstract: we think about a situation, or collect data, and then assign a probability. In reality, that is not how it works. We rather use the probabilities of events to update our present beliefs. For example, if I leave my front door and see that the street is wet, I use that to update my belief (i.e. the probability I believe in) about whether it has rained earlier in the day, but in a way that depends on more than just the fact that the street is wet.
+What you have looked at so far are the basic rules of probability that are good to remember (and that you might have seen a while ago in school). So far, we have treated probabilities as something abstract: we think about a situation, or collect data, and then assign a probability. In reality, that is not how it works. We rather use the probabilities of events to update our present beliefs. For example, if I leave my front door and see that the street is wet, I use that to update my belief (i.e. the probability I believe in) about whether it has rained earlier in the day, but in a way that depends on more than just the fact that the street is wet.
 
-To further explore such an updating of beliefs, we are making quite a far jump to Bayes' theorem. You do not need to remember the formula, but the intuition is important. A key part of it are conditional probabilities - the probability of an even given that another event has occurred. We have worked with one kind of them extensively - *p*-values. They are the probability of observing data giving rise to a parameter (e.g., mean difference, correlation coefficient) at least as large as the one we observe, given that the null hypothesis is true. This can be written as $P(O|H_0)$
+To explore how such an updating of beliefs is done, we are making quite a far jump to Bayes' theorem. You do not need to remember the formula, but the intuition is important. A key part of it are conditional probabilities - the probability of an event given that another event has occurred. We have worked with one kind of them extensively - *p*-values. They are the probability of getting the observed data, or data that is more extreme if the null hypothesis is true. This can be written as $P(O|H_0)$
 
-What Bayes' theorem reveals is how we can link that probability to the probability we are actually interested in, namely the probability that the hypothesis is true, given the data. In statistics, we often slip from one in the other, but if we think about examples, it becomes clear that are not the same. For example, $P(StreetWet|Rained)\neq P(Rained|StreetWet)$. With regard to the first part, it is very likely that the street is wet if it has rained. However, whether it is likely that it has rained if the street is wet depends on other factors - and those factors are what Bayes' theorem adds to our thinking. It suggests that
+What Bayes' theorem reveals is how we can link that probability to the probability we are actually interested in, namely the probability that the hypothesis is true, given the data. In statistics, we often slip from one in the other, but if we think about examples, it becomes clear that they are not the same. For example, $P(StreetWet|Rained)\neq P(Rained|StreetWet)$. With regard to the first part, it is very likely that the street is wet if it has rained. However, whether it is likely that it has rained if the street is wet depends on other factors - and those factors are what Bayes' theorem adds to our thinking. It suggests that
 
 $P(Rained|StreetWet) = \frac{P(StreetWet|Rained)*P(Rained)}{P(StreetWet)}$
 
@@ -132,7 +132,7 @@ Thinking in this way can help to interpret probabilistic results. A frequently u
 
 >The probability of breast cancer is 1% for women aged forty who participate in routine screening. If a woman has breast cancer, the probability is 80% that she will get a positive mammogram. If a woman does not have breast cancer, the probability is 9.6% that she will also get a positive mammogram. A woman in this age group has a positive mammogram in a routine screening. What is the probability that she actually has breast cancer?
 
-What do you think? Type your estimate into this box before you read on, rounded to the nearest percent: <input class='solveme nospaces ignorecase' size='3' data-answer='["8","8%","8 %"]'/>
+What do you think? Type your *estimate* into this box before you read on, rounded to the nearest percent: <input class='solveme nospaces ignorecase' size='3' data-answer='["8","8%","8 %"]'/>
 
 Let's think what would happen to 10,000 women who participate in the screening. We would expect that 100 of them will have breast cancer, and 80% of them will be tested positive, resulting in 80 true positives. Out of the remaining 9,900, 9.6% will also test positive, resulting in 950 false positives. So only 80 of 80+950=1030 positive tests are true positives, so that a woman who tests positive has a 7.6% chance of actually having breast cancer.
 
@@ -149,7 +149,7 @@ This time, out of 10,000 women, 7.6% would have breast cancer, so 760. 80% of th
 
 The key message for evaluating the results of statistical tests, as well as any other tests, is that it helps to think about *prior probabilities.* If a hypothesis is very implausible, then even data that is only likely if that hypothesis was true should not cause us to entirely forget our informed (!) previous beliefs. Rather we should think about how to shift them.
 
-**Bayesian statistics** starts from this idea, and has developed into a whole different approach to statistical inference. Unlike frequentist statistics (which we have focused on), it does not consider hypothetical repeated experiments  to test whether data is inconsistent with a specific null hypothesis. Instead, it tries to use the data we actually obtain  to shift our estimates of specific parameters. A big barrier to its wide-spread adoption is that it only adds a lot of value if it uses specific prior probabilities, which can be hard to obtain and justify - why would a specific hypothesis have a prior probability of being true of 8% rather than 1%? (And you have seen above what a different that makes for our belief after we have obtained new evidence.) One surprisingly powerful way around that is to survey experts ... but this is all material for your own further study or a more advanced course. As a starting point, you can have a look at the first presentation linked to under Further Resources. 
+**Bayesian statistics** starts from this idea, and has developed into a whole different approach to statistical inference. Unlike frequentist statistics (which we have focused on), it does not consider hypothetical repeated experiments  to test whether data is inconsistent with a specific null hypothesis. Instead, it tries to use the data we actually obtain  to shift our estimates of specific parameters. A big barrier to its wide-spread adoption is that it only adds a lot of value if it uses specific prior probabilities, which can be hard to obtain and justify - why would a specific hypothesis have a prior probability of being true of 8% rather than 1%? (And you have seen above what a difference that makes for our belief after we have obtained new evidence.) One surprisingly powerful way around that is to survey experts ... but this is all material for your own further study or a more advanced course. As a starting point, you can have a look at the first presentation linked to under Further Resources. 
 
 ## Further resources
 
