@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-15" />
+<meta name="date" content="2020-03-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="accessing-online-data-sources.html"/>
-<link rel="next" href="packages-and-references.html"/>
+<link rel="next" href="probability-in-statistics-and-real-life.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -237,7 +237,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-resources-1"><i class="fa fa-check"></i><b>10.2</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>11</b> Packages and references</a></li>
+<li class="chapter" data-level="11" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html"><i class="fa fa-check"></i><b>11</b> Probability in statistics and real life</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#what-are-probabilities"><i class="fa fa-check"></i><b>11.1</b> What are probabilities?</a></li>
+<li class="chapter" data-level="11.2" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#combining-multiple-events-together"><i class="fa fa-check"></i><b>11.2</b> Combining multiple events together</a></li>
+<li class="chapter" data-level="11.3" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#looking-at-independent-events"><i class="fa fa-check"></i><b>11.3</b> Looking at independent events</a></li>
+<li class="chapter" data-level="11.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>11.4</b> Updating our beliefs - Bayes’ theorem</a></li>
+<li class="chapter" data-level="11.5" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#further-resources-2"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>12</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
 <ul>
@@ -276,22 +284,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="example" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Example</h2>
 <p>Let’s imagine that we want to analyse the effect of a mentoring programme on boys and girls. For that, they take a test (score1), then experience the mentoring, and then take another test (score2). Let’s load the required packages.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="dealing-with-missing-data.html#cb120-1"></a><span class="kw">library</span>(tidyverse) <span class="co">#As always</span></span>
-<span id="cb120-2"><a href="dealing-with-missing-data.html#cb120-2"></a><span class="kw">library</span>(naniar) <span class="co">#To summarise and visualise missing data</span></span>
-<span id="cb120-3"><a href="dealing-with-missing-data.html#cb120-3"></a><span class="kw">library</span>(simputation) <span class="co">#For imputation of missing data</span></span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="dealing-with-missing-data.html#cb123-1"></a><span class="kw">library</span>(tidyverse) <span class="co">#As always</span></span>
+<span id="cb123-2"><a href="dealing-with-missing-data.html#cb123-2"></a><span class="kw">library</span>(naniar) <span class="co">#To summarise and visualise missing data</span></span>
+<span id="cb123-3"><a href="dealing-with-missing-data.html#cb123-3"></a><span class="kw">library</span>(simputation) <span class="co">#For imputation of missing data</span></span></code></pre></div>
 <p>I will simulate the data from our experiment as follows.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="dealing-with-missing-data.html#cb121-1"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb121-2"><a href="dealing-with-missing-data.html#cb121-2"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">gender =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;M&quot;</span>, <span class="dv">250</span>), <span class="kw">rep</span>(<span class="st">&quot;F&quot;</span>, <span class="dv">250</span>)), </span>
-<span id="cb121-3"><a href="dealing-with-missing-data.html#cb121-3"></a>                      <span class="dt">score1 =</span> <span class="kw">round</span>(<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">45</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">250</span>,<span class="dv">60</span>,<span class="dv">10</span>))), </span>
-<span id="cb121-4"><a href="dealing-with-missing-data.html#cb121-4"></a>                      <span class="dt">score2 =</span> <span class="kw">round</span>(<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">55</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">250</span>,<span class="dv">70</span>,<span class="dv">10</span>))))</span>
-<span id="cb121-5"><a href="dealing-with-missing-data.html#cb121-5"></a></span>
-<span id="cb121-6"><a href="dealing-with-missing-data.html#cb121-6"></a>results<span class="op">$</span>score2[results<span class="op">$</span>score1<span class="op">&lt;</span><span class="dv">40</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="dealing-with-missing-data.html#cb124-1"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb124-2"><a href="dealing-with-missing-data.html#cb124-2"></a>results &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">gender =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;M&quot;</span>, <span class="dv">250</span>), <span class="kw">rep</span>(<span class="st">&quot;F&quot;</span>, <span class="dv">250</span>)), </span>
+<span id="cb124-3"><a href="dealing-with-missing-data.html#cb124-3"></a>                      <span class="dt">score1 =</span> <span class="kw">round</span>(<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">45</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">250</span>,<span class="dv">60</span>,<span class="dv">10</span>))), </span>
+<span id="cb124-4"><a href="dealing-with-missing-data.html#cb124-4"></a>                      <span class="dt">score2 =</span> <span class="kw">round</span>(<span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">250</span>, <span class="dv">55</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">250</span>,<span class="dv">70</span>,<span class="dv">10</span>))))</span>
+<span id="cb124-5"><a href="dealing-with-missing-data.html#cb124-5"></a></span>
+<span id="cb124-6"><a href="dealing-with-missing-data.html#cb124-6"></a>results<span class="op">$</span>score2[results<span class="op">$</span>score1<span class="op">&lt;</span><span class="dv">40</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <p>Note that I have assumed that only students who pass the first test (i.e. get at least 40) return to the second test. For all others, that data is missing. What pattern of missingness is that? <select class='solveme' data-answer='["MAR"]'> <option></option> <option>MCAR</option> <option>MAR</option> <option>MNAR</option></select></p>
 <p><code>hide("Explanation")</code></p>
 <p>The data is <strong>missing at random (MAR)</strong> - whether score2 is missing depends on the value of score1, so that it is <em>not</em> missing completely at random (MCAR). Whether score2 is missing does not depend on the value of score2 (beyond any association it might have with score1) - therefore it is also <em>not</em> missing not at random (MNAR).</p>
 <p><code>unhide()</code></p>
 <p>Let’s see how much missing data that results in.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="dealing-with-missing-data.html#cb122-1"></a><span class="kw">miss_var_summary</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="dealing-with-missing-data.html#cb125-1"></a><span class="kw">miss_var_summary</span>(results)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 3
 ##   variable n_miss pct_miss
 ##   &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;
@@ -303,10 +311,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>15% missing data is quite a lot, but still within the range where scientists might choose to use case deletion and move on.</p>
 <p>Given that the data is MAR, do you think that case deletion can bias the results? <select class='solveme' data-answer='["Yes"]'> <option></option> <option>Yes</option> <option>No</option></select></p>
 <p>Let’s try case deletion, and test whether the effects on boys and girls are different.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="dealing-with-missing-data.html#cb124-1"></a>resultsDel &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Deletes all rows with missing values</span></span>
-<span id="cb124-2"><a href="dealing-with-missing-data.html#cb124-2"></a><span class="st">                    </span><span class="kw">mutate</span>(<span class="dt">change =</span> score2 <span class="op">-</span><span class="st"> </span>score1)</span>
-<span id="cb124-3"><a href="dealing-with-missing-data.html#cb124-3"></a></span>
-<span id="cb124-4"><a href="dealing-with-missing-data.html#cb124-4"></a><span class="kw">t.test</span>(change <span class="op">~</span><span class="st"> </span>gender, resultsDel)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="dealing-with-missing-data.html#cb127-1"></a>resultsDel &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Deletes all rows with missing values</span></span>
+<span id="cb127-2"><a href="dealing-with-missing-data.html#cb127-2"></a><span class="st">                    </span><span class="kw">mutate</span>(<span class="dt">change =</span> score2 <span class="op">-</span><span class="st"> </span>score1)</span>
+<span id="cb127-3"><a href="dealing-with-missing-data.html#cb127-3"></a></span>
+<span id="cb127-4"><a href="dealing-with-missing-data.html#cb127-4"></a><span class="kw">t.test</span>(change <span class="op">~</span><span class="st"> </span>gender, resultsDel)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -323,9 +331,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="imputation" class="section level3" number="10.1.2">
 <h3><span class="header-section-number">10.1.2</span> Imputation</h3>
 <p>For imputation, we need to decide how the missing data should be predicted based on the observed data. Here, it would seem to make most sense to use linear regression to predict score2 from score1. However, before we do that, we need to make sure that we can identify imputed values later on by saving which values were missing to begin with. We use two functions from the <code>naniar</code> package for that.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="dealing-with-missing-data.html#cb126-1"></a>resultsImp &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_shadow</span>(<span class="dt">only_miss =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_label_missings</span>()</span>
-<span id="cb126-2"><a href="dealing-with-missing-data.html#cb126-2"></a></span>
-<span id="cb126-3"><a href="dealing-with-missing-data.html#cb126-3"></a><span class="kw">head</span>(resultsImp)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="dealing-with-missing-data.html#cb129-1"></a>resultsImp &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">bind_shadow</span>(<span class="dt">only_miss =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_label_missings</span>()</span>
+<span id="cb129-2"><a href="dealing-with-missing-data.html#cb129-2"></a></span>
+<span id="cb129-3"><a href="dealing-with-missing-data.html#cb129-3"></a><span class="kw">head</span>(resultsImp)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 5
 ##   gender score1 score2 score2_NA any_missing
 ##   &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;     &lt;chr&gt;      
@@ -337,12 +345,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 M          50     53 !NA       Not Missing</code></pre>
 <p><code>bind_shadow()</code> has added a new column for each column that had missing values - in this case, <code>score2_NA</code> was added, with two values showing whether the value was missing (NA) or not missing (!NA). Without the <code>only_miss =  TRUE</code> argument, it would add one ‘shadow’ column for each column. <code>any_missing()</code> added just one new column indicating whether there were any missing values in that row.</p>
 <p>Now we can impute the missing data. Functions from the <code>simputation</code> package help with that.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="dealing-with-missing-data.html#cb128-1"></a>resultsImp &lt;-<span class="st"> </span>resultsImp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(gender) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb128-2"><a href="dealing-with-missing-data.html#cb128-2"></a><span class="st">  </span><span class="kw">impute_lm</span>(score2 <span class="op">~</span><span class="st"> </span>score1, <span class="dt">add_residual =</span> <span class="st">&quot;observed&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="dealing-with-missing-data.html#cb131-1"></a>resultsImp &lt;-<span class="st"> </span>resultsImp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(gender) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb131-2"><a href="dealing-with-missing-data.html#cb131-2"></a><span class="st">  </span><span class="kw">impute_lm</span>(score2 <span class="op">~</span><span class="st"> </span>score1, <span class="dt">add_residual =</span> <span class="st">&quot;observed&quot;</span>) </span></code></pre></div>
 <p>This tells <code>simputation</code> to split the data by gender, calculate a regression to predict score2 from score1 for each gender, use that to impute score2 values and then <em>add a residual</em> to each score2 value. The last part is crucial - if we don’t do that, then all imputed values will be right on the regression line, which will artificially increase the correlation between score1 and score2 and the fit of any regression model we want to calculate later. <code>add_residual</code> can either be <code>"observed"</code> or <code>"normal"</code>. In the first case, one of the observed residuals is randomly sampled, in the second case, the added residuals follow a normal distribution. I would always recommend <code>"observed"</code> as that makes one fewer assumption about the distribution of our data.</p>
 <p>Let’s see whether the imputed values look reasonable and whether they are different from the observed values in a way that they are likely to influence our results.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="dealing-with-missing-data.html#cb129-1"></a>resultsImp &lt;-<span class="st"> </span>resultsImp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">change =</span> score2 <span class="op">-</span><span class="st"> </span>score1)</span>
-<span id="cb129-2"><a href="dealing-with-missing-data.html#cb129-2"></a><span class="kw">ggplot</span>(resultsImp, <span class="kw">aes</span>(<span class="dt">x=</span>gender, <span class="dt">y=</span>change)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> any_missing))</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dealing-with-missing-data.html#cb132-1"></a>resultsImp &lt;-<span class="st"> </span>resultsImp <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">change =</span> score2 <span class="op">-</span><span class="st"> </span>score1)</span>
+<span id="cb132-2"><a href="dealing-with-missing-data.html#cb132-2"></a><span class="kw">ggplot</span>(resultsImp, <span class="kw">aes</span>(<span class="dt">x=</span>gender, <span class="dt">y=</span>change)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> any_missing))</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
 <img src="11-dealing-with-missing-data_files/figure-html/unnamed-chunk-7-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
 <p class="caption">
@@ -352,7 +360,7 @@ Figure 6.2: <strong>CAPTION THIS FIGURE!!</strong>
 <p>Note that the colour aesthetic is only assigned inside <code>geom_jitter()</code>. If it was assigned within <code>ggplot()</code>, we would get separate boxplots for observed and imputed values, which is not the aim here.</p>
 <p>Looking at the distribution of values that were originally missing and have now been imputed, we can see that the values are generally plausible, in that they fall within the observed range. However, particularly for boys, they are higher than the observed values and are therefore likely to influence our conclusion.</p>
 <p>Let’s test again whether there is a difference between boys and girls.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="dealing-with-missing-data.html#cb130-1"></a><span class="kw">t.test</span>(change <span class="op">~</span><span class="st"> </span>gender, resultsImp)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="dealing-with-missing-data.html#cb133-1"></a><span class="kw">t.test</span>(change <span class="op">~</span><span class="st"> </span>gender, resultsImp)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -370,8 +378,8 @@ Figure 6.2: <strong>CAPTION THIS FIGURE!!</strong>
 <div id="further-resources-1" class="section level2" number="10.2">
 <h2><span class="header-section-number">10.2</span> Further resources</h2>
 <ul>
-<li>Similarly, the <a href="https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html">official vignette</a> for <code>naniar</code> provides provides good step-by-step instructions for exploring and visualising missing data</li>
-<li>The <a href="https://cran.r-project.org/web/packages/simputation/vignettes/intro.html">official vignette</a> for <code>simputation</code> contains details on how to use different imputation models and how to impute several variables at once</li>
+<li>The <a href="https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html">official vignette</a> for <code>naniar</code> provides provides good step-by-step instructions for exploring and visualising missing data</li>
+<li>Similarly, the <a href="https://cran.r-project.org/web/packages/simputation/vignettes/intro.html">official vignette</a> for <code>simputation</code> contains details on how to use different imputation models and how to impute several variables at once</li>
 </ul>
 
 </div>
@@ -487,7 +495,7 @@ window.onload = function() {
         </div>
       </div>
 <a href="accessing-online-data-sources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="packages-and-references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="probability-in-statistics-and-real-life.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

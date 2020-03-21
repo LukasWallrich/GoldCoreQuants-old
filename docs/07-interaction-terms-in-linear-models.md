@@ -213,6 +213,10 @@ ggplot(essDE, aes(x=bmi, y=depr, colour=gndr)) + geom_smooth(method="lm", se=FAL
 ```
 
 ```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+```
 ## Warning: Removed 2 rows containing non-finite values (stat_smooth).
 ```
 

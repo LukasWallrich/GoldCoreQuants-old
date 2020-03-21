@@ -43,6 +43,10 @@ ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) +
   geom_point() + geom_smooth(method="lm", se=FALSE) 
 ```
 
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
 <div class="figure" style="text-align: center">
 <img src="05-linear-regression_files/figure-html/unnamed-chunk-3-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
 <p class="caption">(\#fig:unnamed-chunk-3)**CAPTION THIS FIGURE!!**</p>
@@ -151,6 +155,10 @@ Just to show that this is indeed equivalent to simple linear regression on the s
 ```r
 ggplot(nat_avgs, aes(x=scale(nat_soctrust), y=scale(nat_stflife))) + 
   geom_point() + geom_smooth(method="lm", se=FALSE)
+```
+
+```
+## `geom_smooth()` using formula 'y ~ x'
 ```
 
 <div class="figure" style="text-align: center">

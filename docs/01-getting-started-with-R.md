@@ -102,7 +102,7 @@ variableName <- mean(c(1,2,3, NA), na.rm = TRUE)
 ```
 
 ```
-## ##------ Sun Mar 15 21:26:16 2020 ------##
+## ##------ Sat Mar 21 17:46:05 2020 ------##
 ## [1] "Hello"
 ## [1] 2
 ## [1] 2
@@ -146,8 +146,8 @@ Many errors occur due to **common mistakes**, that you need to pay attention to:
 As you progress in R, **do not try to remember everything** - instead, look things up as needed, in particular things like argument names:
 
 * Use `?functionName` to get help in R
-* Refer to the [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/) 
+* Refer to the [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/){target="_blank"} 
 * Google your questions and pay particular attention to results from r-bloggers.com and stackoverflow.com
 
-There is also a very active R user community that is willing to help - [stackoverflow.com](https://stackoverflow.com/) is a good place to ask questions about R Code, while [stats.stackexchange.com](https://stats.stackexchange.com) is the place to go with questions that are more generally about statistics. In both cases, it pays off to first google and then post questions that are as specific as possible.
+There is also a very active R user community that is willing to help - [stackoverflow.com](https://stackoverflow.com/){target="_blank"} is a good place to ask questions about R Code, while [stats.stackexchange.com](https://stats.stackexchange.com){target="_blank"} is the place to go with questions that are more generally about statistics. In both cases, it pays off to first google and then post questions that are as specific as possible.
 

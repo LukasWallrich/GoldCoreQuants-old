@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-15" />
+<meta name="date" content="2020-03-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,69 @@
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="include\psyteachr.css" type="text/css" />
 <link rel="stylesheet" href="include\style.css" type="text/css" />
@@ -225,7 +288,7 @@
 <h2><span class="header-section-number">11.1</span> What are probabilities?</h2>
 <p>There is still a lot of technical disagreement on definitions in this area. However, for our purposes, we just need to distinguish three concepts: procedures, events and probabilities. <em>Procedures</em> are anything that generates data - from rolling a die and writing down the number to conducting a medical test or surveying 500 people and calculating the mean on some outcome. An <em>event</em> is the result of a procedure, be that a 3 on a die or a positive result on a medical test. Finally, the <em>probability</em> expresses the likelihood with which an unobserved event will occur. Probabilities thereby offer guidance as to a reasonable degree of belief.</p>
 <p>Probabilities can be based on experience and inference. I can count how often it rains later in the day when I wake up to a grey sky; if I do that for long enough and calculate the share of days when it rained as a total of all days I observed, this will give me a good guidance regarding the probability of rain. Weather forecasting apps do something a bit more sophisticated, but still quite similar.</p>
-<p>Alternatively, we can use a more formal and logical way to find probabilities. This involves counting the number of possible outcomes of our procedure, and the number of possible outcomes that would lead to the event we are interested in. Probabilities are then expressed as fractions, dividing the number of ways in which our specified event can occure by the total number of outcomes. For example, the probability of rolling a 3 with a die is <span class="math inline">\(\frac{1}{6}\)</span>, as there are 6 possible outcomes, and only one of them results in a three. Rolling an even numbers, on the other hand, has a probability of <span class="math inline">\(\frac{3}{6}\)</span> (or <span class="math inline">\(\frac{1}{2}\)</span>) as there are now 3 out of 6 possible outcomes that lead to the event we are interested in.</p>
+<p>Alternatively, we can use a more formal and logical way to find probabilities. This involves counting the number of possible outcomes of our procedure, and the number of possible outcomes that would lead to the event we are interested in. Probabilities are then expressed as fractions, dividing the number of ways in which our specified event can occur by the total number of outcomes. For example, the probability of rolling a 3 with a die is <span class="math inline">\(\frac{1}{6}\)</span>, as there are 6 possible outcomes, and only one of them results in a three. Rolling an even numbers, on the other hand, has a probability of <span class="math inline">\(\frac{3}{6}\)</span> (or <span class="math inline">\(\frac{1}{2}\)</span>) as there are now 3 out of 6 possible outcomes that lead to the event we are interested in.</p>
 <p>Over to you - what is the probability of rolling a number smaller than 5? <select class='solveme' data-answer='["4/6 or 2/3"]'> <option></option> <option>2/6 or 1/3</option> <option>3/6 or 1/2</option> <option>4/6 or 2/3</option></select></p>
 <p>These fractions can often be expressed more easily by a percentage. The probability of rolling an odd number is <span class="math inline">\(\frac{3}{6}\)</span> or 50%.</p>
 <p>What is the probability of pulling a red card from a standard deck of cards, in percent? <input class='solveme nospaces ignorecase' size='4' data-answer='["50","50%","50 %"]'/></p>
@@ -235,7 +298,7 @@
 <h2><span class="header-section-number">11.2</span> Combining multiple events together</h2>
 <p>Often we are interested in more than one possible outcome. So what is the probability of rolling an even number <em>or</em> a 3 with a die? We already know that it is <span class="math inline">\(\frac{3}{6}\)</span> for an even number and <span class="math inline">\(\frac{1}{6}\)</span> for a 3. So the probability for either of them to occur is <span class="math inline">\(\frac{4}{6}\)</span> - we can add them up.</p>
 <p>However, what is the probability of rolling a 3 <em>or</em> an odd number? The probability for rolling an odd number is <span class="math inline">\(\frac{3}{6}\)</span>, and the probability for rolling a 3 is <span class="math inline">\(\frac{1}{6}\)</span>. Can we add them up? Remember that probabilities are the ways in which the event we are interested in can occur, divided by the total number of outcomes. Here, those are three ways (1, 3 and 5) of the possible six outcomes of rolling a die. Since rolling a 3 satisfies both sides of our <em>or</em> statement, we must not double count it.</p>
-<p>As a shorthand, we can write <span class="math inline">\(P(A)\)</span> to mean the probability of event A. Formally, the probability of either of two events occuring is
+<p>As a shorthand, we can write <span class="math inline">\(P(A)\)</span> to mean the probability of event A. Formally, the probability of either of two events occurring is
 <span class="math inline">\(P(A or B)=P(A)+P(B)-P(AandB)\)</span></p>
 <p>Over to you - what is the probability of getting a King or Queen when you draw a card from a standard deck of cards (52 cards)? <select class='solveme' data-answer='["8/52 or 15%"]'> <option></option> <option>4/52 or 7.5 %</option> <option>8/52 or 15%</option> <option>16/52 or 30%</option></select></p>
 <div class="solution">
@@ -274,7 +337,7 @@ Figure 11.1: Results of two coin tosses
 </p>
 </div>
 <p>As you can see in the figure, there are four possible outcomes, only one of which results in two heads, so that the probability for that is <span class="math inline">\(\frac{1}{4}\)</span> or 25%. What about four coins in a row turning up head? We know that there is only one way in which that can happen, but how many outcomes are there in total? We have seen that 2 coins result in four outcomes. Now tossing a third coin results in two possibilities for each of these 4 outcomes so far, turning them into 8. Tossing a fourth coin results in 16. (If you can’t see the pattern, try to draw out the possibilities - it will help.). So the probability for four heads in a row is <span class="math inline">\(\frac{1}{16}\)</span> or about 6%</p>
-<p>The probability of two events both occuring in sequence is <span class="math inline">\(P(A)*P(B)\)</span>. That implies that the probability of the same event occuring n times in a row is <span class="math inline">\(P(A)^n\)</span>.</p>
+<p>The probability of two events both occurring in sequence is <span class="math inline">\(P(A)*P(B)\)</span>. That implies that the probability of the same event occurring n times in a row is <span class="math inline">\(P(A)^n\)</span>.</p>
 <p>Over to you - if you assume that 50% of babies born are girls, what is the probability of a woman to give birth to three girls in a row? <select class='solveme' data-answer='["1/8 or 12.5%","1/2 or 50%"]'> <option></option> <option>1/8 or 12.5%</option> <option>1/3 or 33 %</option> <option>1/2 or 50%</option></select></p>
 <div class="solution">
 <button>
@@ -282,7 +345,7 @@ Give me the explanation
 </button>
 <p>The probability for the first child to be a girl is 50% (<span class="math inline">\(\frac{1}{2}\)</span>). For the second it is 50% as well. If we multiply them, we get 25%(<span class="math inline">\(\frac{1}{4}\)</span>). The third child again has a 50% chance of being a girl. Multiplying 25% by 50% results in 12.5% (<span class="math inline">\(\frac{1}{8}\)</span>).</p>
 </div>
-<p>Quite often we are interested in the <strong>likelihood of something occuring at least once,</strong> rather than on every attempt. So we might want to know how likely it is that a family with three children has at least one boy among them. Assuming that gender is binary, that is the same as saying that they do not have three girls. Given that they either have 3 girls or at least one boy, we know that these probabilities add up to 1 (certainty) - such events are known as complementary events. Therefore, the probability of having at least one boy is 1 - 12.5% = 77.5%</p>
+<p>Quite often we are interested in the <strong>likelihood of something occurring at least once,</strong> rather than on every attempt. So we might want to know how likely it is that a family with three children has at least one boy among them. Assuming that gender is binary, that is the same as saying that they do not have three girls. Given that they either have 3 girls or at least one boy, we know that these probabilities add up to 1 (certainty) - such events are known as complementary events. Therefore, the probability of having at least one boy is 1 - 12.5% = 77.5%</p>
 <p>This idea that <strong>something happening at least once is the <em>complement</em> of it never happening</strong> is a very helpful, as it is much easier to calculate the chance of something never happening across a given number (n) of procedures. It is <span class="math inline">\(P(notA)^n\)</span>. We have already discussed this in the context of multiple comparisons.</p>
 <p>Over to you. If the chance of finding a false positive is 5% on each attempt, what is the chance of finding a false positive in at least one of seven tests? For that, you will need a calculator. Note that <span class="math inline">\(x^n\)</span> should be entered as <code>x^n</code> in R or the Google search box. Enter your answer in percent, rounded to the nearest whole number: <input class='solveme nospaces ignorecase' size='4' data-answer='["30","30%","30 %"]'/></p>
 <div class="solution">
@@ -296,25 +359,37 @@ I need a hint
 Give me the explanation
 </button>
 <p>The probability of not getting a false positive is 95%, so if we try that 7 times in a row, we get a probability of
-<span class="math inline">\(0.95^7=0.70\)</span> of getting <em>no</em> false positivives. Given that getting at least one false positive is the complementary event to this, the chances of that are 100% - 70% = 30%</p>
+<span class="math inline">\(0.95^7=0.70\)</span> of getting <em>no</em> false positives. Given that getting at least one false positive is the complementary event to this, the chances of that are 100% - 70% = 30%</p>
 </div>
 </div>
 <div id="updating-our-beliefs---bayes-theorem" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> Updating our beliefs - Bayes’ theorem</h2>
-<p>What you have looked at so far are the basic rules of probability that are good to remember (and that you will have likely seen in school). So far, we have treated probabilities as something abstract: we think about a situation in the abstract, or run an experiment, and then assign a probability. In reality, that is not how it works. We rather use the probabilities of events to update our present beliefs. For example, if I leave my front door and see that the street is wet, I use that to update my belief (i.e. the probability I believe in) about whether it has rained earlier in the day, but in a way that is more complicated than what we captured so far.</p>
-<p>To further explore such an updating of beliefs, we are making quite a far jump to Bayes’ theorem - you do not need to remember the formula, but the intution is important. A key part of it are conditional probabilities - the probability of an even given that another event has occured. We have worked with one kind of them extensively - <em>p</em>-values. They are the probability of observed data, given that the null hypothesis is true, which can be written as <span class="math inline">\(P(O|H_0)\)</span></p>
-<p>What Bayes’ theorem reveals is how we can link that probability to the probability we are actually interested in, namely the probability that the hypothesis is true, given the data. In statistics, we often slip from one in the other, but if we think about other examples, it becomes clear that are not the same. For example, <span class="math inline">\(P(StreetWet|Rained)\neq P(Rained|StreetWet)\)</span>. With regard to the first part, it is very likely that the street is wet if it has rained. However, whether it is likely that it has rained if the street is wet depends on other factors - and those factors are what Bayes’ theorem adds to our thinking. It suggests that</p>
+<p>What you have looked at so far are the basic rules of probability that are good to remember (and that you will might have seen a while ago in school). So far, we have treated probabilities as something abstract: we think about a situation, or collect data, and then assign a probability. In reality, that is not how it works. We rather use the probabilities of events to update our present beliefs. For example, if I leave my front door and see that the street is wet, I use that to update my belief (i.e. the probability I believe in) about whether it has rained earlier in the day, but in a way that depends on more than just the fact that the street is wet.</p>
+<p>To further explore such an updating of beliefs, we are making quite a far jump to Bayes’ theorem. You do not need to remember the formula, but the intuition is important. A key part of it are conditional probabilities - the probability of an even given that another event has occurred. We have worked with one kind of them extensively - <em>p</em>-values. They are the probability of observing data giving rise to a parameter (e.g., mean difference, correlation coefficient) at least as large as the one we observe, given that the null hypothesis is true. This can be written as <span class="math inline">\(P(O|H_0)\)</span></p>
+<p>What Bayes’ theorem reveals is how we can link that probability to the probability we are actually interested in, namely the probability that the hypothesis is true, given the data. In statistics, we often slip from one in the other, but if we think about examples, it becomes clear that are not the same. For example, <span class="math inline">\(P(StreetWet|Rained)\neq P(Rained|StreetWet)\)</span>. With regard to the first part, it is very likely that the street is wet if it has rained. However, whether it is likely that it has rained if the street is wet depends on other factors - and those factors are what Bayes’ theorem adds to our thinking. It suggests that</p>
 <p><span class="math inline">\(P(Rained|StreetWet) = \frac{P(StreetWet|Rained)*P(Rained)}{P(StreetWet)}\)</span></p>
-<p>So, my belief whether is has rained given that the street is wet should be based on the probability that the street is wet <em>if</em> it has rained, but also on the probability I could assign to rain before I got that information, and the probability that the street is wet. If I saw beautiful sunshine through the window, I expected <span class="math inline">\(P(Rained)\)</span> to be very low, so that I would probably not give a high value to <span class="math inline">\(P(Rained|StreetWet)\)</span>. Similarly, if the street in front of my house is wet all the time due to a broken pipe, I would not give a high value to <span class="math inline">\(P(Rained|StreetWet)\)</span>.</p>
+<p>So, my belief whether is has rained given that the street is wet should be based on the probability that the street is wet <em>if</em> it has rained, but also on the probability I could assign to rain before I got that information, and the probability that the street is wet regardless of rain. If I saw beautiful sunshine through the window all day long, my belief for <span class="math inline">\(P(Rained)\)</span> might be very low, so that I would probably not give a high value to <span class="math inline">\(P(Rained|StreetWet)\)</span>. Similarly, if the street in front of my house is wet all the time due to a broken pipe (high <span class="math inline">\({P(StreetWet)}\)</span>), I would not give a high value to <span class="math inline">\(P(Rained|StreetWet)\)</span>.</p>
 <p>Thinking in this way can help to interpret probabilistic results. A frequently used example (Gigerenzer and Hoffrage, 1995) goes as follows:</p>
 <blockquote>
 <p>The probability of breast cancer is 1% for women aged forty who participate in routine screening. If a woman has breast cancer, the probability is 80% that she will get a positive mammogram. If a woman does not have breast cancer, the probability is 9.6% that she will also get a positive mammogram. A woman in this age group has a positive mammogram in a routine screening. What is the probability that she actually has breast cancer?</p>
 </blockquote>
+<p>What do you think? Type your estimate into this box before you read on, rounded to the nearest percent: <input class='solveme nospaces ignorecase' size='3' data-answer='["8","8%","8 %"]'/></p>
+<p>Let’s think what would happen to 10,000 women who participate in the screening. We would expect that 100 of them will have breast cancer, and 80% of them will be tested positive, resulting in 80 true positives. Out of the remaining 9,900, 9.6% will also test positive, resulting in 950 false positives. So only 80 of 80+950=1030 positive tests are true positives, so that a woman who tests positive has a 7.6% chance of actually having breast cancer.</p>
+<p>Over to you - let’s assume a woman who has just tested positive goes through another mammogram and tests positive again. What is the probability now that she actually has breast cancer? (Hint: start with 10,000 women again - only one of the numbers changed compared to the example above.) Again, enter the number rounded to the nearest percent: <input class='solveme nospaces ignorecase' size='4' data-answer='["41","41%","41 %"]'/></p>
+<div class="solution">
+<button>
+Give me the explanation
+</button>
+<p>This time, out of 10,000 women, 7.6% would have breast cancer, so 760. 80% of them would test positive, resulting in 608 true positives. Out of the remaining 9,240 women, 9.6% would test positive even though they do not have breast cancer, resulting in 887 false positives. So this time round, 608 of 1,495 positive tests would be true positives (41%), which shows that the chance of having breast cancer increases to 41% after two positive tests.</p>
+</div>
+<p>The key message for evaluating the results of statistical tests, as well as any other tests, is that it helps to think about <em>prior probabilities.</em> If a hypothesis is very implausible, then even data that is only likely if that hypothesis was true should not cause us to entirely forget our informed (!) previous beliefs. Rather we should think about how to shift them.</p>
+<p><strong>Bayesian statistics</strong> starts from this idea, and has developed into a whole different approach to statistical inference. Unlike frequentist statistics (which we have focused on), it does not consider hypothetical repeated experiments to test whether data is inconsistent with a specific null hypothesis. Instead, it tries to use the data we actually obtain to shift our estimates of specific parameters. A big barrier to its wide-spread adoption is that it only adds a lot of value if it uses specific prior probabilities, which can be hard to obtain and justify - why would a specific hypothesis have a prior probability of being true of 8% rather than 1%? (And you have seen above what a different that makes for our belief after we have obtained new evidence.) One surprisingly powerful way around that is to survey experts … but this is all material for your own further study or a more advanced course. As a starting point, you can have a look at the first presentation linked to under Further Resources.</p>
 </div>
 <div id="further-resources-2" class="section level2" number="11.5">
 <h2><span class="header-section-number">11.5</span> Further resources</h2>
 <ul>
-<li>ADD</li>
+<li>This <a href="http://faculty.washington.edu/kenrice/BayesIntroClassEpi2018.pdf" target="_blank">presentation</a> provides a fairly brief introduction to Bayesian statistics</li>
+<li>Examples like the one regarding the breast cancer screening have led to lots of discussion about how to communicate the reliability of medical tests in a way that patients (and policy makers) understand. This article by <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4585185/" target="_blank">Navarette et al. (2015)</a> goes through some further interesting examples and ways of presenting information and highlights why mass screenings are often not helpful.</li>
 </ul>
 
 </div>

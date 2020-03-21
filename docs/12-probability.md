@@ -14,7 +14,7 @@ There is still a lot of technical disagreement on definitions in this area. Howe
 
 Probabilities can be based on experience and inference. I can count how often it rains later in the day when I wake up to a grey sky; if I do that for long enough and calculate the share of days when it rained as a total of all days I observed, this will give me a good guidance regarding the probability of rain. Weather forecasting apps do something a bit more sophisticated, but still quite similar.
 
-Alternatively, we can use a more formal and logical way to find probabilities. This involves counting the number of possible outcomes of our procedure, and the number of possible outcomes that would lead to the event we are interested in. Probabilities are then expressed as fractions, dividing the number of ways in which our specified event can occure by the total number of outcomes. For example, the probability of rolling a 3 with a die is $\frac{1}{6}$, as there are 6 possible outcomes, and only one of them results in a three. Rolling an even numbers, on the other hand, has a probability of $\frac{3}{6}$ (or $\frac{1}{2}$) as there are now 3 out of 6 possible outcomes that lead to the event we are interested in.
+Alternatively, we can use a more formal and logical way to find probabilities. This involves counting the number of possible outcomes of our procedure, and the number of possible outcomes that would lead to the event we are interested in. Probabilities are then expressed as fractions, dividing the number of ways in which our specified event can occur by the total number of outcomes. For example, the probability of rolling a 3 with a die is $\frac{1}{6}$, as there are 6 possible outcomes, and only one of them results in a three. Rolling an even numbers, on the other hand, has a probability of $\frac{3}{6}$ (or $\frac{1}{2}$) as there are now 3 out of 6 possible outcomes that lead to the event we are interested in.
 
 Over to you - what is the probability of rolling a number smaller than 5?  <select class='solveme' data-answer='["4/6 or 2/3"]'> <option></option> <option>2/6 or 1/3</option> <option>3/6 or 1/2</option> <option>4/6 or 2/3</option></select>
 
@@ -30,7 +30,7 @@ Often we are interested in more than one possible outcome. So what is the probab
 
 However, what is the probability of rolling a 3 *or* an odd number? The probability for rolling an odd number is $\frac{3}{6}$, and the probability for rolling a 3 is $\frac{1}{6}$. Can we add them up? Remember that probabilities are the ways in which the event we are interested in can occur, divided by the total number of outcomes. Here, those are three ways (1, 3 and 5) of the possible six outcomes of rolling a die. Since rolling a 3 satisfies both sides of our *or* statement, we must not double count it.
 
-As a shorthand, we can write $P(A)$ to mean the probability of event A. Formally, the probability of either of two events occuring is
+As a shorthand, we can write $P(A)$ to mean the probability of event A. Formally, the probability of either of two events occurring is
 $P(A or  B)=P(A)+P(B)-P(AandB)$
 
 Over to you - what is the probability of getting a King or Queen when you draw a card from a standard deck of cards (52 cards)?  <select class='solveme' data-answer='["8/52 or 15%"]'> <option></option> <option>4/52 or 7.5 %</option> <option>8/52 or 15%</option> <option>16/52 or 30%</option></select>
@@ -79,11 +79,9 @@ We are always interested in patterns that emerge when we look across multiple ev
 <p class="caption">(\#fig:img-coins)Results of two coin tosses</p>
 </div>
 
-
-
 As you can see in the figure, there are four possible outcomes, only one of which results in two heads, so that the probability for that is $\frac{1}{4}$ or 25%. What about four coins in a row turning up head? We know that there is only one way in which that can happen, but how many outcomes are there in total? We have seen that 2 coins result in four outcomes. Now tossing a third coin results in two possibilities for each of these 4 outcomes so far, turning them into 8. Tossing a fourth coin results in 16. (If you can't see the pattern, try to draw out the possibilities - it will help.). So the probability for four heads in a row is $\frac{1}{16}$ or about 6%
 
-The probability of two events both occuring in sequence is $P(A)*P(B)$. That implies that the probability of the same event occuring n times in a row is $P(A)^n$. 
+The probability of two events both occurring in sequence is $P(A)*P(B)$. That implies that the probability of the same event occurring n times in a row is $P(A)^n$. 
 
 Over to you - if you assume that 50% of babies born are girls, what is the probability of a woman to give birth to three girls in a row?  <select class='solveme' data-answer='["1/8 or 12.5%","1/2 or 50%"]'> <option></option> <option>1/8 or 12.5%</option> <option>1/3 or 33 %</option> <option>1/2 or 50%</option></select>
 
@@ -95,7 +93,7 @@ The probability for the first child to be a girl is 50% ($\frac{1}{2}$). For the
 </div>
 
 
-Quite often we are interested in the **likelihood of something occuring at least once,** rather than on every attempt. So we might want to know how likely it is that a family with three children has at least one boy among them. Assuming that gender is binary, that is the same as saying that they do not have three girls. Given that they either have 3 girls or at least one boy, we know that these probabilities add up to 1 (certainty) - such events are known as complementary events. Therefore, the probability of having at least one boy is 1 - 12.5% = 77.5%
+Quite often we are interested in the **likelihood of something occurring at least once,** rather than on every attempt. So we might want to know how likely it is that a family with three children has at least one boy among them. Assuming that gender is binary, that is the same as saying that they do not have three girls. Given that they either have 3 girls or at least one boy, we know that these probabilities add up to 1 (certainty) - such events are known as complementary events. Therefore, the probability of having at least one boy is 1 - 12.5% = 77.5%
 
 This idea that **something happening at least once is the *complement* of it never happening** is a very helpful, as it is much easier to calculate the chance of something never happening across a given number (n) of procedures. It is $P(notA)^n$. We have already discussed this in the context of multiple comparisons. 
 
@@ -113,28 +111,47 @@ The answer is 100% - the probability of not getting a false positive 7 times in 
 <div class='solution'><button>Give me the explanation</button>
 
 The probability of not getting a false positive is 95%, so if we try that 7 times in a row, we get a probability of
-$0.95^7=0.70$ of getting *no* false positivives. Given that getting at least one false positive is the complementary event to this, the chances of that are 100% - 70% = 30%
+$0.95^7=0.70$ of getting *no* false positives. Given that getting at least one false positive is the complementary event to this, the chances of that are 100% - 70% = 30%
 
 </div>
 
 
 ## Updating our beliefs - Bayes' theorem
 
-What you have looked at so far are the basic rules of probability that are good to remember (and that you will have likely seen in school). So far, we have treated probabilities as something abstract: we think about a situation in the abstract, or run an experiment, and then assign a probability. In reality, that is not how it works. We rather use the probabilities of events to update our present beliefs. For example, if I leave my front door and see that the street is wet, I use that to update my belief (i.e. the probability I believe in) about whether it has rained earlier in the day, but in a way that is more complicated than what we captured so far.
+What you have looked at so far are the basic rules of probability that are good to remember (and that you will might have seen a while ago in school). So far, we have treated probabilities as something abstract: we think about a situation, or collect data, and then assign a probability. In reality, that is not how it works. We rather use the probabilities of events to update our present beliefs. For example, if I leave my front door and see that the street is wet, I use that to update my belief (i.e. the probability I believe in) about whether it has rained earlier in the day, but in a way that depends on more than just the fact that the street is wet.
 
-To further explore such an updating of beliefs, we are making quite a far jump to Bayes' theorem - you do not need to remember the formula, but the intution is important. A key part of it are conditional probabilities - the probability of an even given that another event has occured. We have worked with one kind of them extensively - *p*-values. They are the probability of observed data, given that the null hypothesis is true, which can be written as $P(O|H_0)$
+To further explore such an updating of beliefs, we are making quite a far jump to Bayes' theorem. You do not need to remember the formula, but the intuition is important. A key part of it are conditional probabilities - the probability of an even given that another event has occurred. We have worked with one kind of them extensively - *p*-values. They are the probability of observing data giving rise to a parameter (e.g., mean difference, correlation coefficient) at least as large as the one we observe, given that the null hypothesis is true. This can be written as $P(O|H_0)$
 
-What Bayes' theorem reveals is how we can link that probability to the probability we are actually interested in, namely the probability that the hypothesis is true, given the data. In statistics, we often slip from one in the other, but if we think about other examples, it becomes clear that are not the same. For example, $P(StreetWet|Rained)\neq P(Rained|StreetWet)$. With regard to the first part, it is very likely that the street is wet if it has rained. However, whether it is likely that it has rained if the street is wet depends on other factors - and those factors are what Bayes' theorem adds to our thinking. It suggests that
+What Bayes' theorem reveals is how we can link that probability to the probability we are actually interested in, namely the probability that the hypothesis is true, given the data. In statistics, we often slip from one in the other, but if we think about examples, it becomes clear that are not the same. For example, $P(StreetWet|Rained)\neq P(Rained|StreetWet)$. With regard to the first part, it is very likely that the street is wet if it has rained. However, whether it is likely that it has rained if the street is wet depends on other factors - and those factors are what Bayes' theorem adds to our thinking. It suggests that
 
 $P(Rained|StreetWet) = \frac{P(StreetWet|Rained)*P(Rained)}{P(StreetWet)}$
 
-So, my belief whether is has rained given that the street is wet should be based on the probability that the street is wet *if* it has rained, but also on the probability I could assign to rain before I got that information, and the probability that the street is wet. If I saw beautiful sunshine through the window, I expected $P(Rained)$ to be very low, so that I would probably not give a high value to $P(Rained|StreetWet)$. Similarly, if the street in front of my house is wet all the time due to a broken pipe, I would not give a high value to $P(Rained|StreetWet)$.
+So, my belief whether is has rained given that the street is wet should be based on the probability that the street is wet *if* it has rained, but also on the probability I could assign to rain before I got that information, and the probability that the street is wet regardless of rain. If I saw beautiful sunshine through the window all day long, my belief for $P(Rained)$ might be very low, so that I would probably not give a high value to $P(Rained|StreetWet)$. Similarly, if the street in front of my house is wet all the time due to a broken pipe (high ${P(StreetWet)}$), I would not give a high value to $P(Rained|StreetWet)$.
 
 Thinking in this way can help to interpret probabilistic results. A frequently used example (Gigerenzer and Hoffrage, 1995) goes as follows:
 
 >The probability of breast cancer is 1% for women aged forty who participate in routine screening. If a woman has breast cancer, the probability is 80% that she will get a positive mammogram. If a woman does not have breast cancer, the probability is 9.6% that she will also get a positive mammogram. A woman in this age group has a positive mammogram in a routine screening. What is the probability that she actually has breast cancer?
 
+What do you think? Type your estimate into this box before you read on, rounded to the nearest percent: <input class='solveme nospaces ignorecase' size='3' data-answer='["8","8%","8 %"]'/>
+
+Let's think what would happen to 10,000 women who participate in the screening. We would expect that 100 of them will have breast cancer, and 80% of them will be tested positive, resulting in 80 true positives. Out of the remaining 9,900, 9.6% will also test positive, resulting in 950 false positives. So only 80 of 80+950=1030 positive tests are true positives, so that a woman who tests positive has a 7.6% chance of actually having breast cancer.
+
+Over to you - let's assume a woman who has just tested positive goes through another mammogram and tests positive again. What is the probability now that she actually has breast cancer? (Hint: start with 10,000 women again - only one of the numbers changed compared to the example above.) Again, enter the number rounded to the nearest percent: <input class='solveme nospaces ignorecase' size='4' data-answer='["41","41%","41 %"]'/>
+
+
+
+<div class='solution'><button>Give me the explanation</button>
+
+This time, out of 10,000 women, 7.6% would have breast cancer, so 760. 80% of them would test positive, resulting in 608 true positives. Out of the remaining 9,240 women, 9.6% would test positive even though they do not have breast cancer, resulting  in 887 false positives. So this time round, 608 of 1,495 positive tests would be true positives (41%), which shows that the chance of having breast cancer increases to 41% after two positive tests. 
+
+</div>
+
+
+The key message for evaluating the results of statistical tests, as well as any other tests, is that it helps to think about *prior probabilities.* If a hypothesis is very implausible, then even data that is only likely if that hypothesis was true should not cause us to entirely forget our informed (!) previous beliefs. Rather we should think about how to shift them.
+
+**Bayesian statistics** starts from this idea, and has developed into a whole different approach to statistical inference. Unlike frequentist statistics (which we have focused on), it does not consider hypothetical repeated experiments  to test whether data is inconsistent with a specific null hypothesis. Instead, it tries to use the data we actually obtain  to shift our estimates of specific parameters. A big barrier to its wide-spread adoption is that it only adds a lot of value if it uses specific prior probabilities, which can be hard to obtain and justify - why would a specific hypothesis have a prior probability of being true of 8% rather than 1%? (And you have seen above what a different that makes for our belief after we have obtained new evidence.) One surprisingly powerful way around that is to survey experts ... but this is all material for your own further study or a more advanced course. As a starting point, you can have a look at the first presentation linked to under Further Resources. 
 
 ## Further resources
 
-* ADD
+* This [presentation](http://faculty.washington.edu/kenrice/BayesIntroClassEpi2018.pdf){target="_blank"} provides a fairly brief introduction to Bayesian statistics
+* Examples like the one regarding the breast cancer screening have led to lots of discussion about how to communicate the reliability of medical tests in a way that patients (and policy makers) understand. This article by [Navarette et al. (2015)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4585185/){target="_blank"} goes through some further interesting examples and ways of presenting information and highlights why mass screenings are often not helpful.

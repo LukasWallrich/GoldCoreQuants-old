@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-15" />
+<meta name="date" content="2020-03-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -237,7 +237,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#further-resources-1"><i class="fa fa-check"></i><b>10.2</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>11</b> Packages and references</a></li>
+<li class="chapter" data-level="11" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html"><i class="fa fa-check"></i><b>11</b> Probability in statistics and real life</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#what-are-probabilities"><i class="fa fa-check"></i><b>11.1</b> What are probabilities?</a></li>
+<li class="chapter" data-level="11.2" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#combining-multiple-events-together"><i class="fa fa-check"></i><b>11.2</b> Combining multiple events together</a></li>
+<li class="chapter" data-level="11.3" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#looking-at-independent-events"><i class="fa fa-check"></i><b>11.3</b> Looking at independent events</a></li>
+<li class="chapter" data-level="11.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>11.4</b> Updating our beliefs - Bayes’ theorem</a></li>
+<li class="chapter" data-level="11.5" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#further-resources-2"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>12</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
 <ul>
@@ -297,13 +305,14 @@ Figure 4.1: <strong>CAPTION THIS FIGURE!!</strong>
 <p>Geometrically, a simple linear regression model is just a straight line through the scatterplot, fitted in a way that minimises the distances from the points to the line. It can be fitted with the <code>geom_smooth(method="lm")</code> function.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="simple-and-multiple-linear-regression.html#cb23-1"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span>nat_soctrust, <span class="dt">y=</span>nat_stflife)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb23-2"><a href="simple-and-multiple-linear-regression.html#cb23-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) </span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="05-linear-regression_files/figure-html/unnamed-chunk-3-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
 <p class="caption">
 Figure 4.2: <strong>CAPTION THIS FIGURE!!</strong>
 </p>
 </div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="simple-and-multiple-linear-regression.html#cb24-1"></a>    <span class="co">#se=FALSE hides confidence bands that are often just visual clutter</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="simple-and-multiple-linear-regression.html#cb25-1"></a>    <span class="co">#se=FALSE hides confidence bands that are often just visual clutter</span></span></code></pre></div>
 <p>For each value of one variable, this line now allows us to find the corresponding expected value of the other variable.</p>
 </div>
 <div id="mathematical-representation-of-a-simple-linear-regression-model" class="section level3" number="4.1.2">
@@ -315,7 +324,7 @@ Here, <strong><span class="math inline">\(\beta_{1}\)</span> is the most importa
 <div id="fitting-a-simple-linear-regression-model-in-r" class="section level3" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Fitting a simple linear regression model in R</h3>
 <p>Linear models are fitted in R using the <code>lm()</code> function. The model itself is specified as a formula with the notation <code>y ~ x</code> where the <code>~</code> means ‘is predicted by’ and the intercept is added automatically.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="simple-and-multiple-linear-regression.html#cb25-1"></a><span class="kw">lm</span>(nat_stflife <span class="op">~</span><span class="st"> </span>nat_soctrust, <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="simple-and-multiple-linear-regression.html#cb26-1"></a><span class="kw">lm</span>(nat_stflife <span class="op">~</span><span class="st"> </span>nat_soctrust, <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = nat_stflife ~ nat_soctrust, data = nat_avgs)
@@ -359,8 +368,8 @@ Clearly this formula does not allow us to perfectly predict one variable from th
 <div id="calculating-the-correlation-coefficient" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Calculating the correlation coefficient</h3>
 <p>Before calculating a correlation coefficient, <strong>you need to look at the scatterplot and make sure that a straight-line relationship looks reasonable.</strong> If that is the case, you can use the <code>cor.test()</code> function to calculate the correlation coefficient.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="simple-and-multiple-linear-regression.html#cb27-1"></a><span class="kw">cor.test</span>(nat_avgs<span class="op">$</span>nat_soctrust, nat_avgs<span class="op">$</span>nat_stflife) </span>
-<span id="cb27-2"><a href="simple-and-multiple-linear-regression.html#cb27-2"></a><span class="co">#If you have missing data, use the na.rm = TRUE argument to have it excluded before the calculation</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="simple-and-multiple-linear-regression.html#cb28-1"></a><span class="kw">cor.test</span>(nat_avgs<span class="op">$</span>nat_soctrust, nat_avgs<span class="op">$</span>nat_stflife) </span>
+<span id="cb28-2"><a href="simple-and-multiple-linear-regression.html#cb28-2"></a><span class="co">#If you have missing data, use the na.rm = TRUE argument to have it excluded before the calculation</span></span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -377,15 +386,16 @@ Clearly this formula does not allow us to perfectly predict one variable from th
 <div id="equivalence-to-linear-regression" class="section level3" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Equivalence to linear regression</h3>
 <p>Just to show that this is indeed equivalent to simple linear regression on the standardised variables, which can be calculated using the <code>scale()</code>-function.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="simple-and-multiple-linear-regression.html#cb29-1"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">scale</span>(nat_soctrust), <span class="dt">y=</span><span class="kw">scale</span>(nat_stflife))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb29-2"><a href="simple-and-multiple-linear-regression.html#cb29-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="simple-and-multiple-linear-regression.html#cb30-1"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">scale</span>(nat_soctrust), <span class="dt">y=</span><span class="kw">scale</span>(nat_stflife))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb30-2"><a href="simple-and-multiple-linear-regression.html#cb30-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
 <img src="05-linear-regression_files/figure-html/unnamed-chunk-6-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
 <p class="caption">
 Figure 4.3: <strong>CAPTION THIS FIGURE!!</strong>
 </p>
 </div>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="simple-and-multiple-linear-regression.html#cb30-1"></a><span class="kw">lm</span>(<span class="kw">scale</span>(nat_stflife) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(nat_soctrust), <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="simple-and-multiple-linear-regression.html#cb32-1"></a><span class="kw">lm</span>(<span class="kw">scale</span>(nat_stflife) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(nat_soctrust), <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = scale(nat_stflife) ~ scale(nat_soctrust), data = nat_avgs)
@@ -431,8 +441,8 @@ Figure 4.3: <strong>CAPTION THIS FIGURE!!</strong>
 <div id="running-multiple-linear-regression-models-in-r" class="section level3" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> Running multiple linear regression models in R</h3>
 <p>In the <code>lm()</code>-function, it is very easy to keep on adding predictors to the formula by just using the <code>+</code>-symbol. For example, we can consider the UK General Election Results in 2019 and see what helps explain the vote share of the Conservatives.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="simple-and-multiple-linear-regression.html#cb32-1"></a><span class="co">#Load and prep data</span></span>
-<span id="cb32-2"><a href="simple-and-multiple-linear-regression.html#cb32-2"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="simple-and-multiple-linear-regression.html#cb34-1"></a><span class="co">#Load and prep data</span></span>
+<span id="cb34-2"><a href="simple-and-multiple-linear-regression.html#cb34-2"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: 168 parsing failures.
 ## row                    col expected actual         file
 ##  47 ConShare2017           a double   #N/A &lt;connection&gt;
@@ -442,14 +452,14 @@ Figure 4.3: <strong>CAPTION THIS FIGURE!!</strong>
 ## 534 DeprivationRankEngland a double   #N/A &lt;connection&gt;
 ## ... ...................... ........ ...... ............
 ## See problems(...) for more details.</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="simple-and-multiple-linear-regression.html#cb34-1"></a>constituencies &lt;-<span class="st"> </span>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(RegionName <span class="op">!=</span><span class="st"> &quot;Northern Ireland&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb34-2"><a href="simple-and-multiple-linear-regression.html#cb34-2"></a><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">nation =</span> <span class="kw">case_when</span>(RegionName <span class="op">==</span><span class="st"> &quot;Scotland&quot;</span> <span class="op">~</span><span class="st"> &quot;Scotland&quot;</span>,</span>
-<span id="cb34-3"><a href="simple-and-multiple-linear-regression.html#cb34-3"></a>                                    RegionName <span class="op">==</span><span class="st"> &quot;Wales&quot;</span> <span class="op">~</span><span class="st"> &quot;Wales&quot;</span>,</span>
-<span id="cb34-4"><a href="simple-and-multiple-linear-regression.html#cb34-4"></a>                                    T <span class="op">~</span><span class="st"> &quot;England&quot;</span>))  <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb34-5"><a href="simple-and-multiple-linear-regression.html#cb34-5"></a><span class="st">          </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span>
-<span id="cb34-6"><a href="simple-and-multiple-linear-regression.html#cb34-6"></a></span>
-<span id="cb34-7"><a href="simple-and-multiple-linear-regression.html#cb34-7"></a><span class="co">#Simple linear regression model:</span></span>
-<span id="cb34-8"><a href="simple-and-multiple-linear-regression.html#cb34-8"></a><span class="kw">lm</span>(ElectionConShare <span class="op">~</span><span class="st"> </span>MedianAge, <span class="dt">data =</span> constituencies) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="simple-and-multiple-linear-regression.html#cb36-1"></a>constituencies &lt;-<span class="st"> </span>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(RegionName <span class="op">!=</span><span class="st"> &quot;Northern Ireland&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb36-2"><a href="simple-and-multiple-linear-regression.html#cb36-2"></a><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">nation =</span> <span class="kw">case_when</span>(RegionName <span class="op">==</span><span class="st"> &quot;Scotland&quot;</span> <span class="op">~</span><span class="st"> &quot;Scotland&quot;</span>,</span>
+<span id="cb36-3"><a href="simple-and-multiple-linear-regression.html#cb36-3"></a>                                    RegionName <span class="op">==</span><span class="st"> &quot;Wales&quot;</span> <span class="op">~</span><span class="st"> &quot;Wales&quot;</span>,</span>
+<span id="cb36-4"><a href="simple-and-multiple-linear-regression.html#cb36-4"></a>                                    T <span class="op">~</span><span class="st"> &quot;England&quot;</span>))  <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-5"><a href="simple-and-multiple-linear-regression.html#cb36-5"></a><span class="st">          </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span>
+<span id="cb36-6"><a href="simple-and-multiple-linear-regression.html#cb36-6"></a></span>
+<span id="cb36-7"><a href="simple-and-multiple-linear-regression.html#cb36-7"></a><span class="co">#Simple linear regression model:</span></span>
+<span id="cb36-8"><a href="simple-and-multiple-linear-regression.html#cb36-8"></a><span class="kw">lm</span>(ElectionConShare <span class="op">~</span><span class="st"> </span>MedianAge, <span class="dt">data =</span> constituencies) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = ElectionConShare ~ MedianAge, data = constituencies)
@@ -469,9 +479,9 @@ Figure 4.3: <strong>CAPTION THIS FIGURE!!</strong>
 ## Multiple R-squared:  0.3162, Adjusted R-squared:  0.3151 
 ## F-statistic: 290.8 on 1 and 629 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We now know that the Conservative vote share seems to be strongly related to the median age of the constituency, and can find and interpret the coefficient estimate (1.7 pct-points per year of median age), significance value and <span class="math inline">\(R^2\)</span> as above. What happens when we add nation, to account for differences between Scotland, England and Wales?</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="simple-and-multiple-linear-regression.html#cb36-1"></a><span class="co">#Declare nation as factor and then set the reference level for categorical predictors</span></span>
-<span id="cb36-2"><a href="simple-and-multiple-linear-regression.html#cb36-2"></a>constituencies<span class="op">$</span>nation &lt;-<span class="st"> </span><span class="kw">factor</span>(constituencies<span class="op">$</span>nation) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref =</span> <span class="st">&quot;England&quot;</span>)</span>
-<span id="cb36-3"><a href="simple-and-multiple-linear-regression.html#cb36-3"></a><span class="kw">lm</span>(ElectionConShare <span class="op">~</span><span class="st"> </span>MedianAge <span class="op">+</span><span class="st"> </span>nation, <span class="dt">data =</span> constituencies) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="simple-and-multiple-linear-regression.html#cb38-1"></a><span class="co">#Declare nation as factor and then set the reference level for categorical predictors</span></span>
+<span id="cb38-2"><a href="simple-and-multiple-linear-regression.html#cb38-2"></a>constituencies<span class="op">$</span>nation &lt;-<span class="st"> </span><span class="kw">factor</span>(constituencies<span class="op">$</span>nation) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref =</span> <span class="st">&quot;England&quot;</span>)</span>
+<span id="cb38-3"><a href="simple-and-multiple-linear-regression.html#cb38-3"></a><span class="kw">lm</span>(ElectionConShare <span class="op">~</span><span class="st"> </span>MedianAge <span class="op">+</span><span class="st"> </span>nation, <span class="dt">data =</span> constituencies) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = ElectionConShare ~ MedianAge + nation, data = constituencies)
