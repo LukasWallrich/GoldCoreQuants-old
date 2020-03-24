@@ -84,7 +84,7 @@ This tells `simputation` to split the data by gender, calculate a regression to 
 
 Let's see whether the imputed values look reasonable and whether they are different from the observed values in a way that they are likely to influence our results.
 
-```{r}
+```{r fig.cap='Visualisation shows that imputed data matters'}
 resultsImp <- resultsImp %>% mutate(change = score2 - score1)
 ggplot(resultsImp, aes(x=gender, y=change)) + geom_boxplot() + geom_jitter(aes(color = any_missing))
 ```

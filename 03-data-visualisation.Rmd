@@ -22,7 +22,7 @@ Multiple geometries can be layered on top of each other, for example to add tren
 
 *Note:* Line breaks are completely up to you and can be used to make the code readable as long as the command does not appear complete too early - to keep it simple, there should always be an open bracket, a comma or a + before a line break within the command to create a ggplot-chart
 
-```{r}
+```{r, fig.cap="A simple ggplot example"}
 library(dslabs)
 gapminder2010 <- gapminder %>% filter(year==2010)
 

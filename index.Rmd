@@ -28,7 +28,7 @@ knitr::write_bib(c(
 
 # Overview {-}
 
-This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. **It is a living document and currently not more than a rough draft, but will grow over time.** It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
+This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. **It is a living document and currently not more than a rough draft, but will grow over time - [please raise any issues and suggestions here](https://github.com/LukasWallrich/GoldCoreQuants/issues)** It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
 
 ## Further sources
 

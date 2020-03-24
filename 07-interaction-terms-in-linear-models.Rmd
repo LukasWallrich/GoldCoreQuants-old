@@ -137,7 +137,7 @@ sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
 
 Finally, the `johnson_neyman()` function creates a plot showing the slope of one variable depending on the value of the other, while highlighting the regions of significance. This can help with an understanding of the relationship, but is not (yet?) widely used.
 
-```{r}
+```{r fig.cap='Johnson-Neyman plot shows regions of significance'}
 johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
 ```
 

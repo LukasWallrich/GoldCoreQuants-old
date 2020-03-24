@@ -53,6 +53,7 @@ pasted <- read.table(file="clipboard", sep="\t", header = TRUE)
 When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as .Rmd files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
 
 ```{r}
+library(dslabs) #Load the gapminder teaching dataset
 glimpse(gapminder)
 head(gapminder, n=5) #n defines number of rows shown
 tail(gapminder, n=5)
@@ -93,7 +94,6 @@ If we want to calculate the average income per capita in 2010 on each continent 
 *One thing to note:* you can split R code into multiple lines as long as each line is incomplete. Since the lines here end with `%>%`, R includes the next line into the same command. If that operator was moved to the start of the next line, the code would no longer work.
 
 ```{r}
-library(dslabs) #Load the gapminder teaching dataset
 gapminder %>% 
   filter(year == 2010) %>%
     mutate(gdpPerCap = gdp/population) %>%

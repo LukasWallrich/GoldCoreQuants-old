@@ -13,7 +13,7 @@ For an introduction to simple linear regression and correlation, watch this vide
 
 When considering the relationship between two continuous variables, we should always start with a scatterplot - for example, of the relationship between social trust and life satisfaction at the national level in European countries (data from the European Social Survey 2014).
 
-```{r}
+```{r, fig.cap="Scatterplot relating social trust to life satisfaction"}
 #Data preparation
 ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
 ess <- ess %>% mutate(soctrust = (ppltrst + pplfair + pplhlp)/3)
@@ -31,7 +31,7 @@ The scatterplot can now help us to think about what kind of model would help us 
 
 Geometrically, a simple linear regression model is just a straight line through the scatterplot, fitted in a way that minimises the distances from the points to the line. It can be fitted with the `geom_smooth(method="lm")` function.
 
-```{r}
+```{r, fig.cap="Scatterplot with added regression line ("line of best fit")"}
 ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) + 
   geom_point() + geom_smooth(method="lm", se=FALSE) 
     #se=FALSE hides confidence bands that are often just visual clutter
@@ -95,7 +95,7 @@ The estimated cor at the very bottom is the correlation coefficient, usually rep
 
 Just to show that this is indeed equivalent to simple linear regression on the standardised variables, which can be calculated using the `scale()`-function.
 
-```{r}
+```{r, fig.cap="Scatterplot with scales variables (Z-scores)"}
 ggplot(nat_avgs, aes(x=scale(nat_soctrust), y=scale(nat_stflife))) + 
   geom_point() + geom_smooth(method="lm", se=FALSE)
 
@@ -120,10 +120,16 @@ Multiple linear regression models often use categorical predictors. However, the
 
 Note that dummy coding always results in **one fewer dummy variable than the number of levels of the categorical variable**. For example, a gender variable with two levels (male/female) would be recoded into a single dummy variable *female* (0=no, 1=yes). Note that there is no equivalent variable *male* as that would be redundant. Given that the hypothetical gender variable here is defined as either male or female, not female necessarily implies male.
 
-The same applies to larger number of levels - see how three possible values for the department variabel can be recoded into two dummy variables:
-![Dummy coding example](./W10Dummy.png)
+The same applies to larger number of levels - see below how three possible values for the department variabel can be recoded into two dummy variables.
 
-The level that is not explicitly mentioned anymore is the **reference level**. In a linear model, that is what all other effects are compared to, so it is important to keep in mind which that is.
+```{r img-dummy-coding, echo=FALSE, fig.cap="Example for dummy-coding"}
+
+knitr::include_graphics("./images/W10Dummy.png")
+
+```
+
+
+The level that is not explicitly mentioned anymore is the **reference level** - in the case above, that is Special Education. In a linear model, that is what all other effects are compared to, so it is important to keep in mind which that is.
 
 ### Mathematical structure of multiple linear models
 
