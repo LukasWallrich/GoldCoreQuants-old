@@ -48,7 +48,18 @@ pasted <- read.table(file="clipboard", sep="\t", header = TRUE)
 
 ```
 
-## Manipulating data
+## View data
+
+When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as .Rmd files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
+
+```{r}
+glimpse(gapminder)
+head(gapminder, n=5) #n defines number of rows shown
+tail(gapminder, n=5)
+```
+
+
+## Manipulating data and using dplyr
 
 Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summaries. The `dplyr` package (part of the `tidyverse`) is designed to make all these steps easier, so we use it extensively during this course. `dplyr` is based on two main ideas: 
 
@@ -105,15 +116,7 @@ For an introduction to `dplyr`, you can watch this video:
 
 `r video_code("QtQE-b5iMUQ")`
 
-## Functions to view and summarise data
-
-When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as .Rmd files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
-
-```{r}
-glimpse(gapminder)
-head(gapminder, n=5) #n defines number of rows shown
-tail(gapminder, n=5)
-```
+## Summarise data (descriptive statistics)
 
 Next you might want to use summary functions - either in a dplyr `summarise()` function or on their own. For most of them, you can use the `na.rm = TRUE` argument to tell R to ignore missing values (only do that when you have reason to expect that missing values can safely be ignored).
 
