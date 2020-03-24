@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-21" />
+<meta name="date" content="2020-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 <link rel="prev" href="dealing-with-missing-data.html"/>
-<link rel="next" href="packages-and-references.html"/>
+<link rel="next" href="survey-research-testing-scales.html"/>
 <script src="libs/header-attrs-2.1/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -160,8 +160,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html"><i class="fa fa-check"></i><b>2</b> Importing and describing data</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Importing data into R</a></li>
-<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data"><i class="fa fa-check"></i><b>2.2</b> Manipulating data</a></li>
-<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#functions-to-view-and-summarise-data"><i class="fa fa-check"></i><b>2.3</b> Functions to view and summarise data</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#view-data"><i class="fa fa-check"></i><b>2.2</b> View data</a></li>
+<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data-and-using-dplyr"><i class="fa fa-check"></i><b>2.3</b> Manipulating data and using dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#summarise-data-descriptive-statistics"><i class="fa fa-check"></i><b>2.4</b> Summarise data (descriptive statistics)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a>
 <ul>
@@ -245,7 +246,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>11.4</b> Updating our beliefs - Bayes’ theorem</a></li>
 <li class="chapter" data-level="11.5" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#further-resources-2"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>12</b> Packages and references</a></li>
+<li class="chapter" data-level="12" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>12</b> Survey research - testing scales</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>12.1</b> Creating scales</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>12.1.1</b> Testing internal consistency</a></li>
+<li class="chapter" data-level="12.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>12.1.2</b> Calculating scale scores</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#further-resources-3"><i class="fa fa-check"></i><b>12.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
 <ul>
@@ -365,7 +375,7 @@ Give me the explanation
 <div id="updating-our-beliefs---bayes-theorem" class="section level2" number="11.4">
 <h2><span class="header-section-number">11.4</span> Updating our beliefs - Bayes’ theorem</h2>
 <p>What you have looked at so far are the basic rules of probability that are good to remember (and that you might have seen a while ago in school). So far, we have treated probabilities as something abstract: we think about a situation, or collect data, and then assign a probability. In reality, that is not how it works. We rather use the probabilities of events to update our present beliefs. For example, if I leave my front door and see that the street is wet, I use that to update my belief (i.e. the probability I believe in) about whether it has rained earlier in the day, but in a way that depends on more than just the fact that the street is wet.</p>
-<p>To explore how such an updating of beliefs is done, we are making quite a far jump to Bayes’ theorem. You do not need to remember the formula, but the intuition is important. A key part of it are conditional probabilities - the probability of an event given that another event has occurred. We have worked with one kind of them extensively - <em>p</em>-values. They are the probability of getting the observed data, or data that is more extreme if the null hypothesis is true. This can be written as <span class="math inline">\(P(O|H_0)\)</span></p>
+<p>To explore how such an updating of beliefs is done, we are making quite a far jump to Bayes’ theorem. You do not need to remember the formula, but the intuition is important. A key part of it are conditional probabilities - the probability of an event given that another event has occurred. We have worked with one kind of them extensively - <em>p</em>-values. They are the probability of getting the observed data, or data that is more extreme, if the null hypothesis is true. This can be written as <span class="math inline">\(P(O|H_0)\)</span></p>
 <p>What Bayes’ theorem reveals is how we can link that probability to the probability we are actually interested in, namely the probability that the hypothesis is true, given the data. In statistics, we often slip from one in the other, but if we think about examples, it becomes clear that they are not the same. For example, <span class="math inline">\(P(StreetWet|Rained)\neq P(Rained|StreetWet)\)</span>. With regard to the first part, it is very likely that the street is wet if it has rained. However, whether it is likely that it has rained if the street is wet depends on other factors - and those factors are what Bayes’ theorem adds to our thinking. It suggests that</p>
 <p><span class="math inline">\(P(Rained|StreetWet) = \frac{P(StreetWet|Rained)*P(Rained)}{P(StreetWet)}\)</span></p>
 <p>So, my belief whether is has rained given that the street is wet should be based on the probability that the street is wet <em>if</em> it has rained, but also on the probability I could assign to rain before I got that information, and the probability that the street is wet regardless of rain. If I saw beautiful sunshine through the window all day long, my belief for <span class="math inline">\(P(Rained)\)</span> might be very low, so that I would probably not give a high value to <span class="math inline">\(P(Rained|StreetWet)\)</span>. Similarly, if the street in front of my house is wet all the time due to a broken pipe (high <span class="math inline">\({P(StreetWet)}\)</span>), I would not give a high value to <span class="math inline">\(P(Rained|StreetWet)\)</span>.</p>
@@ -505,7 +515,7 @@ window.onload = function() {
         </div>
       </div>
 <a href="dealing-with-missing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="packages-and-references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="survey-research-testing-scales.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

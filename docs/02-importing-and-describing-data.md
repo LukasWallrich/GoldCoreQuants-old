@@ -49,85 +49,13 @@ pasted <- read.table(file="clipboard", sep="\t", header = TRUE)
 #try pasting your data into the window opened with the edit() function
 ```
 
-## Manipulating data
-
-Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summaries. The `dplyr` package (part of the `tidyverse`) is designed to make all these steps easier, so we use it extensively during this course. `dplyr` is based on two main ideas: 
-
-* Develop a chain of data manipulation steps that get you towards the desired data, with the steps connected by the `%>%` operator ("pipe"). That removes the need for nested functions or for saving lots of intermediate results.
-* Use functions names after natural language verbs to develop code that can be easily understood.
-
-`%>%` takes the argument on the left and places it as the first argument into the function on the right. For example:
-
-
-```r
-x <- c(1,2,3, NA)
-
-#The following two commands are equivalent
-mean(x, na.rm = TRUE)
-x %>% mean(na.rm = TRUE)
-```
-
-```
-## [1] 2
-## [1] 2
-```
-
-The most important `dplyr` functions are:
-
-* `select()`: select specific variables
-* `filter()`: filter rows based on condition
-* `arrange()`: sort data ascendingly (arrange(desc()) to reverse)
-* `mutate()`: create/change variables
-* `summarise()`: calculate summary statistics
-* `group_by()`: separate data into groups, usually to summarise by group
-
-All functions use a dataframe as their first argument, usually from `%>%`. After that, variables in the dataframe are accessed just with their name (no `$`).
-
-If we want to calculate the average income per capita in 2010 on each continent from the gapminder dataset, we need most of these functions - if you **read the `%>%`-operator as 'then'**, and mentally add 'take' at the very start, you should be able to follow along quite naturally. 
-
-*One thing to note:* you can split R code into multiple lines as long as each line is incomplete. Since the lines here end with `%>%`, R includes the next line into the same command. If that operator was moved to the start of the next line, the code would no longer work.
-
-
-```r
-library(dslabs) #Load the gapminder teaching dataset
-gapminder %>% 
-  filter(year == 2010) %>%
-    mutate(gdpPerCap = gdp/population) %>%
-      filter(!is.na(gdpPerCap)) %>% 
-      #This filter() removes countries where either gdp or population is missing
-        group_by(continent) %>% 
-        #group_by() allows for summary statistics to be calculated for each continent separately
-          summarise(AvgGdpPerCap_Nations = mean(gdpPerCap), 
-                    AvgGdpPerCap_People = sum(gdp)/sum(population)) %>%
-              mutate_if(is.numeric, round, 0) %>% 
-              #This rounds all numeric variables to 0 decimal places 
-              #(beyond expectations for this course)    
-                arrange(desc(AvgGdpPerCap_Nations))
-```
-
-```
-## # A tibble: 5 x 3
-##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
-##   <fct>                    <dbl>               <dbl>
-## 1 Europe                   15214               14643
-## 2 Asia                      8163                3277
-## 3 Americas                  6797               16305
-## 4 Oceania                   5281               17942
-## 5 Africa                    1303                 867
-```
-
-*Just as an aside:* consider the differences between the two ways of calculating averages per continent. One focuses on the average of country values, and thus yields the average national income per capita. The other takes population sizes into account and thus yields the average personal income per capita. For most continents, the difference in results is huge. Both approaches are used in the media - so it's always worth looking a little closer at summary statistics.
-
-For an introduction to `dplyr`, you can watch this video:
-
-<iframe src=" https://www.youtube.com/embed/QtQE-b5iMUQ?rel=0 " allowfullscreen width=80% height=350></iframe>
-
-## Functions to view and summarise data
+## View data
 
 When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as .Rmd files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
 
 
 ```r
+library(dslabs) #Load the gapminder teaching dataset
 glimpse(gapminder)
 head(gapminder, n=5) #n defines number of rows shown
 tail(gapminder, n=5)
@@ -170,6 +98,81 @@ tail(gapminder, n=5)
 ## 10544         NA  NA    Africa     Eastern Africa
 ## 10545         NA  NA    Africa     Eastern Africa
 ```
+
+
+## Manipulating data and using dplyr
+
+Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summaries. The `dplyr` package (part of the `tidyverse`) is designed to make all these steps easier, so we use it extensively during this course. `dplyr` is based on two main ideas: 
+
+* Develop a chain of data manipulation steps that get you towards the desired data, with the steps connected by the `%>%` operator ("pipe"). That removes the need for nested functions or for saving lots of intermediate results.
+* Use functions names after natural language verbs to develop code that can be easily understood.
+
+`%>%` takes the argument on the left and places it as the first argument into the function on the right. For example:
+
+
+```r
+x <- c(1,2,3, NA)
+
+#The following two commands are equivalent
+mean(x, na.rm = TRUE)
+x %>% mean(na.rm = TRUE)
+```
+
+```
+## [1] 2
+## [1] 2
+```
+
+The most important `dplyr` functions are:
+
+* `select()`: select specific variables
+* `filter()`: filter rows based on condition
+* `arrange()`: sort data ascendingly (arrange(desc()) to reverse)
+* `mutate()`: create/change variables
+* `summarise()`: calculate summary statistics
+* `group_by()`: separate data into groups, usually to summarise by group
+
+All functions use a dataframe as their first argument, usually from `%>%`. After that, variables in the dataframe are accessed just with their name (no `$`).
+
+If we want to calculate the average income per capita in 2010 on each continent from the gapminder dataset, we need most of these functions - if you **read the `%>%`-operator as 'then'**, and mentally add 'take' at the very start, you should be able to follow along quite naturally. 
+
+*One thing to note:* you can split R code into multiple lines as long as each line is incomplete. Since the lines here end with `%>%`, R includes the next line into the same command. If that operator was moved to the start of the next line, the code would no longer work.
+
+
+```r
+gapminder %>% 
+  filter(year == 2010) %>%
+    mutate(gdpPerCap = gdp/population) %>%
+      filter(!is.na(gdpPerCap)) %>% 
+      #This filter() removes countries where either gdp or population is missing
+        group_by(continent) %>% 
+        #group_by() allows for summary statistics to be calculated for each continent separately
+          summarise(AvgGdpPerCap_Nations = mean(gdpPerCap), 
+                    AvgGdpPerCap_People = sum(gdp)/sum(population)) %>%
+              mutate_if(is.numeric, round, 0) %>% 
+              #This rounds all numeric variables to 0 decimal places 
+              #(beyond expectations for this course)    
+                arrange(desc(AvgGdpPerCap_Nations))
+```
+
+```
+## # A tibble: 5 x 3
+##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
+##   <fct>                    <dbl>               <dbl>
+## 1 Europe                   15214               14643
+## 2 Asia                      8163                3277
+## 3 Americas                  6797               16305
+## 4 Oceania                   5281               17942
+## 5 Africa                    1303                 867
+```
+
+*Just as an aside:* consider the differences between the two ways of calculating averages per continent. One focuses on the average of country values, and thus yields the average national income per capita. The other takes population sizes into account and thus yields the average personal income per capita. For most continents, the difference in results is huge. Both approaches are used in the media - so it's always worth looking a little closer at summary statistics.
+
+For an introduction to `dplyr`, you can watch this video:
+
+<iframe src=" https://www.youtube.com/embed/QtQE-b5iMUQ?rel=0 " allowfullscreen width=80% height=350></iframe>
+
+## Summarise data (descriptive statistics)
 
 Next you might want to use summary functions - either in a dplyr `summarise()` function or on their own. For most of them, you can use the `na.rm = TRUE` argument to tell R to ignore missing values (only do that when you have reason to expect that missing values can safely be ignored).
 

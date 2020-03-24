@@ -31,7 +31,7 @@ The scatterplot can now help us to think about what kind of model would help us 
 
 Geometrically, a simple linear regression model is just a straight line through the scatterplot, fitted in a way that minimises the distances from the points to the line. It can be fitted with the `geom_smooth(method="lm")` function.
 
-```{r, fig.cap="Scatterplot with added regression line ("line of best fit")"}
+```{r, fig.cap='Scatterplot with added regression line ("line of best fit")'}
 ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) + 
   geom_point() + geom_smooth(method="lm", se=FALSE) 
     #se=FALSE hides confidence bands that are often just visual clutter

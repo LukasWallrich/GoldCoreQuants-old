@@ -27,8 +27,8 @@ ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) + geom_point()
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-2)**CAPTION THIS FIGURE!!**</p>
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-2)Scatterplot relating social trust to life satisfaction</p>
 </div>
 
 The scatterplot can now help us to think about what kind of model would help us to explain or predict one variable based on the other. If a straight-line relationship seems reasonable, we can use a linear model.
@@ -48,8 +48,8 @@ ggplot(nat_avgs, aes(x=nat_soctrust, y=nat_stflife)) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-3-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-3)**CAPTION THIS FIGURE!!**</p>
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-3-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-3)Scatterplot with added regression line ("line of best fit")</p>
 </div>
 
 ```r
@@ -162,8 +162,8 @@ ggplot(nat_avgs, aes(x=scale(nat_soctrust), y=scale(nat_stflife))) +
 ```
 
 <div class="figure" style="text-align: center">
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-6-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-6)**CAPTION THIS FIGURE!!**</p>
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-6-1.png" alt="Scatterplot with scales variables (Z-scores)" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-6)Scatterplot with scales variables (Z-scores)</p>
 </div>
 
 ```r
@@ -208,10 +208,15 @@ Multiple linear regression models often use categorical predictors. However, the
 
 Note that dummy coding always results in **one fewer dummy variable than the number of levels of the categorical variable**. For example, a gender variable with two levels (male/female) would be recoded into a single dummy variable *female* (0=no, 1=yes). Note that there is no equivalent variable *male* as that would be redundant. Given that the hypothetical gender variable here is defined as either male or female, not female necessarily implies male.
 
-The same applies to larger number of levels - see how three possible values for the department variabel can be recoded into two dummy variables:
-![Dummy coding example](./W10Dummy.png)
+The same applies to larger number of levels - see below how three possible values for the department variabel can be recoded into two dummy variables.
 
-The level that is not explicitly mentioned anymore is the **reference level**. In a linear model, that is what all other effects are compared to, so it is important to keep in mind which that is.
+<div class="figure" style="text-align: center">
+<img src="./images/W10Dummy.png" alt="Example for dummy-coding" width="100%" />
+<p class="caption">(\#fig:img-dummy-coding)Example for dummy-coding</p>
+</div>
+
+
+The level that is not explicitly mentioned anymore is the **reference level** - in the case above, that is Special Education. In a linear model, that is what all other effects are compared to, so it is important to keep in mind which that is.
 
 ### Mathematical structure of multiple linear models
 

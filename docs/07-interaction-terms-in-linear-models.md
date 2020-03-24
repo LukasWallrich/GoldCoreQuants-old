@@ -356,8 +356,8 @@ johnson_neyman(mod, pred="wkhtot", modx = "hinctnta")
 ```
 
 <div class="figure" style="text-align: center">
-<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-12-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-12)**CAPTION THIS FIGURE!!**</p>
+<img src="07-interaction-terms-in-linear-models_files/figure-html/unnamed-chunk-12-1.png" alt="Johnson-Neyman plot shows regions of significance" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-12)Johnson-Neyman plot shows regions of significance</p>
 </div>
 
 ```

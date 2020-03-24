@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-21" />
+<meta name="date" content="2020-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -160,8 +160,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html"><i class="fa fa-check"></i><b>2</b> Importing and describing data</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Importing data into R</a></li>
-<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data"><i class="fa fa-check"></i><b>2.2</b> Manipulating data</a></li>
-<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#functions-to-view-and-summarise-data"><i class="fa fa-check"></i><b>2.3</b> Functions to view and summarise data</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#view-data"><i class="fa fa-check"></i><b>2.2</b> View data</a></li>
+<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data-and-using-dplyr"><i class="fa fa-check"></i><b>2.3</b> Manipulating data and using dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#summarise-data-descriptive-statistics"><i class="fa fa-check"></i><b>2.4</b> Summarise data (descriptive statistics)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a>
 <ul>
@@ -245,7 +246,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>11.4</b> Updating our beliefs - Bayes’ theorem</a></li>
 <li class="chapter" data-level="11.5" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#further-resources-2"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>12</b> Packages and references</a></li>
+<li class="chapter" data-level="12" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>12</b> Survey research - testing scales</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>12.1</b> Creating scales</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>12.1.1</b> Testing internal consistency</a></li>
+<li class="chapter" data-level="12.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>12.1.2</b> Calculating scale scores</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#further-resources-3"><i class="fa fa-check"></i><b>12.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
 <ul>
@@ -282,14 +292,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For an introduction to the Grammar of Graphics and ggplot2, watch this video:</p>
 <iframe src=" https://www.youtube.com/embed/sk7TT5qM5Hw?rel=0 " allowfullscreen width="80%" height="350">
 </iframe>
+<p><a href="https://drive.google.com/open?id=1UGp7own42PkPv-TLbX29sQUu2DfeaMUp">Click here</a> for the code used in the video</p>
 <div id="ggplot2" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> ggplot2</h2>
 <p>We use the <code>ggplot2</code>-package because it offers a consistent way to create anything from simple exploratory plots to complex data visualisation. Each graph command needs certain parts:</p>
 <ul>
 <li>a call to the <code>ggplot</code>-function and the <strong>data</strong> as the first argument: <code>ggplot(gapminder,</code></li>
 <li>a mapping of the <strong>aesthetics</strong>, i.e. of variables to visual elements. This uses the <code>aes</code>-function that is given to <code>ggplot</code> as the second argument: <code>aes(x=infant_mortality, y=fertility, col=continent))</code> (Note that two closing brackets are needed as this also completes the ggplot function call)</li>
-<li>a <strong>geometry</strong>, i.e. a type of chart, that is added with a plus-symbol and the function call, e.g., ` + geom_point()`</li>
-<li>optional elements such as labels that are included again with plus-symbols and function calls, e.g., `+ ggtitle(“Association of infant mortality and fertility”, subtitle=“2010 data from gapminder.org”)`</li>
+<li>a <strong>geometry</strong>, i.e. a type of chart, that is added with a plus-symbol and the function call, e.g., <code>geom_point()</code></li>
+<li>optional elements such as labels that are included again with plus-symbols and function calls, e.g., <code>ggtitle("Association of infant mortality and fertility", subtitle="2010 data from gapminder.org")</code></li>
 </ul>
 <p>Multiple geometries can be layered on top of each other, for example to add trend lines to scatterplots. In that case, <code>aes()</code> functions can be included into the <code>geom_()</code>-functions to make some of the mappings specific to certain geometries. This is done in the example below to color the points by continent without applying that aestethic to the line - if it was included in the main aes() function, the plot would contain a separate coloured line for each continent.</p>
 <p><em>Note:</em> Line breaks are completely up to you and can be used to make the code readable as long as the command does not appear complete too early - to keep it simple, there should always be an open bracket, a comma or a + before a line break within the command to create a ggplot-chart</p>
@@ -304,9 +315,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: Removed 7 rows containing non-finite values (stat_smooth).</code></pre>
 <pre><code>## Warning: Removed 7 rows containing missing values (geom_point).</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
-<img src="03-data-visualisation_files/figure-html/unnamed-chunk-1-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+<img src="03-data-visualisation_files/figure-html/unnamed-chunk-1-1.png" alt="A simple ggplot example" width="100%" />
 <p class="caption">
-Figure 3.1: <strong>CAPTION THIS FIGURE!!</strong>
+Figure 3.1: A simple ggplot example
 </p>
 </div>
 </div>

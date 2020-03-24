@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-21" />
+<meta name="date" content="2020-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -160,8 +160,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html"><i class="fa fa-check"></i><b>2</b> Importing and describing data</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Importing data into R</a></li>
-<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data"><i class="fa fa-check"></i><b>2.2</b> Manipulating data</a></li>
-<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#functions-to-view-and-summarise-data"><i class="fa fa-check"></i><b>2.3</b> Functions to view and summarise data</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#view-data"><i class="fa fa-check"></i><b>2.2</b> View data</a></li>
+<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data-and-using-dplyr"><i class="fa fa-check"></i><b>2.3</b> Manipulating data and using dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#summarise-data-descriptive-statistics"><i class="fa fa-check"></i><b>2.4</b> Summarise data (descriptive statistics)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a>
 <ul>
@@ -245,7 +246,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>11.4</b> Updating our beliefs - Bayes’ theorem</a></li>
 <li class="chapter" data-level="11.5" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#further-resources-2"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>12</b> Packages and references</a></li>
+<li class="chapter" data-level="12" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>12</b> Survey research - testing scales</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>12.1</b> Creating scales</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>12.1.1</b> Testing internal consistency</a></li>
+<li class="chapter" data-level="12.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>12.1.2</b> Calculating scale scores</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#further-resources-3"><i class="fa fa-check"></i><b>12.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
 <ul>
@@ -279,11 +289,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Getting started with Quantitative Research Methods and R</h1>
 <p class="author"><em>Lukas Wallrich</em></p>
-<p class="date"><em>2020-03-21</em></p>
+<p class="date"><em>2020-03-24</em></p>
 </div>
 <div id="overview" class="section level1 unnumbered" number="">
 <h1>Overview</h1>
-<p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time.</strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
+<p>This guide supports the Core Quantitative Methods Course offered by the Goldsmiths’ Graduate School. <strong>It is a living document and currently not more than a rough draft, but will grow over time - <a href="https://github.com/LukasWallrich/GoldCoreQuants/issues">please raise any issues and suggestions here</a></strong> It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps to look things up more easily.</p>
 <div id="further-sources" class="section level2" number="0.1">
 <h2><span class="header-section-number">0.1</span> Further sources</h2>
 <p>This guide does not aim to be comprehensive, but just to provide sufficient orientation. There are many fantastic free online resources that go further.</p>

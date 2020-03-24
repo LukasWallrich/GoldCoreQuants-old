@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-21" />
+<meta name="date" content="2020-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -160,8 +160,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html"><i class="fa fa-check"></i><b>2</b> Importing and describing data</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Importing data into R</a></li>
-<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data"><i class="fa fa-check"></i><b>2.2</b> Manipulating data</a></li>
-<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#functions-to-view-and-summarise-data"><i class="fa fa-check"></i><b>2.3</b> Functions to view and summarise data</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#view-data"><i class="fa fa-check"></i><b>2.2</b> View data</a></li>
+<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data-and-using-dplyr"><i class="fa fa-check"></i><b>2.3</b> Manipulating data and using dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#summarise-data-descriptive-statistics"><i class="fa fa-check"></i><b>2.4</b> Summarise data (descriptive statistics)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a>
 <ul>
@@ -245,7 +246,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>11.4</b> Updating our beliefs - Bayes’ theorem</a></li>
 <li class="chapter" data-level="11.5" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#further-resources-2"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>12</b> Packages and references</a></li>
+<li class="chapter" data-level="12" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>12</b> Survey research - testing scales</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>12.1</b> Creating scales</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>12.1.1</b> Testing internal consistency</a></li>
+<li class="chapter" data-level="12.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>12.1.2</b> Calculating scale scores</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#further-resources-3"><i class="fa fa-check"></i><b>12.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
 <ul>
@@ -315,66 +325,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-14"><a href="importing-and-describing-data.html#cb8-14"></a><span class="co">#Note that reading data from the clipboard does not always work - if it doesn&#39;t, </span></span>
 <span id="cb8-15"><a href="importing-and-describing-data.html#cb8-15"></a><span class="co">#try pasting your data into the window opened with the edit() function</span></span></code></pre></div>
 </div>
-<div id="manipulating-data" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Manipulating data</h2>
-<p>Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summaries. The <code>dplyr</code> package (part of the <code>tidyverse</code>) is designed to make all these steps easier, so we use it extensively during this course. <code>dplyr</code> is based on two main ideas:</p>
-<ul>
-<li>Develop a chain of data manipulation steps that get you towards the desired data, with the steps connected by the <code>%&gt;%</code> operator (“pipe”). That removes the need for nested functions or for saving lots of intermediate results.</li>
-<li>Use functions names after natural language verbs to develop code that can be easily understood.</li>
-</ul>
-<p><code>%&gt;%</code> takes the argument on the left and places it as the first argument into the function on the right. For example:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="importing-and-describing-data.html#cb9-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>)</span>
-<span id="cb9-2"><a href="importing-and-describing-data.html#cb9-2"></a></span>
-<span id="cb9-3"><a href="importing-and-describing-data.html#cb9-3"></a><span class="co">#The following two commands are equivalent</span></span>
-<span id="cb9-4"><a href="importing-and-describing-data.html#cb9-4"></a><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb9-5"><a href="importing-and-describing-data.html#cb9-5"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 2
-## [1] 2</code></pre>
-<p>The most important <code>dplyr</code> functions are:</p>
-<ul>
-<li><code>select()</code>: select specific variables</li>
-<li><code>filter()</code>: filter rows based on condition</li>
-<li><code>arrange()</code>: sort data ascendingly (arrange(desc()) to reverse)</li>
-<li><code>mutate()</code>: create/change variables</li>
-<li><code>summarise()</code>: calculate summary statistics</li>
-<li><code>group_by()</code>: separate data into groups, usually to summarise by group</li>
-</ul>
-<p>All functions use a dataframe as their first argument, usually from <code>%&gt;%</code>. After that, variables in the dataframe are accessed just with their name (no <code>$</code>).</p>
-<p>If we want to calculate the average income per capita in 2010 on each continent from the gapminder dataset, we need most of these functions - if you <strong>read the <code>%&gt;%</code>-operator as ‘then’</strong>, and mentally add ‘take’ at the very start, you should be able to follow along quite naturally.</p>
-<p><em>One thing to note:</em> you can split R code into multiple lines as long as each line is incomplete. Since the lines here end with <code>%&gt;%</code>, R includes the next line into the same command. If that operator was moved to the start of the next line, the code would no longer work.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="importing-and-describing-data.html#cb11-1"></a><span class="kw">library</span>(dslabs) <span class="co">#Load the gapminder teaching dataset</span></span>
-<span id="cb11-2"><a href="importing-and-describing-data.html#cb11-2"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-3"><a href="importing-and-describing-data.html#cb11-3"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>) <span class="op">%&gt;%</span></span>
-<span id="cb11-4"><a href="importing-and-describing-data.html#cb11-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">gdpPerCap =</span> gdp<span class="op">/</span>population) <span class="op">%&gt;%</span></span>
-<span id="cb11-5"><a href="importing-and-describing-data.html#cb11-5"></a><span class="st">      </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(gdpPerCap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-6"><a href="importing-and-describing-data.html#cb11-6"></a><span class="st">      </span><span class="co">#This filter() removes countries where either gdp or population is missing</span></span>
-<span id="cb11-7"><a href="importing-and-describing-data.html#cb11-7"></a><span class="st">        </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-8"><a href="importing-and-describing-data.html#cb11-8"></a><span class="st">        </span><span class="co">#group_by() allows for summary statistics to be calculated for each continent separately</span></span>
-<span id="cb11-9"><a href="importing-and-describing-data.html#cb11-9"></a><span class="st">          </span><span class="kw">summarise</span>(<span class="dt">AvgGdpPerCap_Nations =</span> <span class="kw">mean</span>(gdpPerCap), </span>
-<span id="cb11-10"><a href="importing-and-describing-data.html#cb11-10"></a>                    <span class="dt">AvgGdpPerCap_People =</span> <span class="kw">sum</span>(gdp)<span class="op">/</span><span class="kw">sum</span>(population)) <span class="op">%&gt;%</span></span>
-<span id="cb11-11"><a href="importing-and-describing-data.html#cb11-11"></a><span class="st">              </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-12"><a href="importing-and-describing-data.html#cb11-12"></a><span class="st">              </span><span class="co">#This rounds all numeric variables to 0 decimal places </span></span>
-<span id="cb11-13"><a href="importing-and-describing-data.html#cb11-13"></a><span class="st">              </span><span class="co">#(beyond expectations for this course)    </span></span>
-<span id="cb11-14"><a href="importing-and-describing-data.html#cb11-14"></a><span class="st">                </span><span class="kw">arrange</span>(<span class="kw">desc</span>(AvgGdpPerCap_Nations))</span></code></pre></div>
-<pre><code>## # A tibble: 5 x 3
-##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
-##   &lt;fct&gt;                    &lt;dbl&gt;               &lt;dbl&gt;
-## 1 Europe                   15214               14643
-## 2 Asia                      8163                3277
-## 3 Americas                  6797               16305
-## 4 Oceania                   5281               17942
-## 5 Africa                    1303                 867</code></pre>
-<p><em>Just as an aside:</em> consider the differences between the two ways of calculating averages per continent. One focuses on the average of country values, and thus yields the average national income per capita. The other takes population sizes into account and thus yields the average personal income per capita. For most continents, the difference in results is huge. Both approaches are used in the media - so it’s always worth looking a little closer at summary statistics.</p>
-<p>For an introduction to <code>dplyr</code>, you can watch this video:</p>
-<iframe src=" https://www.youtube.com/embed/QtQE-b5iMUQ?rel=0 " allowfullscreen width="80%" height="350">
-</iframe>
-</div>
-<div id="functions-to-view-and-summarise-data" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Functions to view and summarise data</h2>
+<div id="view-data" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> View data</h2>
 <p>When you start with a new dataset, there are some helpful functions to get a first look at the data: <code>glimpse()</code>gives a good overview of the variables contained in the dataset, while <code>head()</code> and <code>tail()</code> print the first and last lines. In the <strong>Console</strong> (but not really within scripts such as .Rmd files), you can also use <code>View()</code> to open up the whole dataset. Finally, you can have a look at data in the <strong>Environment</strong> pane in RStudio.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="importing-and-describing-data.html#cb13-1"></a><span class="kw">glimpse</span>(gapminder)</span>
-<span id="cb13-2"><a href="importing-and-describing-data.html#cb13-2"></a><span class="kw">head</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>) <span class="co">#n defines number of rows shown</span></span>
-<span id="cb13-3"><a href="importing-and-describing-data.html#cb13-3"></a><span class="kw">tail</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="importing-and-describing-data.html#cb9-1"></a><span class="kw">library</span>(dslabs) <span class="co">#Load the gapminder teaching dataset</span></span>
+<span id="cb9-2"><a href="importing-and-describing-data.html#cb9-2"></a><span class="kw">glimpse</span>(gapminder)</span>
+<span id="cb9-3"><a href="importing-and-describing-data.html#cb9-3"></a><span class="kw">head</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>) <span class="co">#n defines number of rows shown</span></span>
+<span id="cb9-4"><a href="importing-and-describing-data.html#cb9-4"></a><span class="kw">tail</span>(gapminder, <span class="dt">n=</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## Observations: 10,545
 ## Variables: 9
 ## $ country          &lt;fct&gt; Albania, Algeria, Angola, Antigua and Barbuda, Arg...
@@ -410,6 +367,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10543         NA  NA      Asia       Western Asia
 ## 10544         NA  NA    Africa     Eastern Africa
 ## 10545         NA  NA    Africa     Eastern Africa</code></pre>
+</div>
+<div id="manipulating-data-and-using-dplyr" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Manipulating data and using dplyr</h2>
+<p>Once you have imported your data into R, you might need to filter it, sort it, add some new variables, and calculate summaries. The <code>dplyr</code> package (part of the <code>tidyverse</code>) is designed to make all these steps easier, so we use it extensively during this course. <code>dplyr</code> is based on two main ideas:</p>
+<ul>
+<li>Develop a chain of data manipulation steps that get you towards the desired data, with the steps connected by the <code>%&gt;%</code> operator (“pipe”). That removes the need for nested functions or for saving lots of intermediate results.</li>
+<li>Use functions names after natural language verbs to develop code that can be easily understood.</li>
+</ul>
+<p><code>%&gt;%</code> takes the argument on the left and places it as the first argument into the function on the right. For example:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="importing-and-describing-data.html#cb11-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>, <span class="ot">NA</span>)</span>
+<span id="cb11-2"><a href="importing-and-describing-data.html#cb11-2"></a></span>
+<span id="cb11-3"><a href="importing-and-describing-data.html#cb11-3"></a><span class="co">#The following two commands are equivalent</span></span>
+<span id="cb11-4"><a href="importing-and-describing-data.html#cb11-4"></a><span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb11-5"><a href="importing-and-describing-data.html#cb11-5"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mean</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 2
+## [1] 2</code></pre>
+<p>The most important <code>dplyr</code> functions are:</p>
+<ul>
+<li><code>select()</code>: select specific variables</li>
+<li><code>filter()</code>: filter rows based on condition</li>
+<li><code>arrange()</code>: sort data ascendingly (arrange(desc()) to reverse)</li>
+<li><code>mutate()</code>: create/change variables</li>
+<li><code>summarise()</code>: calculate summary statistics</li>
+<li><code>group_by()</code>: separate data into groups, usually to summarise by group</li>
+</ul>
+<p>All functions use a dataframe as their first argument, usually from <code>%&gt;%</code>. After that, variables in the dataframe are accessed just with their name (no <code>$</code>).</p>
+<p>If we want to calculate the average income per capita in 2010 on each continent from the gapminder dataset, we need most of these functions - if you <strong>read the <code>%&gt;%</code>-operator as ‘then’</strong>, and mentally add ‘take’ at the very start, you should be able to follow along quite naturally.</p>
+<p><em>One thing to note:</em> you can split R code into multiple lines as long as each line is incomplete. Since the lines here end with <code>%&gt;%</code>, R includes the next line into the same command. If that operator was moved to the start of the next line, the code would no longer work.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="importing-and-describing-data.html#cb13-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-2"><a href="importing-and-describing-data.html#cb13-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>) <span class="op">%&gt;%</span></span>
+<span id="cb13-3"><a href="importing-and-describing-data.html#cb13-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">gdpPerCap =</span> gdp<span class="op">/</span>population) <span class="op">%&gt;%</span></span>
+<span id="cb13-4"><a href="importing-and-describing-data.html#cb13-4"></a><span class="st">      </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(gdpPerCap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-5"><a href="importing-and-describing-data.html#cb13-5"></a><span class="st">      </span><span class="co">#This filter() removes countries where either gdp or population is missing</span></span>
+<span id="cb13-6"><a href="importing-and-describing-data.html#cb13-6"></a><span class="st">        </span><span class="kw">group_by</span>(continent) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-7"><a href="importing-and-describing-data.html#cb13-7"></a><span class="st">        </span><span class="co">#group_by() allows for summary statistics to be calculated for each continent separately</span></span>
+<span id="cb13-8"><a href="importing-and-describing-data.html#cb13-8"></a><span class="st">          </span><span class="kw">summarise</span>(<span class="dt">AvgGdpPerCap_Nations =</span> <span class="kw">mean</span>(gdpPerCap), </span>
+<span id="cb13-9"><a href="importing-and-describing-data.html#cb13-9"></a>                    <span class="dt">AvgGdpPerCap_People =</span> <span class="kw">sum</span>(gdp)<span class="op">/</span><span class="kw">sum</span>(population)) <span class="op">%&gt;%</span></span>
+<span id="cb13-10"><a href="importing-and-describing-data.html#cb13-10"></a><span class="st">              </span><span class="kw">mutate_if</span>(is.numeric, round, <span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-11"><a href="importing-and-describing-data.html#cb13-11"></a><span class="st">              </span><span class="co">#This rounds all numeric variables to 0 decimal places </span></span>
+<span id="cb13-12"><a href="importing-and-describing-data.html#cb13-12"></a><span class="st">              </span><span class="co">#(beyond expectations for this course)    </span></span>
+<span id="cb13-13"><a href="importing-and-describing-data.html#cb13-13"></a><span class="st">                </span><span class="kw">arrange</span>(<span class="kw">desc</span>(AvgGdpPerCap_Nations))</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   continent AvgGdpPerCap_Nations AvgGdpPerCap_People
+##   &lt;fct&gt;                    &lt;dbl&gt;               &lt;dbl&gt;
+## 1 Europe                   15214               14643
+## 2 Asia                      8163                3277
+## 3 Americas                  6797               16305
+## 4 Oceania                   5281               17942
+## 5 Africa                    1303                 867</code></pre>
+<p><em>Just as an aside:</em> consider the differences between the two ways of calculating averages per continent. One focuses on the average of country values, and thus yields the average national income per capita. The other takes population sizes into account and thus yields the average personal income per capita. For most continents, the difference in results is huge. Both approaches are used in the media - so it’s always worth looking a little closer at summary statistics.</p>
+<p>For an introduction to <code>dplyr</code>, you can watch this video:</p>
+<iframe src=" https://www.youtube.com/embed/QtQE-b5iMUQ?rel=0 " allowfullscreen width="80%" height="350">
+</iframe>
+</div>
+<div id="summarise-data-descriptive-statistics" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Summarise data (descriptive statistics)</h2>
 <p>Next you might want to use summary functions - either in a dplyr <code>summarise()</code> function or on their own. For most of them, you can use the <code>na.rm = TRUE</code> argument to tell R to ignore missing values (only do that when you have reason to expect that missing values can safely be ignored).</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="importing-and-describing-data.html#cb15-1"></a>gapminder2010 &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(year<span class="op">==</span><span class="dv">2010</span>)</span>
 <span id="cb15-2"><a href="importing-and-describing-data.html#cb15-2"></a></span>

@@ -129,8 +129,8 @@ ggplot(resultsImp, aes(x=gender, y=change)) + geom_boxplot() + geom_jitter(aes(c
 ```
 
 <div class="figure" style="text-align: center">
-<img src="11-dealing-with-missing-data_files/figure-html/unnamed-chunk-7-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-7)**CAPTION THIS FIGURE!!**</p>
+<img src="11-dealing-with-missing-data_files/figure-html/unnamed-chunk-7-1.png" alt="Visualisation shows that imputed data matters" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-7)Visualisation shows that imputed data matters</p>
 </div>
 
 Note that the colour aesthetic is only assigned inside `geom_jitter()`. If it was assigned within `ggplot()`, we would get separate boxplots for observed and imputed values, which is not the aim here.

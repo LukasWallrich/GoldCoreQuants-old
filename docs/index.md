@@ -1,7 +1,7 @@
 --- 
 title: "Getting started with Quantitative Research Methods and R"
 author: "Lukas Wallrich"
-date: "2020-03-21"
+date: "2020-03-24"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
@@ -21,7 +21,7 @@ favicon: "favicon.ico"
 
 # Overview {-}
 
-This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. **It is a living document and currently not more than a rough draft, but will grow over time.** It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
+This guide supports the Core Quantitative Methods Course offered by the Goldsmiths' Graduate School. **It is a living document and currently not more than a rough draft, but will grow over time - [please raise any issues and suggestions here](https://github.com/LukasWallrich/GoldCoreQuants/issues)** It does not follow the order of sessions in the course, instead it is ordered in a way that might allow you to see connections and hopefully helps  to look things up more easily.
 
 ## Further sources
 

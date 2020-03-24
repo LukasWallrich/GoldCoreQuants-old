@@ -24,7 +24,7 @@
 <meta name="author" content="Lukas Wallrich" />
 
 
-<meta name="date" content="2020-03-21" />
+<meta name="date" content="2020-03-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -160,8 +160,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html"><i class="fa fa-check"></i><b>2</b> Importing and describing data</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Importing data into R</a></li>
-<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data"><i class="fa fa-check"></i><b>2.2</b> Manipulating data</a></li>
-<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#functions-to-view-and-summarise-data"><i class="fa fa-check"></i><b>2.3</b> Functions to view and summarise data</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#view-data"><i class="fa fa-check"></i><b>2.2</b> View data</a></li>
+<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data-and-using-dplyr"><i class="fa fa-check"></i><b>2.3</b> Manipulating data and using dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#summarise-data-descriptive-statistics"><i class="fa fa-check"></i><b>2.4</b> Summarise data (descriptive statistics)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a>
 <ul>
@@ -245,7 +246,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>11.4</b> Updating our beliefs - Bayes’ theorem</a></li>
 <li class="chapter" data-level="11.5" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#further-resources-2"><i class="fa fa-check"></i><b>11.5</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>12</b> Packages and references</a></li>
+<li class="chapter" data-level="12" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>12</b> Survey research - testing scales</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>12.1</b> Creating scales</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>12.1.1</b> Testing internal consistency</a></li>
+<li class="chapter" data-level="12.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>12.1.2</b> Calculating scale scores</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#further-resources-3"><i class="fa fa-check"></i><b>12.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a>
 <ul>
@@ -294,9 +304,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-7"><a href="simple-and-multiple-linear-regression.html#cb22-7"></a></span>
 <span id="cb22-8"><a href="simple-and-multiple-linear-regression.html#cb22-8"></a><span class="kw">ggplot</span>(nat_avgs, <span class="kw">aes</span>(<span class="dt">x=</span>nat_soctrust, <span class="dt">y=</span>nat_stflife)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-2-1.png" alt="Scatterplot relating social trust to life satisfaction" width="100%" />
 <p class="caption">
-Figure 4.1: <strong>CAPTION THIS FIGURE!!</strong>
+Figure 4.1: Scatterplot relating social trust to life satisfaction
 </p>
 </div>
 <p>The scatterplot can now help us to think about what kind of model would help us to explain or predict one variable based on the other. If a straight-line relationship seems reasonable, we can use a linear model.</p>
@@ -307,9 +317,9 @@ Figure 4.1: <strong>CAPTION THIS FIGURE!!</strong>
 <span id="cb23-2"><a href="simple-and-multiple-linear-regression.html#cb23-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>) </span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-3-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-3-1.png" alt="Scatterplot with added regression line (&quot;line of best fit&quot;)" width="100%" />
 <p class="caption">
-Figure 4.2: <strong>CAPTION THIS FIGURE!!</strong>
+Figure 4.2: Scatterplot with added regression line (“line of best fit”)
 </p>
 </div>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="simple-and-multiple-linear-regression.html#cb25-1"></a>    <span class="co">#se=FALSE hides confidence bands that are often just visual clutter</span></span></code></pre></div>
@@ -390,9 +400,9 @@ Clearly this formula does not allow us to perfectly predict one variable from th
 <span id="cb30-2"><a href="simple-and-multiple-linear-regression.html#cb30-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="05-linear-regression_files/figure-html/unnamed-chunk-6-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
+<img src="05-linear-regression_files/figure-html/unnamed-chunk-6-1.png" alt="Scatterplot with scales variables (Z-scores)" width="100%" />
 <p class="caption">
-Figure 4.3: <strong>CAPTION THIS FIGURE!!</strong>
+Figure 4.3: Scatterplot with scales variables (Z-scores)
 </p>
 </div>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="simple-and-multiple-linear-regression.html#cb32-1"></a><span class="kw">lm</span>(<span class="kw">scale</span>(nat_stflife) <span class="op">~</span><span class="st"> </span><span class="kw">scale</span>(nat_soctrust), <span class="dt">data =</span> nat_avgs) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
@@ -427,9 +437,14 @@ Figure 4.3: <strong>CAPTION THIS FIGURE!!</strong>
 <h3><span class="header-section-number">4.3.1</span> Dummy coding revisited</h3>
 <p>Multiple linear regression models often use categorical predictors. However, they need to be turned into numbers. This is done through automatic dummy coding, which creates variables coded as 0 and 1.</p>
 <p>Note that dummy coding always results in <strong>one fewer dummy variable than the number of levels of the categorical variable</strong>. For example, a gender variable with two levels (male/female) would be recoded into a single dummy variable <em>female</em> (0=no, 1=yes). Note that there is no equivalent variable <em>male</em> as that would be redundant. Given that the hypothetical gender variable here is defined as either male or female, not female necessarily implies male.</p>
-<p>The same applies to larger number of levels - see how three possible values for the department variabel can be recoded into two dummy variables:
-<img src="W10Dummy.png" alt="Dummy coding example" /></p>
-<p>The level that is not explicitly mentioned anymore is the <strong>reference level</strong>. In a linear model, that is what all other effects are compared to, so it is important to keep in mind which that is.</p>
+<p>The same applies to larger number of levels - see below how three possible values for the department variabel can be recoded into two dummy variables.</p>
+<div class="figure" style="text-align: center"><span id="fig:img-dummy-coding"></span>
+<img src="images/W10Dummy.png" alt="Example for dummy-coding" width="100%" />
+<p class="caption">
+Figure 4.4: Example for dummy-coding
+</p>
+</div>
+<p>The level that is not explicitly mentioned anymore is the <strong>reference level</strong> - in the case above, that is Special Education. In a linear model, that is what all other effects are compared to, so it is important to keep in mind which that is.</p>
 </div>
 <div id="mathematical-structure-of-multiple-linear-models" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Mathematical structure of multiple linear models</h3>
