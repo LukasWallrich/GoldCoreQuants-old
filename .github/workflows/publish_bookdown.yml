@@ -17,7 +17,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown
-        run: Rscript -e 'options(repos = list(CRAN="http://cran.rstudio.com/")); install.packages(c("rmarkdown","bookdown", "webex", "dplyr", "ggplot2", "magrittr"))'
+        run: Rscript -e 'options(repos = list(CRAN="http://cran.rstudio.com/")); install.packages(c("rmarkdown","bookdown", "webex", "tidyverse", "magrittr"))'
       - name: Build book
         run: Rscript -e 'bookdown::render_book("index.Rmd")'
       - name: Copy attachments
