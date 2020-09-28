@@ -61,23 +61,6 @@ mod <- lm(errors ~ player + type + player:type, obs)
 summary(mod)
 
 pacman::p_load(interactions)
-```
-
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'pander', 'jtools'
-```
-
-```
-## 
-## interactions installed
-```
-
-```r
 cat_plot(mod, pred="player", modx = "type", geom="line")
 ```
 
@@ -246,14 +229,6 @@ Note that `ggplot2` automatically includes an interaction when fitting regressio
 
 ```r
 ggplot(essDE, aes(x=bmi, y=depr, colour=gndr)) + geom_smooth(method="lm", se=FALSE)
-```
-
-```
-## Don't know how to automatically pick scale for object of type haven_labelled. Defaulting to continuous.
-```
-
-```
-## `geom_smooth()` using formula 'y ~ x'
 ```
 
 ```

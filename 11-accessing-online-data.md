@@ -17,51 +17,24 @@ Here, I will explore the question whether life expectancy and literacy have incr
 
 ```r
 pacman::p_load(wbstats)
-```
 
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## 
-## wbstats installed
-```
-
-```r
 #Download current list of indicators
-new_wb_cache <- wbcache()
-```
+new_wb_cache <- wb_cache()
 
-```
-## Warning: `wbcache()` is deprecated as of wbstats 1.0.0.
-## Please use `wb_cache()` instead.
-## [90mThis warning is displayed once every 8 hours.[39m
-## [90mCall `lifecycle::last_warnings()` to see where this warning was generated.[39m
-```
-
-```r
 #Search for indicators - you can best do this on data.worldbank.com and find the IndicatorID in the URL. The wbsearch() function often returns to many hits.
 
 #GDP per capita, purchasing power adjusted (to remove effect of exchange rates)
-wbsearch("gdp.*capita.*PPP", cache = new_wb_cache)
+wb_search("gdp.*capita.*PPP", cache = new_wb_cache)
 ```
 
 ```
-## Warning: `wbsearch()` is deprecated as of wbstats 1.0.0.
-## Please use `wb_search()` instead.
-## [90mThis warning is displayed once every 8 hours.[39m
-## [90mCall `lifecycle::last_warnings()` to see where this warning was generated.[39m
-```
-
-```
-##                indicatorID                                            indicator
-## 681     6.0.GDPpc_constant GDP per capita, PPP (constant 2011 international $) 
-## 10178    NY.GDP.PCAP.PP.CD        GDP per capita, PPP (current international $)
-## 10179    NY.GDP.PCAP.PP.KD  GDP per capita, PPP (constant 2017 international $)
-## 10180 NY.GDP.PCAP.PP.KD.87  GDP per capita, PPP (constant 1987 international $)
-## 10181 NY.GDP.PCAP.PP.KD.ZG                GDP per capita, PPP annual growth (%)
+## [90m# A tibble: 4 x 3[39m
+##   indicator_id    indicator                indicator_desc                       
+##   [3m[90m<chr>[39m[23m           [3m[90m<chr>[39m[23m                    [3m[90m<chr>[39m[23m                                
+## [90m1[39m 6.0.GDPpc_cons… GDP per capita, PPP (co… GDP per capita based on purchasing p…
+## [90m2[39m NY.GDP.PCAP.PP… GDP per capita, PPP (cu… This indicator provides per capita v…
+## [90m3[39m NY.GDP.PCAP.PP… GDP per capita, PPP (co… GDP per capita based on purchasing p…
+## [90m4[39m NY.GDP.PCAP.PP… GDP per capita, PPP ann… Annual percentage growth rate of GDP…
 ```
 
 Once we know the names of the indicators, we can download them.
@@ -72,15 +45,8 @@ Once we know the names of the indicators, we can download them.
 #wb_dat <- wb(indicator = c("NY.GDP.PCAP.PP.KD", "SI.POV.GINI"), country = "all")
 #wb_dat %>% count(iso2c, country) %>% view()            
                             
-wb_dat <- wb(indicator = c("NY.GDP.PCAP.PP.KD", "SP.DYN.LE00.IN", "SE.TER.ENRR"), 
-             country = c("IN", "BR", "CN", "ZA", "RU"))
-```
-
-```
-## Warning: `wb()` is deprecated as of wbstats 1.0.0.
-## Please use `wb_data()` instead.
-## [90mThis warning is displayed once every 8 hours.[39m
-## [90mCall `lifecycle::last_warnings()` to see where this warning was generated.[39m
+wb_dat <- wb_data(indicator = c("NY.GDP.PCAP.PP.KD", "SP.DYN.LE00.IN", "SE.TER.ENRR"), 
+             country = c("IN", "BR", "CN", "ZA", "RU"), return_wide = FALSE)
 ```
 
 Now we have the data in a "long" format - with one combination of countries, indicators and years per row. That is a good layout for plotting, for other analyses you would need to reshape the data into a wide format where each indicator is in its own variable - look for the spread() function if you need that.
@@ -100,9 +66,17 @@ ggplot(wb_datF, aes(x=as.numeric(date), y=value, col=country)) +
        x = "Year", y="", col = "Country")
 ```
 
+```
+## Warning: Removed 64 rows containing missing values (geom_point).
+```
+
+```
+## Warning: Removed 13 row(s) containing missing values (geom_path).
+```
+
 <div class="figure" style="text-align: center">
-<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-4-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-4)**CAPTION THIS FIGURE!!**</p>
+<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-4-1.png" alt="Example plot from World Bank data" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-4)Example plot from World Bank data</p>
 </div>
 
 You can find a similar but slightly more detailed example for how to use the package [here](https://cengel.github.io/gearup2016/worldbank.html) and very clear instructions in the the full [README file of the package](https://github.com/nset-ornl/wbstats/blob/master/README.md).
@@ -119,37 +93,7 @@ I got curious about what share of the world's population lives in countries with
 
 ```r
 pacman::p_load(WikidataQueryServiceR, gt)
-```
 
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'lazyeval', 'WikipediR', 'ratelimitr', 'rex'
-```
-
-```
-## 
-## WikidataQueryServiceR installed
-```
-
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'checkmate', 'commonmark', 'sass'
-```
-
-```
-## 
-## gt installed
-```
-
-```r
 headsOfGov <- query_wikidata('
 SELECT ?country ?head ?gender ?countryLabel ?headLabel ?genderLabel  ?continentLabel ?governmentLabel ?population
 WHERE
@@ -165,44 +109,23 @@ ORDER BY ?countryLabel
 ')
 
 regional <- headsOfGov %>% group_by(continentLabel, genderLabel) %>% summarise(pop = sum(population), n = n()) %>% ungroup()
-```
 
-```
-## `summarise()` regrouping output by 'continentLabel' (override with `.groups` argument)
-```
-
-```r
 world <- data.frame(continentLabel = "World", 
                headsOfGov %>% group_by(genderLabel) %>%
-                 summarise(pop=sum(population), n=n()), stringsAsFactors = F
-               )
-```
+                 summarise(pop=sum(population), n=n()), 
+               stringsAsFactors = FALSE)
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
 
-```r
 world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(pop)*100) %>% filter(genderLabel == "female") %>% select(ShareOfCountries, ShareOfPopulation) %>% round(1) %>% gt::gt() %>% gt::tab_header(title=gt::md("**Women rule** (%)"))
 
 regionalAndWorld <- rbind(regional, world)
-
-ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_col(position="fill") + 
-    #Turns chart into bars rather than columns
-    coord_flip() +
-    #Show percentages rather than fractions on y-axis (now shown as x-axis)
-    scale_y_continuous(labels=scales::percent) +
-    labs(title="Only a small fraction of the world's population is ruled by women", subtitle="Source: WikiData, February 2020", x="", y="Share of population", fill="Head of government")
 ```
 
-<div class="figure" style="text-align: center">
-<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-5-1.png" alt="**CAPTION THIS FIGURE!!**" width="100%" />
-<p class="caption">(\#fig:unnamed-chunk-5)**CAPTION THIS FIGURE!!**</p>
-</div><!--html_preserve--><style>html {
+<!--html_preserve--><style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#chgqmbuojm .gt_table {
+#pairrqyszf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -227,7 +150,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-left-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_heading {
+#pairrqyszf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -239,7 +162,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-right-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_title {
+#pairrqyszf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -249,7 +172,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-bottom-width: 0;
 }
 
-#chgqmbuojm .gt_subtitle {
+#pairrqyszf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -259,13 +182,13 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-top-width: 0;
 }
 
-#chgqmbuojm .gt_bottom_border {
+#pairrqyszf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_col_headings {
+#pairrqyszf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -280,7 +203,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-right-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_col_heading {
+#pairrqyszf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -300,7 +223,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   overflow-x: hidden;
 }
 
-#chgqmbuojm .gt_column_spanner_outer {
+#pairrqyszf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -312,15 +235,15 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   padding-right: 4px;
 }
 
-#chgqmbuojm .gt_column_spanner_outer:first-child {
+#pairrqyszf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#chgqmbuojm .gt_column_spanner_outer:last-child {
+#pairrqyszf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#chgqmbuojm .gt_column_spanner {
+#pairrqyszf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -332,7 +255,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   width: 100%;
 }
 
-#chgqmbuojm .gt_group_heading {
+#pairrqyszf .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -354,7 +277,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   vertical-align: middle;
 }
 
-#chgqmbuojm .gt_empty_group_heading {
+#pairrqyszf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -369,15 +292,15 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   vertical-align: middle;
 }
 
-#chgqmbuojm .gt_from_md > :first-child {
+#pairrqyszf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#chgqmbuojm .gt_from_md > :last-child {
+#pairrqyszf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#chgqmbuojm .gt_row {
+#pairrqyszf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -396,7 +319,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   overflow-x: hidden;
 }
 
-#chgqmbuojm .gt_stub {
+#pairrqyszf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -408,7 +331,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   padding-left: 12px;
 }
 
-#chgqmbuojm .gt_summary_row {
+#pairrqyszf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -418,7 +341,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   padding-right: 5px;
 }
 
-#chgqmbuojm .gt_first_summary_row {
+#pairrqyszf .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -428,7 +351,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-top-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_grand_summary_row {
+#pairrqyszf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -438,7 +361,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   padding-right: 5px;
 }
 
-#chgqmbuojm .gt_first_grand_summary_row {
+#pairrqyszf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -448,11 +371,11 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-top-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_striped {
+#pairrqyszf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#chgqmbuojm .gt_table_body {
+#pairrqyszf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -461,7 +384,7 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-bottom-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_footnotes {
+#pairrqyszf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -475,13 +398,13 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-right-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_footnote {
+#pairrqyszf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#chgqmbuojm .gt_sourcenotes {
+#pairrqyszf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -495,46 +418,46 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   border-right-color: #D3D3D3;
 }
 
-#chgqmbuojm .gt_sourcenote {
+#pairrqyszf .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#chgqmbuojm .gt_left {
+#pairrqyszf .gt_left {
   text-align: left;
 }
 
-#chgqmbuojm .gt_center {
+#pairrqyszf .gt_center {
   text-align: center;
 }
 
-#chgqmbuojm .gt_right {
+#pairrqyszf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#chgqmbuojm .gt_font_normal {
+#pairrqyszf .gt_font_normal {
   font-weight: normal;
 }
 
-#chgqmbuojm .gt_font_bold {
+#pairrqyszf .gt_font_bold {
   font-weight: bold;
 }
 
-#chgqmbuojm .gt_font_italic {
+#pairrqyszf .gt_font_italic {
   font-style: italic;
 }
 
-#chgqmbuojm .gt_super {
+#pairrqyszf .gt_super {
   font-size: 65%;
 }
 
-#chgqmbuojm .gt_footnote_marks {
+#pairrqyszf .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="chgqmbuojm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="pairrqyszf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style><strong>Women rule</strong> (%)</th>
@@ -558,6 +481,20 @@ ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_
   
   
 </table></div><!--/html_preserve-->
+
+```r
+ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_col(position="fill") + 
+    #Turns chart into bars rather than columns
+    coord_flip() +
+    #Show percentages rather than fractions on y-axis (now shown as x-axis)
+    scale_y_continuous(labels=scales::percent) +
+    labs(title="Only a small fraction of the world's population is ruled by women", subtitle="Source: WikiData, February 2020", x="", y="Share of population", fill="Head of government")
+```
+
+<div class="figure" style="text-align: center">
+<img src="11-accessing-online-data_files/figure-html/unnamed-chunk-6-1.png" alt="Example plot from Wikidata" width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-6)Example plot from Wikidata</p>
+</div>
 
 ## Other data sources
 

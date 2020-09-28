@@ -233,7 +233,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>12.4</b> Updating our beliefs - Bayes’ theorem</a></li>
 <li class="chapter" data-level="12.5" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>12.5</b> Further resources</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
+<li class="chapter" data-level="13" data-path="test-pls-ignore.html"><a href="test-pls-ignore.html"><i class="fa fa-check"></i><b>13</b> Test (pls ignore)</a></li>
+<li class="chapter" data-level="14" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>14</b> Packages and references</a></li>
 <li class="appendix"><span><b>Appendices</b></span></li>
 <li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a><ul>
 <li class="chapter" data-level="A.1" data-path="two-more-pipes.html"><a href="two-more-pipes.html#expanding-the-tidyverse-the-exposition-pipe"><i class="fa fa-check"></i><b>A.1</b> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</a></li>
@@ -266,18 +267,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="two-more-pipes" class="section level1">
 <h1><span class="header-section-number">A</span> Two more pipes</h1>
 <p>If you are clear on the pipe operator <code>%&gt;%</code> then two more pipes can help you save some typing and write more efficient code. However, neither are critical for this course. All of them require that you load the <code>magrittr</code> package explicitly - it is installed as part of the tidyverse, but not loaded.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="two-more-pipes.html#cb181-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb181-2"><a href="two-more-pipes.html#cb181-2"></a><span class="kw">library</span>(magrittr)</span>
-<span id="cb181-3"><a href="two-more-pipes.html#cb181-3"></a><span class="co">#Example data</span></span>
-<span id="cb181-4"><a href="two-more-pipes.html#cb181-4"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="two-more-pipes.html#cb160-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb160-2"><a href="two-more-pipes.html#cb160-2"></a><span class="kw">library</span>(magrittr)</span>
+<span id="cb160-3"><a href="two-more-pipes.html#cb160-3"></a><span class="co">#Example data</span></span>
+<span id="cb160-4"><a href="two-more-pipes.html#cb160-4"></a>constituencies &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/ConstituencyData2019.csv&quot;</span>), <span class="dt">col_types =</span> <span class="st">&quot;_cfddddfffddddfffdfdddd&quot;</span>)</span></code></pre></div>
 <div id="expanding-the-tidyverse-the-exposition-pipe" class="section level2">
 <h2><span class="header-section-number">A.1</span> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</h2>
 <p>Inside dplyr pipes, you do not need to use the <code>$</code> to access variables within the dataframe. However, that does not work in some base-R functions such as <code>cor.test()</code>. For them, <code>%$%</code> can expose the variables in a dataframe temporarily (until the end of that command) so that they can be accessed as if they were separate variables in your environment.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="two-more-pipes.html#cb182-1"></a><span class="co">#Normal code</span></span>
-<span id="cb182-2"><a href="two-more-pipes.html#cb182-2"></a><span class="kw">cor.test</span>(constituencies<span class="op">$</span>MedianAge, constituencies<span class="op">$</span>ElectionConShare)</span>
-<span id="cb182-3"><a href="two-more-pipes.html#cb182-3"></a></span>
-<span id="cb182-4"><a href="two-more-pipes.html#cb182-4"></a><span class="co">#With the exposition pipe</span></span>
-<span id="cb182-5"><a href="two-more-pipes.html#cb182-5"></a>constituencies <span class="op">%$%</span><span class="st"> </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="two-more-pipes.html#cb161-1"></a><span class="co">#Normal code</span></span>
+<span id="cb161-2"><a href="two-more-pipes.html#cb161-2"></a><span class="kw">cor.test</span>(constituencies<span class="op">$</span>MedianAge, constituencies<span class="op">$</span>ElectionConShare)</span>
+<span id="cb161-3"><a href="two-more-pipes.html#cb161-3"></a></span>
+<span id="cb161-4"><a href="two-more-pipes.html#cb161-4"></a><span class="co">#With the exposition pipe</span></span>
+<span id="cb161-5"><a href="two-more-pipes.html#cb161-5"></a>constituencies <span class="op">%$%</span><span class="st"> </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 
@@ -302,8 +303,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##      cor 
 ## 0.542836</code></pre>
 <p>Clearly in this case, the difference is slight but you might find it more readable as well. In other cases, this can spare you from having to save a filtered dataset or otherwise processed dataset into a new variable that you are only using once.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="two-more-pipes.html#cb184-1"></a>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ContType <span class="op">==</span><span class="st"> &quot;County&quot;</span>) <span class="op">%$%</span><span class="st"> </span></span>
-<span id="cb184-2"><a href="two-more-pipes.html#cb184-2"></a><span class="st">  </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="two-more-pipes.html#cb163-1"></a>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ContType <span class="op">==</span><span class="st"> &quot;County&quot;</span>) <span class="op">%$%</span><span class="st"> </span></span>
+<span id="cb163-2"><a href="two-more-pipes.html#cb163-2"></a><span class="st">  </span><span class="kw">cor.test</span>(MedianAge, ElectionConShare)</span></code></pre></div>
 <pre><code>## 
 ## 	Pearson&#39;s product-moment correlation
 ## 
@@ -319,13 +320,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-somewhat-risky-time-saver-the-assignment-pipe" class="section level2">
 <h2><span class="header-section-number">A.2</span> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</h2>
 <p>Quite often, we want to edit an element in place, which leads to some repetition as you need to specify that you want to put it into the pipe and then save it back in place.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="two-more-pipes.html#cb186-1"></a><span class="co">#Normal code</span></span>
-<span id="cb186-2"><a href="two-more-pipes.html#cb186-2"></a>constituencies &lt;-<span class="st"> </span>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span>
-<span id="cb186-3"><a href="two-more-pipes.html#cb186-3"></a></span>
-<span id="cb186-4"><a href="two-more-pipes.html#cb186-4"></a><span class="co">#With assignment pipe</span></span>
-<span id="cb186-5"><a href="two-more-pipes.html#cb186-5"></a>constituencies <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="two-more-pipes.html#cb165-1"></a><span class="co">#Normal code</span></span>
+<span id="cb165-2"><a href="two-more-pipes.html#cb165-2"></a>constituencies &lt;-<span class="st"> </span>constituencies <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span>
+<span id="cb165-3"><a href="two-more-pipes.html#cb165-3"></a></span>
+<span id="cb165-4"><a href="two-more-pipes.html#cb165-4"></a><span class="co">#With assignment pipe</span></span>
+<span id="cb165-5"><a href="two-more-pipes.html#cb165-5"></a>constituencies <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">filter</span>(ConstituencyName <span class="op">!=</span><span class="st"> &quot;Chorley&quot;</span>)</span></code></pre></div>
 <p>The assignment pipe here takes <code>constituencies</code>, puts it into the pipeline, and takes the result at the end to save back into <code>constituencies</code>. It can be particularly pleasant when you want to apply a function to a single variable, but be careful not to use it accidentally - if you type <code>%&lt;&gt;%</code> instead of <code>%&gt;%</code> you will create bugs in your code that are not easy to spot.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="two-more-pipes.html#cb187-1"></a>constituencies<span class="op">$</span>ElectionWon <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref=</span><span class="st">&quot;Lab&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="two-more-pipes.html#cb166-1"></a>constituencies<span class="op">$</span>ElectionWon <span class="op">%&lt;&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref=</span><span class="st">&quot;Lab&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

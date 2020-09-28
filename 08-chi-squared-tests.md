@@ -251,23 +251,6 @@ As always, finding that the variables are related to a statistically significant
 
 ```r
 pacman::p_load(effectsize)
-```
-
-```
-## Installing package into '/home/runner/work/_temp/Library'
-## (as 'lib' is unspecified)
-```
-
-```
-## also installing the dependencies 'insight', 'bayestestR', 'parameters'
-```
-
-```
-## 
-## effectsize installed
-```
-
-```r
 chisq_to_cramers_v(chisq = 48.5, n = 626, nrow=4, ncol=2)
 ```
 
@@ -287,7 +270,7 @@ While this is a helpful statistic to compare effect strengths across multiple te
 ##   Scottish     30  30
 ```
 
-Here an **Odds Ratio** would state how much more likely it is to get a tea afficionado if we ask an English rather than a Scottish person. Odds are the ratio of the frequency of specified outcomes over the frequency of other outcomes. For instance, the odds of it being Sunday on a random day are 1 to 6. In this case, the odds for getting a tea afficionado when picking out an English person would be 95:45, while they would be 30:30 for a Scottish person. Thus the odds ratio would be $$OR = \frac{\frac{95}{45}}{\frac{30}{30}}=2.1$$, so that I would be 
+Here an **Odds Ratio** would state how much more likely it is to get a tea afficionado if we ask an English rather than a Scottish person. Odds are the ratio of the frequency of specified outcomes over the frequency of other outcomes. For instance, the odds of it being Sunday on a random day are 1 to 6. In this case, the odds for getting a tea afficionado when picking out an English person would be 95:45, while they would be 30:30 for a Scottish person. Thus the odds ratio would be $$OR = \frac{\frac{95}{45}}{\frac{30}{30}}=2.1$$ so that I would be 
 
 * 2.1x more likely to get a tea afficionado rather than a coffee afficionado when picking out an English person from this sample than a Scottish person,
 * 2.1x more likely to get a coffee afficionado rather than a tea afficionado when picking out a Scottish person rather than an English person from this sample,
