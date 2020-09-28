@@ -17,6 +17,7 @@ pacman::p_load(tidyverse)
 
 ```{r message=FALSE, warning=FALSE, echo=FALSE}
 install.packages("sandwich")
+#TK - check why required by sim_slopes (at least on ubuntu) even though robust = FALSE
 ```
 
 

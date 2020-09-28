@@ -63,10 +63,10 @@ Wikidata is where most data from Wikipedia and much else lives. So if there are 
 
 Wikidata is based on data items that are connected by multiple relationships. So there will be an item for *Germany*, an item for *Angela Merkel* and a relationship for *is the head of government of.* Similarly, there is an item for *country* and a relationship for *is an instance of* that connects it to *Germany.* SPARQL queries are used to get the data - this [article](https://towardsdatascience.com/a-brief-introduction-to-wikidata-bb4e66395eb1) explains the logic quite well, but unless you want to spend a couple more weeks learning how to code, you can just take [examples from Wikidata](https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/queries/examples) and adjust them as needed. For adjusting them, the online [Wikidata Query Service](https://query.wikidata.org/) works well, as it allows you to run the query again and again, until you get the data you need.
 
-I got curious about what share of the world's population lives in countries with a female head of government, and how that varies by region. For that, I used the following code.
+I got curious about what share of the world's population lives in countries with a female head of government, and how that varies by region. For that, I used the following code. (`gt` is a package to make nice tables easily.) **Note that a key step is missing: I did not clean the data.** It contains some duplicates, for instance because countries that span two continents are included twice in the Wikidata output. Data cleaning is a crucial part of analysing online data, but not the focus of this chapter. 
 
 ```{r cache=TRUE}
-pacman::p_load(WikidataQueryServiceR)
+pacman::p_load(WikidataQueryServiceR, gt)
 
 headsOfGov <- query_wikidata('
 SELECT ?country ?head ?gender ?countryLabel ?headLabel ?genderLabel  ?continentLabel ?governmentLabel ?population
@@ -90,7 +90,7 @@ world <- data.frame(continentLabel = "World",
                )
 
 
-world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(pop)*100) %>% filter(genderLabel == "female") %>% select(ShareOfCountries, ShareOfPopulation) %>% round(1) %>% kableExtra::kable(caption = "<b>Women rule (%)</b>") %>% kableExtra::kable_styling(full_width = F)
+world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(pop)*100) %>% filter(genderLabel == "female") %>% select(ShareOfCountries, ShareOfPopulation) %>% round(1) %>% gt::gt() %>% gt::tab_header(title=gt::md("**Women rule** (%)"))
 
 regionalAndWorld <- rbind(regional, world)
 
