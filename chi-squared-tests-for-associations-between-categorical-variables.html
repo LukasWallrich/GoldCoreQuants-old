@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 7 Chi-squared tests for associations between categorical variables | Getting started with Quantitative Research Methods and R</title>
+  <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 7 Chi-squared tests for associations between categorical variables | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 7 Chi-squared tests for associations between categorical variables | Getting started with Quantitative Research Methods and R" />
+  
+  <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
+  
+
+<meta name="author" content="Lukas Wallrich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="interaction-terms-in-linear-models.html"/>
+<link rel="next" href="reporting-the-results-of-statistical-tests.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Getting started with Quantitative Research Methods and R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#further-sources"><i class="fa fa-check"></i><b>0.1</b> Further sources</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#free-online-books"><i class="fa fa-check"></i><b>0.1.1</b> Free online books</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#paperlibrary-books"><i class="fa fa-check"></i><b>0.1.2</b> Paper/library books</a></li>
+<li class="chapter" data-level="0.1.3" data-path="index.html"><a href="index.html#other-key-resources"><i class="fa fa-check"></i><b>0.1.3</b> Other key resources</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>0.2</b> Why R?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#install-r-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Install R on your computer</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#some-key-concepts"><i class="fa fa-check"></i><b>1.2</b> Some key concepts</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-rstudio-and-r-packages"><i class="fa fa-check"></i><b>1.2.1</b> R, RStudio and R packages</a></li>
+<li class="chapter" data-level="1.2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#data-and-variables-in-r"><i class="fa fa-check"></i><b>1.2.2</b> Data and variables in R</a></li>
+<li class="chapter" data-level="1.2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#functions-in-r"><i class="fa fa-check"></i><b>1.2.3</b> Functions in R</a></li>
+<li class="chapter" data-level="1.2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#key-r-packages"><i class="fa fa-check"></i><b>1.2.4</b> Key R packages</a></li>
+<li class="chapter" data-level="1.2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rmarkdown"><i class="fa fa-check"></i><b>1.2.5</b> RMarkdown</a></li>
+<li class="chapter" data-level="1.2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#help-what-to-do-when-problems-appear"><i class="fa fa-check"></i><b>1.2.6</b> HELP! What to do when problems appear?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html"><i class="fa fa-check"></i><b>2</b> Importing and describing data</a><ul>
+<li class="chapter" data-level="2.1" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Importing data into R</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#view-data"><i class="fa fa-check"></i><b>2.2</b> View data</a></li>
+<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data-and-using-dplyr"><i class="fa fa-check"></i><b>2.3</b> Manipulating data and using dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#summarise-data-descriptive-statistics"><i class="fa fa-check"></i><b>2.4</b> Summarise data (descriptive statistics)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>3.1</b> ggplot2</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>3.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Simple and multiple linear regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>4.1</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#plotting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.1.1</b> Plotting a simple linear regression model</a></li>
+<li class="chapter" data-level="4.1.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-representation-of-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.1.2</b> Mathematical representation of a simple linear regression model</a></li>
+<li class="chapter" data-level="4.1.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#fitting-a-simple-linear-regression-model-in-r"><i class="fa fa-check"></i><b>4.1.3</b> Fitting a simple linear regression model in R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#bivariate-correlation"><i class="fa fa-check"></i><b>4.2</b> Bivariate correlation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#calculating-the-correlation-coefficient"><i class="fa fa-check"></i><b>4.2.1</b> Calculating the correlation coefficient</a></li>
+<li class="chapter" data-level="4.2.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#equivalence-to-linear-regression"><i class="fa fa-check"></i><b>4.2.2</b> Equivalence to linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>4.3</b> Multiple linear regression</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#dummy-coding-revisited"><i class="fa fa-check"></i><b>4.3.1</b> Dummy coding revisited</a></li>
+<li class="chapter" data-level="4.3.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-structure-of-multiple-linear-models"><i class="fa fa-check"></i><b>4.3.2</b> Mathematical structure of multiple linear models</a></li>
+<li class="chapter" data-level="4.3.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#running-multiple-linear-regression-models-in-r"><i class="fa fa-check"></i><b>4.3.3</b> Running multiple linear regression models in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html"><i class="fa fa-check"></i><b>5</b> Comparing means between conditions or groups</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#repeated-measures-or-independent-samples"><i class="fa fa-check"></i><b>5.0.1</b> Repeated measures or independent samples</a></li>
+<li class="chapter" data-level="5.0.2" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-independent-means"><i class="fa fa-check"></i><b>5.0.2</b> Two independent means</a></li>
+<li class="chapter" data-level="5.0.3" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-dependent-means"><i class="fa fa-check"></i><b>5.0.3</b> Two dependent means</a></li>
+<li class="chapter" data-level="5.0.4" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-independent-means"><i class="fa fa-check"></i><b>5.0.4</b> More than two independent means</a></li>
+<li class="chapter" data-level="5.0.5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-means-from-repeated-measures"><i class="fa fa-check"></i><b>5.0.5</b> More than two means from repeated measures</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html"><i class="fa fa-check"></i><b>6</b> Interaction terms in linear models</a><ul>
+<li class="chapter" data-level="6.1" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-1-memory-and-chess"><i class="fa fa-check"></i><b>6.1</b> Example 1: Memory and chess</a></li>
+<li class="chapter" data-level="6.2" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-2-link-between-obesity-and-negative-emotions-in-the-european-social-survey"><i class="fa fa-check"></i><b>6.2</b> Example 2: link between obesity and negative emotions in the European Social Survey</a></li>
+<li class="chapter" data-level="6.3" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-3-link-between-working-hours-income-and-life-satisfaction"><i class="fa fa-check"></i><b>6.3</b> Example 3: link between working hours, income and life satisfaction</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html"><i class="fa fa-check"></i><b>7</b> Chi-squared tests for associations between categorical variables</a><ul>
+<li class="chapter" data-level="7.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#tables-of-frequencies-and-proportions"><i class="fa fa-check"></i><b>7.1</b> Tables of frequencies and proportions</a></li>
+<li class="chapter" data-level="7.2" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-null-hypothesis-and-the-chi2-statistic"><i class="fa fa-check"></i><b>7.2</b> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</a></li>
+<li class="chapter" data-level="7.3" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-chisq.test-function"><i class="fa fa-check"></i><b>7.3</b> The chisq.test() function</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#dealing-with-small-samples"><i class="fa fa-check"></i><b>7.3.1</b> Dealing with small samples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.4</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="7.5" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#effect-sizes"><i class="fa fa-check"></i><b>7.5</b> Effect sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html"><i class="fa fa-check"></i><b>8</b> Reporting the results of statistical tests</a><ul>
+<li class="chapter" data-level="8.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#essential-pieces-of-information"><i class="fa fa-check"></i><b>8.1</b> Essential pieces of information</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#what-to-include-for-specific-tests"><i class="fa fa-check"></i><b>8.1.1</b> What to include for specific tests</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#formatting"><i class="fa fa-check"></i><b>8.1.2</b> Formatting</a></li>
+<li class="chapter" data-level="8.1.3" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#rounding"><i class="fa fa-check"></i><b>8.1.3</b> Rounding</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>9</b> Survey research - testing scales</a><ul>
+<li class="chapter" data-level="9.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>9.1</b> Creating scales</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>9.1.1</b> Testing internal consistency</a></li>
+<li class="chapter" data-level="9.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>9.1.2</b> Calculating scale scores</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>9.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html"><i class="fa fa-check"></i><b>10</b> Accessing online data sources</a><ul>
+<li class="chapter" data-level="10.1" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#world-bank-data"><i class="fa fa-check"></i><b>10.1</b> World Bank data</a></li>
+<li class="chapter" data-level="10.2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#wikidata"><i class="fa fa-check"></i><b>10.2</b> Wikidata</a></li>
+<li class="chapter" data-level="10.3" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#other-data-sources"><i class="fa fa-check"></i><b>10.3</b> Other data sources</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a><ul>
+<li class="chapter" data-level="11.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#example"><i class="fa fa-check"></i><b>11.1</b> Example</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#case-deletion"><i class="fa fa-check"></i><b>11.1.1</b> Case deletion</a></li>
+<li class="chapter" data-level="11.1.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation"><i class="fa fa-check"></i><b>11.1.2</b> Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>11.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html"><i class="fa fa-check"></i><b>12</b> Probability in statistics and real life</a><ul>
+<li class="chapter" data-level="12.1" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#what-are-probabilities"><i class="fa fa-check"></i><b>12.1</b> What are probabilities?</a></li>
+<li class="chapter" data-level="12.2" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#combining-multiple-events-together"><i class="fa fa-check"></i><b>12.2</b> Combining multiple events together</a></li>
+<li class="chapter" data-level="12.3" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#looking-at-independent-events"><i class="fa fa-check"></i><b>12.3</b> Looking at independent events</a></li>
+<li class="chapter" data-level="12.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>12.4</b> Updating our beliefs - Bayes’ theorem</a></li>
+<li class="chapter" data-level="12.5" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>12.5</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a><ul>
+<li class="chapter" data-level="A.1" data-path="two-more-pipes.html"><a href="two-more-pipes.html#expanding-the-tidyverse-the-exposition-pipe"><i class="fa fa-check"></i><b>A.1</b> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</a></li>
+<li class="chapter" data-level="A.2" data-path="two-more-pipes.html"><a href="two-more-pipes.html#a-somewhat-risky-time-saver-the-assignment-pipe"><i class="fa fa-check"></i><b>A.2</b> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><li>
+<li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Getting started with Quantitative Research Methods and R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chi-squared-tests-for-associations-between-categorical-variables" class="section level1">
+<h1><span class="header-section-number">Topic 7</span> Chi-squared tests for associations between categorical variables</h1>
+<p>Watch this video for an introduction to this topic:</p>
+<iframe src=" https://www.youtube.com/embed/h1oq6HjlyjI?rel=0 " allowfullscreen width="80%" height="350">
+</iframe>
+<p>When we want to see whether two categorical variables are associated with each other, typical linear models won’t work. Instead, we need a new way to decide whether a difference between the data we observe and that which we expect under the null-hypothesis is unlikely to occur due to chance. But before we get to that, we should look at the data.</p>
+<div id="tables-of-frequencies-and-proportions" class="section level2">
+<h2><span class="header-section-number">7.1</span> Tables of frequencies and proportions</h2>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb110-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse)</span></code></pre></div>
+<p>With two categorical variables, the data we observe can best be shown in a frequency table - i.e. a table that shows how many observations fall into each combination of categories of the two variables. This is created with the <code>table()</code> function. Let’s look an example of the association between political parties and their winning candidates’ gender in the 2019 UK general election. (Note that this is based on the official statistics published by the election authorities, who registered candidate gender as a binary variable.)</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb111-1"></a><span class="kw">table</span>(constituencies<span class="op">$</span>ElectionWon, constituencies<span class="op">$</span>WinnerGender)</span></code></pre></div>
+<pre><code>##      
+##       Female Male
+##   Con     87  278
+##   Lab    104   98
+##   LD       7    4
+##   SNP     16   32</code></pre>
+<p>If there is an association between the two variables, then the proportional distribution will differ between the rows (i.e. one party would have a higher <em>share</em> of women than another party). To see whether that is the case, proportion tables that show shares are helpful. These can be created from the <code>table()</code> output with the <code>prop.table()</code> function. However, there are three options for proportions: are we interested in the share of each cell as a part of the total number of candidates? Or as a share of all winning candidates of a gender (i.e what share of female winning candidates are from the Conservative party)? Or rather the shares of women and men as a share of the total winning candidates of each party? In this case the latter seems most relevant and interpretable.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb113-1"></a>x &lt;-<span class="st"> </span><span class="kw">table</span>(constituencies<span class="op">$</span>ElectionWon, constituencies<span class="op">$</span>WinnerGender)</span>
+<span id="cb113-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb113-2"></a><span class="co">#prop.table(x) - share of each cell as part of the total</span></span>
+<span id="cb113-3"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb113-3"></a><span class="co">#prop.table(x, margin = 2) - share of each cell as part of the column</span></span>
+<span id="cb113-4"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb113-4"></a><span class="kw">prop.table</span>(x, <span class="dt">margin =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Share of each cell as part of the row</span></span>
+<span id="cb113-5"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb113-5"></a><span class="st">   </span><span class="kw">round</span>(<span class="dv">2</span>) <span class="co">#Round to 2 decimal places</span></span></code></pre></div>
+<pre><code>##      
+##       Female Male
+##   Con   0.24 0.76
+##   Lab   0.51 0.49
+##   LD    0.64 0.36
+##   SNP   0.33 0.67</code></pre>
+</div>
+<div id="the-null-hypothesis-and-the-chi2-statistic" class="section level2">
+<h2><span class="header-section-number">7.2</span> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</h2>
+<p>To be able to test whether any differences between the rows or between the columns that we observe in a frequency table are statistically significant, we need to be clear on what the null hypothesis is. If two variables are statistically independent, then their distribution needs to be the same across each row and along each column. This does not mean that all cells need to have the same value, In our case, given that there are many more male than female election winners and many more Conservative MPs than MPs of any other party, we would expect the male Conservatives cell to have the highest number of observations if there was no relationship between party and winning candidates’ gender, i.e. if the null hypothesis was true.</p>
+<p>The expected number of observations in each cell under the null hypothesis can be calculated as the share of its row entire row of the total observations (e.g., the total share of female candidates) * the share of its column of the total (e.g., the total share of Labour candidates) * the total number of observations. Based on that logic, the expected number of observations per cell would be the following.</p>
+<pre><code>##                           constituencies$WinnerGender
+## constituencies$ElectionWon Female Male
+##                        Con    125  240
+##                        Lab     69  133
+##                        LD       4    7
+##                        SNP     16   32</code></pre>
+<p>Once we know what to expect under the null-hypothesis, we need a way to see how far our observed data diverges from that. The <span class="math inline">\(\chi^2\)</span> (chi-squared) test statistic provides a way of measuring that distance in a way that is independent of our sample size and therefore comparable across studies. It is calculated as follows, where O is the <em>observed</em> number of cases per cell of the frequency table and E is the <em>expected</em> number under the null-hypothesis:</p>
+<p><span class="math display">\[\chi^2=\sum\frac{(O-E)^2}E\]</span></p>
+<p>In R, easiest way to calculate it and test whether the distance of the observed distribution from the null distribution is statistically significant is to use the chisq.test() function.</p>
+</div>
+<div id="the-chisq.test-function" class="section level2">
+<h2><span class="header-section-number">7.3</span> The chisq.test() function</h2>
+<p>As a simple fictional example, we might be interested in whether Scottish and British people differ in their preference for tea versus coffee. If we ask 100 people, we might observe the following distribution:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb116-1"></a><span class="kw">table</span>(prefData<span class="op">$</span>nationality, prefData<span class="op">$</span>preference)</span></code></pre></div>
+<pre><code>##           
+##            Coffee Tea
+##   English      45  95
+##   Scottish     30  30</code></pre>
+<p>To calculate the distance from distribution expected if there was no association between nationality and tea preference, we use the chisq.test() function. That also gives us an associated <em>p</em>-value.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb118-1"></a><span class="kw">chisq.test</span>(prefData<span class="op">$</span>nationality, prefData<span class="op">$</span>preference, <span class="dt">correct =</span> F)</span></code></pre></div>
+<pre><code>## 
+## 	Pearson&#39;s Chi-squared test
+## 
+## data:  prefData$nationality and prefData$preference
+## X-squared = 5.7143, df = 1, p-value = 0.01683</code></pre>
+<p>In this case, we would conclude that there is a statistically significant difference, with English people preferring tea more frequently than Scottish people do, <span class="math inline">\(\chi^2\)</span>(1) = 4.98, <em>p</em> = .016.</p>
+<div id="dealing-with-small-samples" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Dealing with small samples</h3>
+<p>When testing the significance of <span class="math inline">\(\chi^2\)</span>-values, the calculated values are compared to a continuous distribution. When you have a small sample, however, your possible <span class="math inline">\(\chi^2\)</span>-values cannot be continous; rather, a single observation shifting from one cell to another would be associated with a substantial jump in the <span class="math inline">\(\chi^2\)</span> statistic. This can make the normal <em>p</em>-values far too low in such cases, and therefore lead to Type I errors (false positives).</p>
+<p>It is often recommended that <span class="math inline">\(\chi^2\)</span> should not be used with samples where the expected frequency in more than 20% of the cells is less than 5. In a 2x2 table (i.e when each of the two variables has only two possible categories), the Yates correction can be used to reduce the <span class="math inline">\(\chi^2\)</span>-value and therefore make the test more conservative (R does that by default in <code>chisq.test()</code>, but it can be turned off by setting <code>correct = FALSE</code>). However, this sometimes goes too far, so my recommendation is to simulate <em>p</em>-values for any samples where you have cells with low expected frequencies (say less than 20 expected cases in the smallest cell). You can do that by setting <code>simulate.p.value = TRUE</code> in the function call. Note that like any simulation, this is based on random number generation, so that <code>set.seed()</code> should be used with a fixed number of your choice to ensure that the results can be reproduced.</p>
+<p>If we were to rerun the example above with a smaller sample but more extreme differences, we can compare the three possible methods of calculating <span class="math inline">\(\chi^2\)</span>. To see how small the smallest expected value is, we can look at the <code>expected</code> element of the output of the chisq.test() function.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb120-1"></a><span class="kw">table</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference)</span>
+<span id="cb120-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb120-2"></a><span class="kw">chisq.test</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference, <span class="dt">correct =</span> F)</span></code></pre></div>
+<pre><code>##           
+##            Coffee Tea
+##   English      12  30
+##   Scottish     10   8
+## 
+## 	Pearson&#39;s Chi-squared test
+## 
+## data:  prefDataSmall$nationality and prefDataSmall$preference
+## X-squared = 3.9508, df = 1, p-value = 0.04685</code></pre>
+<p>It looks like the difference is significant. However, we should consider how small the smallest expected cell count is, to decide whether we need to adjust our way of testing significance. For that, we can look at the <code>expected</code> element of the output of the chisq.test() function.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb122-1"></a><span class="kw">chisq.test</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference, <span class="dt">correct =</span> F)<span class="op">$</span>expected</span></code></pre></div>
+<pre><code>##                          prefDataSmall$preference
+## prefDataSmall$nationality Coffee  Tea
+##                  English    15.4 26.6
+##                  Scottish    6.6 11.4</code></pre>
+<p>With fewer than 7 expected cases of Scottish coffee drinkers, the standard <span class="math inline">\(\chi^2\)</span> significance test is not reliable. Therefore, we either need to use the correction or simulation. Given that the simulation is based on random numbers, we should use the <code>set.seed()</code> function to initialise the random number generator - that makes sure that the results are reproducible.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb124-1"></a><span class="kw">set.seed</span>(<span class="dv">300688</span>)</span>
+<span id="cb124-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb124-2"></a><span class="kw">chisq.test</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference, <span class="dt">correct =</span> T)</span>
+<span id="cb124-3"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb124-3"></a><span class="kw">chisq.test</span>(prefDataSmall<span class="op">$</span>nationality, prefDataSmall<span class="op">$</span>preference, <span class="dt">simulate.p.value =</span> T)</span></code></pre></div>
+<pre><code>## 
+## 	Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+## 
+## data:  prefDataSmall$nationality and prefDataSmall$preference
+## X-squared = 2.8742, df = 1, p-value = 0.09001
+## 
+## 
+## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
+## 	replicates)
+## 
+## data:  prefDataSmall$nationality and prefDataSmall$preference
+## X-squared = 3.9508, df = NA, p-value = 0.07496</code></pre>
+<p>These other two methods agree that caution is needed. Usually, the simulated <em>p</em>-value will be a bit lower and a bit more accurate than the result of the Yates’ continuity correction, so I would report that the data shows a trend towards a greater preference for tea among English respondents that falls short of the conventional standard of statistical significance, with <span class="math inline">\(\chi^2\)</span> = 3.95, <em>p</em> = .075 (based on 2000 Monte Carlo simulations).</p>
+</div>
+</div>
+<div id="post-hoc-tests" class="section level2">
+<h2><span class="header-section-number">7.4</span> Post-hoc tests</h2>
+<p><span class="math inline">\(\chi^2\)</span>-tests can be used to test for an association between variables with many different levels, such as music preferences or political parties. In that case, a significant result only tells us that at least one of the cell counts is significantly different from the expectation under the null-hypothesis. To get more details, post-hoc tests would be needed. To go back to the example at the start, let’s test whether the winning candidates’ gender differed significantly between the major UK parties in the 2019 General Election. It certainly looks that way from the proportions table, and the <code>chisq.test()</code> agrees</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb126-1"></a><span class="kw">prop.table</span>(x, <span class="dt">margin =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Share of each cell as part of the row</span></span>
+<span id="cb126-2"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb126-2"></a><span class="st">   </span><span class="kw">round</span>(<span class="dv">2</span>) <span class="co">#Round to 2 decimal places</span></span>
+<span id="cb126-3"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb126-3"></a></span>
+<span id="cb126-4"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb126-4"></a><span class="kw">chisq.test</span>(constituencies<span class="op">$</span>ElectionWon, constituencies<span class="op">$</span>WinnerGender,</span>
+<span id="cb126-5"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb126-5"></a>           <span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>##      
+##       Female Male
+##   Con   0.24 0.76
+##   Lab   0.51 0.49
+##   LD    0.64 0.36
+##   SNP   0.33 0.67
+## 
+## 	Pearson&#39;s Chi-squared test with simulated p-value (based on 2000
+## 	replicates)
+## 
+## data:  constituencies$ElectionWon and constituencies$WinnerGender
+## X-squared = 48.504, df = NA, p-value = 0.0004998</code></pre>
+<p>However, this does not allow us to answer questions about any specific parties. For that, we need post-hoc tests. The most common tests compare each cell to its expected value under the null-hypothesis, but other tests are possible. For instance, you might be more interested to compare parties to each other rather than to this expected (average) value. For that, you would need to filter your data and run multiple chisq.tests.</p>
+<p>To compare each cell to the expected value, we can use the <code>chisq.posthoc.test</code> package. This package contains the <code>chisq.posthoc.test()</code> function that takes a table as the input and computes standardised residuals (i.e. distances) and <em>p</em>-values for each cell. To avoid an inflated error rate, it can correct for multiple comparisons; by default the Bonferroni correction is used.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb128-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(chisq.posthoc.test)</span></code></pre></div>
+<pre><code>## Installing package into &#39;/home/runner/work/_temp/Library&#39;
+## (as &#39;lib&#39; is unspecified)</code></pre>
+<pre><code>## 
+## chisq.posthoc.test installed</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb131-1"></a><span class="kw">table</span>(constituencies<span class="op">$</span>ElectionWon, constituencies<span class="op">$</span>WinnerGender) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">chisq.posthoc.test</span>(<span class="dt">simulate.p.value =</span> <span class="ot">TRUE</span>, <span class="dt">method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>##   Dimension     Value     Female       Male
+## 1       Con Residuals -6.4559388  6.4559388
+## 2       Con  p values  0.0000000  0.0000000
+## 3       Lab Residuals  6.2985557 -6.2985557
+## 4       Lab  p values  0.0000000  0.0000000
+## 5        LD Residuals  2.0776181 -2.0776181
+## 6        LD  p values  0.3019560  0.3019560
+## 7       SNP Residuals -0.1295052  0.1295052
+## 8       SNP  p values  1.0000000  1.0000000</code></pre>
+<p>In this table, the <em>p</em>-values can tell us which party/gender combinations differ significantly from the expectation under the null-hypothesis, while the sign of the residuals indicates the direction of the effect. Thus we can see that the Conservatives had significantly fewer male winning candidates while Labour had significantly more.</p>
+<p><em>A note on statistical power and the importance of thinking about corrections:</em> This approach to running post-hoc tests runs one test per cell. In this situation with 2 genders and 4 parties, we have 8 cells, so that the Bonferroni correction multiplies each <em>p</em>-value by 8, which makes it relatively hard to detect effects. However, as should be clear from the table, in cases where one variable has only two levels, half of the tests are redundant. If we know that the Conservatives have significantly fewer female winners, it follows necessarily that they have significantly more male winners. <em>p</em>-values in each row are identical, and the residuals are symmetric. Therefore, we should only count half of the tests, and multiply p-values by 4 rather than 8. The general point is that it is essential to check how many tests a post-hoc functions counts in adjusting <em>p</em>-values by comparing the <em>p</em>-values reported when the adjustment parameter is set to “none” to those reported with “bonferroni” correction. Then make sure that you understand where that number comes from and that it makes sense in your situation.</p>
+</div>
+<div id="effect-sizes" class="section level2">
+<h2><span class="header-section-number">7.5</span> Effect sizes</h2>
+<p>As always, finding that the variables are related to a statistically significant degree is only the first step, and you also want to report the strength of the relationship. Clear proportion tables are essential here, and then there are two options to sum up the strength of relationships into a single number: <strong>Cramer’s V</strong> as a standardised measure of the strength of an association between two categorical variables, and the <strong>Odds Ratio</strong> of being in one cell rather than another.</p>
+<p><strong>Cramer’s V</strong> describes a full table, and is scaled from 0 (no relationship) to 1 (one variable is entirely predictable by the other). It is often recommended that one should be weary of values greater than .5, as that suggests that the two variables might be redundant. Many packages offer functions to calculate Cramer’s V, including the <code>effectsize</code> package that allows us to calculate it based on the <span class="math inline">\(\chi^2\)</span>-value, the sample size, and the number of levels of each variable.</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb133-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(effectsize)</span></code></pre></div>
+<pre><code>## Installing package into &#39;/home/runner/work/_temp/Library&#39;
+## (as &#39;lib&#39; is unspecified)</code></pre>
+<pre><code>## also installing the dependencies &#39;insight&#39;, &#39;bayestestR&#39;, &#39;parameters&#39;</code></pre>
+<pre><code>## 
+## effectsize installed</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#cb137-1"></a><span class="kw">chisq_to_cramers_v</span>(<span class="dt">chisq =</span> <span class="fl">48.5</span>, <span class="dt">n =</span> <span class="dv">626</span>, <span class="dt">nrow=</span><span class="dv">4</span>, <span class="dt">ncol=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## Cramer&#39;s V |    1e+02% CI
+## -------------------------
+##       0.28 | [0.19, 0.35]</code></pre>
+<p>While this is a helpful statistic to compare effect strengths across multiple tests, it does not have an intuitive interpretation. Here, Odds Ratios might help. They can only be calculated for 2x2 tables, for instance for the fictional example regarding tea and coffee preferences.</p>
+<pre><code>##           
+##            Coffee Tea
+##   English      45  95
+##   Scottish     30  30</code></pre>
+<p>Here an <strong>Odds Ratio</strong> would state how much more likely it is to get a tea afficionado if we ask an English rather than a Scottish person. Odds are the ratio of the frequency of specified outcomes over the frequency of other outcomes. For instance, the odds of it being Sunday on a random day are 1 to 6. In this case, the odds for getting a tea afficionado when picking out an English person would be 95:45, while they would be 30:30 for a Scottish person. Thus the odds ratio would be <span class="math display">\[OR = \frac{\frac{95}{45}}{\frac{30}{30}}=2.1\]</span>, so that I would be</p>
+<ul>
+<li>2.1x more likely to get a tea afficionado rather than a coffee afficionado when picking out an English person from this sample than a Scottish person,</li>
+<li>2.1x more likely to get a coffee afficionado rather than a tea afficionado when picking out a Scottish person rather than an English person from this sample,</li>
+<li>2.1x more likely to have an English person in front of me when I encounter a tea afficionado from this sample,</li>
+<li>and 2.1x more likely to have a Scottish person in front of me when I encounter a coffee afficionado from this sample.</li>
+</ul>
+<p>All of these statements should be easier to interpret than a Cramer’s V index of .17 (which happens to be the value of this sample). Of course you should pick which one of the ways of framing the relationship is the best answer to the question at hand, rather than reporting the same information multiple times.</p>
+
+</div>
+</div>
+<div class="psyteachr_footer">
+  
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol){
+    var tol = JSON.parse(this.dataset.tol);  
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("correct");
+    } else {
+      cl.remove("correct");
+    }  
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("correct");
+    }  
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="interaction-terms-in-linear-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reporting-the-results-of-statistical-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

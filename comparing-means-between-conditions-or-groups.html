@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 5 Comparing means between conditions or groups | Getting started with Quantitative Research Methods and R</title>
+  <meta name="description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 5 Comparing means between conditions or groups | Getting started with Quantitative Research Methods and R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 5 Comparing means between conditions or groups | Getting started with Quantitative Research Methods and R" />
+  
+  <meta name="twitter:description" content="These are some of the course materials for the Goldsmiths’ Core Quantitative Research Methods course. It is a living document that will be updated regularly." />
+  
+
+<meta name="author" content="Lukas Wallrich" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="prev" href="simple-and-multiple-linear-regression.html"/>
+<link rel="next" href="interaction-terms-in-linear-models.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="include/psyteachr.css" type="text/css" />
+<link rel="stylesheet" href="include/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Getting started with Quantitative Research Methods and R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a><ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#further-sources"><i class="fa fa-check"></i><b>0.1</b> Further sources</a><ul>
+<li class="chapter" data-level="0.1.1" data-path="index.html"><a href="index.html#free-online-books"><i class="fa fa-check"></i><b>0.1.1</b> Free online books</a></li>
+<li class="chapter" data-level="0.1.2" data-path="index.html"><a href="index.html#paperlibrary-books"><i class="fa fa-check"></i><b>0.1.2</b> Paper/library books</a></li>
+<li class="chapter" data-level="0.1.3" data-path="index.html"><a href="index.html#other-key-resources"><i class="fa fa-check"></i><b>0.1.3</b> Other key resources</a></li>
+</ul></li>
+<li class="chapter" data-level="0.2" data-path="index.html"><a href="index.html#why-r"><i class="fa fa-check"></i><b>0.2</b> Why R?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting started with R</a><ul>
+<li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#install-r-on-your-computer"><i class="fa fa-check"></i><b>1.1</b> Install R on your computer</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#some-key-concepts"><i class="fa fa-check"></i><b>1.2</b> Some key concepts</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#r-rstudio-and-r-packages"><i class="fa fa-check"></i><b>1.2.1</b> R, RStudio and R packages</a></li>
+<li class="chapter" data-level="1.2.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#data-and-variables-in-r"><i class="fa fa-check"></i><b>1.2.2</b> Data and variables in R</a></li>
+<li class="chapter" data-level="1.2.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#functions-in-r"><i class="fa fa-check"></i><b>1.2.3</b> Functions in R</a></li>
+<li class="chapter" data-level="1.2.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#key-r-packages"><i class="fa fa-check"></i><b>1.2.4</b> Key R packages</a></li>
+<li class="chapter" data-level="1.2.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#rmarkdown"><i class="fa fa-check"></i><b>1.2.5</b> RMarkdown</a></li>
+<li class="chapter" data-level="1.2.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#help-what-to-do-when-problems-appear"><i class="fa fa-check"></i><b>1.2.6</b> HELP! What to do when problems appear?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html"><i class="fa fa-check"></i><b>2</b> Importing and describing data</a><ul>
+<li class="chapter" data-level="2.1" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#importing-data-into-r"><i class="fa fa-check"></i><b>2.1</b> Importing data into R</a></li>
+<li class="chapter" data-level="2.2" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#view-data"><i class="fa fa-check"></i><b>2.2</b> View data</a></li>
+<li class="chapter" data-level="2.3" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#manipulating-data-and-using-dplyr"><i class="fa fa-check"></i><b>2.3</b> Manipulating data and using dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="importing-and-describing-data.html"><a href="importing-and-describing-data.html#summarise-data-descriptive-statistics"><i class="fa fa-check"></i><b>2.4</b> Summarise data (descriptive statistics)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>3</b> Data visualisation</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>3.1</b> ggplot2</a></li>
+<li class="chapter" data-level="3.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>3.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Simple and multiple linear regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#simple-linear-regression"><i class="fa fa-check"></i><b>4.1</b> Simple linear regression</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#plotting-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.1.1</b> Plotting a simple linear regression model</a></li>
+<li class="chapter" data-level="4.1.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-representation-of-a-simple-linear-regression-model"><i class="fa fa-check"></i><b>4.1.2</b> Mathematical representation of a simple linear regression model</a></li>
+<li class="chapter" data-level="4.1.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#fitting-a-simple-linear-regression-model-in-r"><i class="fa fa-check"></i><b>4.1.3</b> Fitting a simple linear regression model in R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#bivariate-correlation"><i class="fa fa-check"></i><b>4.2</b> Bivariate correlation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#calculating-the-correlation-coefficient"><i class="fa fa-check"></i><b>4.2.1</b> Calculating the correlation coefficient</a></li>
+<li class="chapter" data-level="4.2.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#equivalence-to-linear-regression"><i class="fa fa-check"></i><b>4.2.2</b> Equivalence to linear regression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#multiple-linear-regression"><i class="fa fa-check"></i><b>4.3</b> Multiple linear regression</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#dummy-coding-revisited"><i class="fa fa-check"></i><b>4.3.1</b> Dummy coding revisited</a></li>
+<li class="chapter" data-level="4.3.2" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#mathematical-structure-of-multiple-linear-models"><i class="fa fa-check"></i><b>4.3.2</b> Mathematical structure of multiple linear models</a></li>
+<li class="chapter" data-level="4.3.3" data-path="simple-and-multiple-linear-regression.html"><a href="simple-and-multiple-linear-regression.html#running-multiple-linear-regression-models-in-r"><i class="fa fa-check"></i><b>4.3.3</b> Running multiple linear regression models in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html"><i class="fa fa-check"></i><b>5</b> Comparing means between conditions or groups</a><ul>
+<li class="chapter" data-level="5.0.1" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#repeated-measures-or-independent-samples"><i class="fa fa-check"></i><b>5.0.1</b> Repeated measures or independent samples</a></li>
+<li class="chapter" data-level="5.0.2" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-independent-means"><i class="fa fa-check"></i><b>5.0.2</b> Two independent means</a></li>
+<li class="chapter" data-level="5.0.3" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#two-dependent-means"><i class="fa fa-check"></i><b>5.0.3</b> Two dependent means</a></li>
+<li class="chapter" data-level="5.0.4" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-independent-means"><i class="fa fa-check"></i><b>5.0.4</b> More than two independent means</a></li>
+<li class="chapter" data-level="5.0.5" data-path="comparing-means-between-conditions-or-groups.html"><a href="comparing-means-between-conditions-or-groups.html#more-than-two-means-from-repeated-measures"><i class="fa fa-check"></i><b>5.0.5</b> More than two means from repeated measures</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html"><i class="fa fa-check"></i><b>6</b> Interaction terms in linear models</a><ul>
+<li class="chapter" data-level="6.1" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-1-memory-and-chess"><i class="fa fa-check"></i><b>6.1</b> Example 1: Memory and chess</a></li>
+<li class="chapter" data-level="6.2" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-2-link-between-obesity-and-negative-emotions-in-the-european-social-survey"><i class="fa fa-check"></i><b>6.2</b> Example 2: link between obesity and negative emotions in the European Social Survey</a></li>
+<li class="chapter" data-level="6.3" data-path="interaction-terms-in-linear-models.html"><a href="interaction-terms-in-linear-models.html#example-3-link-between-working-hours-income-and-life-satisfaction"><i class="fa fa-check"></i><b>6.3</b> Example 3: link between working hours, income and life satisfaction</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html"><i class="fa fa-check"></i><b>7</b> Chi-squared tests for associations between categorical variables</a><ul>
+<li class="chapter" data-level="7.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#tables-of-frequencies-and-proportions"><i class="fa fa-check"></i><b>7.1</b> Tables of frequencies and proportions</a></li>
+<li class="chapter" data-level="7.2" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-null-hypothesis-and-the-chi2-statistic"><i class="fa fa-check"></i><b>7.2</b> The null hypothesis and the <span class="math inline">\(\chi^2\)</span> statistic</a></li>
+<li class="chapter" data-level="7.3" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#the-chisq.test-function"><i class="fa fa-check"></i><b>7.3</b> The chisq.test() function</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#dealing-with-small-samples"><i class="fa fa-check"></i><b>7.3.1</b> Dealing with small samples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.4</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="7.5" data-path="chi-squared-tests-for-associations-between-categorical-variables.html"><a href="chi-squared-tests-for-associations-between-categorical-variables.html#effect-sizes"><i class="fa fa-check"></i><b>7.5</b> Effect sizes</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html"><i class="fa fa-check"></i><b>8</b> Reporting the results of statistical tests</a><ul>
+<li class="chapter" data-level="8.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#essential-pieces-of-information"><i class="fa fa-check"></i><b>8.1</b> Essential pieces of information</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#what-to-include-for-specific-tests"><i class="fa fa-check"></i><b>8.1.1</b> What to include for specific tests</a></li>
+<li class="chapter" data-level="8.1.2" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#formatting"><i class="fa fa-check"></i><b>8.1.2</b> Formatting</a></li>
+<li class="chapter" data-level="8.1.3" data-path="reporting-the-results-of-statistical-tests.html"><a href="reporting-the-results-of-statistical-tests.html#rounding"><i class="fa fa-check"></i><b>8.1.3</b> Rounding</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html"><i class="fa fa-check"></i><b>9</b> Survey research - testing scales</a><ul>
+<li class="chapter" data-level="9.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#creating-scales"><i class="fa fa-check"></i><b>9.1</b> Creating scales</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#testing-internal-consistency"><i class="fa fa-check"></i><b>9.1.1</b> Testing internal consistency</a></li>
+<li class="chapter" data-level="9.1.2" data-path="survey-research-testing-scales.html"><a href="survey-research-testing-scales.html#calculating-scale-scores"><i class="fa fa-check"></i><b>9.1.2</b> Calculating scale scores</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>9.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html"><i class="fa fa-check"></i><b>10</b> Accessing online data sources</a><ul>
+<li class="chapter" data-level="10.1" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#world-bank-data"><i class="fa fa-check"></i><b>10.1</b> World Bank data</a></li>
+<li class="chapter" data-level="10.2" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#wikidata"><i class="fa fa-check"></i><b>10.2</b> Wikidata</a></li>
+<li class="chapter" data-level="10.3" data-path="accessing-online-data-sources.html"><a href="accessing-online-data-sources.html#other-data-sources"><i class="fa fa-check"></i><b>10.3</b> Other data sources</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html"><i class="fa fa-check"></i><b>11</b> Dealing with missing data</a><ul>
+<li class="chapter" data-level="11.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#example"><i class="fa fa-check"></i><b>11.1</b> Example</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#case-deletion"><i class="fa fa-check"></i><b>11.1.1</b> Case deletion</a></li>
+<li class="chapter" data-level="11.1.2" data-path="dealing-with-missing-data.html"><a href="dealing-with-missing-data.html#imputation"><i class="fa fa-check"></i><b>11.1.2</b> Imputation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>11.2</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html"><i class="fa fa-check"></i><b>12</b> Probability in statistics and real life</a><ul>
+<li class="chapter" data-level="12.1" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#what-are-probabilities"><i class="fa fa-check"></i><b>12.1</b> What are probabilities?</a></li>
+<li class="chapter" data-level="12.2" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#combining-multiple-events-together"><i class="fa fa-check"></i><b>12.2</b> Combining multiple events together</a></li>
+<li class="chapter" data-level="12.3" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#looking-at-independent-events"><i class="fa fa-check"></i><b>12.3</b> Looking at independent events</a></li>
+<li class="chapter" data-level="12.4" data-path="probability-in-statistics-and-real-life.html"><a href="probability-in-statistics-and-real-life.html#updating-our-beliefs---bayes-theorem"><i class="fa fa-check"></i><b>12.4</b> Updating our beliefs - Bayes’ theorem</a></li>
+<li class="chapter" data-level="12.5" data-path="data-visualisation.html"><a href="data-visualisation.html#further-resources"><i class="fa fa-check"></i><b>12.5</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="packages-and-references.html"><a href="packages-and-references.html"><i class="fa fa-check"></i><b>13</b> Packages and references</a></li>
+<li class="appendix"><span><b>Appendices</b></span></li>
+<li class="chapter" data-level="A" data-path="two-more-pipes.html"><a href="two-more-pipes.html"><i class="fa fa-check"></i><b>A</b> Two more pipes</a><ul>
+<li class="chapter" data-level="A.1" data-path="two-more-pipes.html"><a href="two-more-pipes.html#expanding-the-tidyverse-the-exposition-pipe"><i class="fa fa-check"></i><b>A.1</b> Expanding the tidyverse: the exposition pipe (<code>%$%</code>)</a></li>
+<li class="chapter" data-level="A.2" data-path="two-more-pipes.html"><a href="two-more-pipes.html#a-somewhat-risky-time-saver-the-assignment-pipe"><i class="fa fa-check"></i><b>A.2</b> A somewhat risky time-saver: the assignment pipe (<code>%&lt;&gt;%</code>)</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" 
+    target="blank"><img alt="Creative Commons License" 
+    style="border-width:0" 
+    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><li>
+<li><a href="https://psyteachr.github.io/" target="blank">PsyTeachR</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Getting started with Quantitative Research Methods and R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="comparing-means-between-conditions-or-groups" class="section level1">
+<h1><span class="header-section-number">Topic 5</span> Comparing means between conditions or groups</h1>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="comparing-means-between-conditions-or-groups.html#cb46-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(tidyverse)</span></code></pre></div>
+<p>Watch this video for an introduction to testing for differences between two means and the differences between repeated measures and independent samples:</p>
+<iframe src=" https://www.youtube.com/embed/L69HyBnvQRQ?rel=0 " allowfullscreen width="80%" height="350">
+</iframe>
+<p>Watch this video for an introduction to testing for differences between <em>more than</em> two means:</p>
+<iframe src=" https://www.youtube.com/embed/r96FYPLQ1l0?rel=0 " allowfullscreen width="80%" height="350">
+</iframe>
+<div id="repeated-measures-or-independent-samples" class="section level3">
+<h3><span class="header-section-number">5.0.1</span> Repeated measures or independent samples</h3>
+<p>The first question always needs to be whether each participant contributes one or several data points to the dependent variable that is compared. If they contribute only one, we have an <em>independent samples</em> or <em>between-participants</em> design; if they contribute several, the design is <em>repeated measures</em> or <em>within participants.</em> In the latter case, we need to account for the relationships between some of the measurements in our analysis.</p>
+</div>
+<div id="two-independent-means" class="section level3">
+<h3><span class="header-section-number">5.0.2</span> Two independent means</h3>
+<p>Going back to the European Social Survey 2014 data, we might be curious whether social trust differs between men and women in the UK. For that, we should always first calculate the descriptive statistics:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="comparing-means-between-conditions-or-groups.html#cb47-1"></a>ess &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="kw">url</span>(<span class="st">&quot;http://empower-training.de/Gold/round7.RDS&quot;</span>))</span>
+<span id="cb47-2"><a href="comparing-means-between-conditions-or-groups.html#cb47-2"></a>ess &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">soctrust =</span> (ppltrst <span class="op">+</span><span class="st"> </span>pplfair <span class="op">+</span><span class="st"> </span>pplhlp)<span class="op">/</span><span class="dv">3</span>)</span>
+<span id="cb47-3"><a href="comparing-means-between-conditions-or-groups.html#cb47-3"></a>essUK &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cntry<span class="op">==</span><span class="st">&quot;GB&quot;</span>)</span>
+<span id="cb47-4"><a href="comparing-means-between-conditions-or-groups.html#cb47-4"></a>essUK <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(gndr) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(soctrust, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## [90m# A tibble: 2 x 2[39m
+##   gndr   `mean(soctrust, na.rm = TRUE)`
+##   [3m[90m&lt;fct&gt;[39m[23m                           [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m Male                             5.70
+## [90m2[39m Female                           5.72</code></pre>
+<p>Those means look very close. Nevertheless, we might want to know how likely we would have been to see a difference this large under the null-hypothesis, i.e. if social trust did not differ between men and women. For that, we can run a t-test.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="comparing-means-between-conditions-or-groups.html#cb50-1"></a><span class="kw">t.test</span>(soctrust <span class="op">~</span><span class="st"> </span>gndr, <span class="dt">data=</span>essUK, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## 	Two Sample t-test
+## 
+## data:  soctrust by gndr
+## t = -0.2116, df = 2248, p-value = 0.8324
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1601569  0.1289597
+## sample estimates:
+##   mean in group Male mean in group Female 
+##             5.702288             5.717886</code></pre>
+<p>This is just a special case of a linear model, so we could also use the <code>lm()</code> function:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="comparing-means-between-conditions-or-groups.html#cb52-1"></a><span class="kw">lm</span>(soctrust <span class="op">~</span><span class="st"> </span>gndr, <span class="dt">data=</span>essUK) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = soctrust ~ gndr, data = essUK)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -5.7179 -1.0512  0.2821  1.2821  4.2977 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.70229    0.05450 104.623   &lt;2e-16 ***
+## gndrFemale   0.01560    0.07372   0.212    0.832    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.741 on 2248 degrees of freedom
+##   (14 observations deleted due to missingness)
+## Multiple R-squared:  1.992e-05,	Adjusted R-squared:  -0.0004249 
+## F-statistic: 0.04478 on 1 and 2248 DF,  p-value: 0.8324</code></pre>
+<p>Both show, as expected, that the difference we observed could easily have been due to chance. If this is the only test you conduct, you would conventionally usually report the result of the t-test, saying: there was no significant difference in social trust between men and women, <em>t</em>(2248) = -0.21, <em>p</em> = .83.</p>
+</div>
+<div id="two-dependent-means" class="section level3">
+<h3><span class="header-section-number">5.0.3</span> Two dependent means</h3>
+<p>In the ESS data, participants were asked how much they drank when they last drank during a weekday and during a weekend. Here the same participants provided two alcohol measures, so that these data points represent repeated measures. If we ignore that in the analysis, we violate a key assumption of linear models - namely the independence of observations. Therefore, we need to use a paired t-test. But as always, first descriptive statistics.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="comparing-means-between-conditions-or-groups.html#cb54-1"></a>essUK <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">weekday =</span> <span class="kw">mean</span>(alcwkdy, <span class="dt">na.rm=</span>T), <span class="dt">weekend=</span><span class="kw">mean</span>(alcwknd, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">diff =</span> weekend <span class="op">-</span><span class="st"> </span>weekday)</span></code></pre></div>
+<pre><code>## [90m# A tibble: 1 x 3[39m
+##   weekday weekend  diff
+##     [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m    36.3    62.4  26.1</code></pre>
+<p>So there seems to be a large difference in the average amount people drink during a single session on weekdays and weekends. Is the difference statistically significant?</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="comparing-means-between-conditions-or-groups.html#cb56-1"></a><span class="kw">t.test</span>(essUK<span class="op">$</span>alcwknd, essUK<span class="op">$</span>alcwkdy, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## 	Paired t-test
+## 
+## data:  essUK$alcwknd and essUK$alcwkdy
+## t = 13.119, df = 1800, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  22.23332 30.04986
+## sample estimates:
+## mean of the differences 
+##                26.14159</code></pre>
+<p>The paired t-test - as it says in the output - tests whether the mean of the differences between the two variables is significantly different from 0. We could also specify that condition directly:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="comparing-means-between-conditions-or-groups.html#cb58-1"></a><span class="kw">t.test</span>(essUK<span class="op">$</span>alcwknd <span class="op">-</span><span class="st"> </span>essUK<span class="op">$</span>alcwkdy, <span class="dt">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## 
+## 	One Sample t-test
+## 
+## data:  essUK$alcwknd - essUK$alcwkdy
+## t = 13.119, df = 1800, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  22.23332 30.04986
+## sample estimates:
+## mean of x 
+##  26.14159</code></pre>
+</div>
+<div id="more-than-two-independent-means" class="section level3">
+<h3><span class="header-section-number">5.0.4</span> More than two independent means</h3>
+<p>We might be interested whether levels of life satisfaction differ between the European countries we could reach by ferry from the UK. First, let’s look at the descriptive statistics.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="comparing-means-between-conditions-or-groups.html#cb60-1"></a>essF &lt;-<span class="st"> </span>ess <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(cntry <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;FR&quot;</span>, <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;IE&quot;</span>, <span class="st">&quot;BE&quot;</span>, <span class="st">&quot;NL&quot;</span>))</span>
+<span id="cb60-2"><a href="comparing-means-between-conditions-or-groups.html#cb60-2"></a>essF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(cntry) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(stflife, <span class="dt">na.rm =</span> T))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## [90m# A tibble: 5 x 2[39m
+##   cntry `mean(stflife, na.rm = T)`
+##   [3m[90m&lt;fct&gt;[39m[23m                      [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m BE                          7.45
+## [90m2[39m ES                          6.96
+## [90m3[39m FR                          6.39
+## [90m4[39m IE                          6.94
+## [90m5[39m NL                          7.60</code></pre>
+<p>There seem to be some differences - but are they statistically significant? Here we actually have two questions:</p>
+<ul>
+<li>do the countries together explain a significant share of the variance in life satisfaction? (<em>omnibus test</em>)</li>
+<li>are the levels of life satisfaction in any two countries significantly different from each other? (<em>pairwise comparisons</em>)</li>
+</ul>
+<div id="omnibus-test-anova" class="section level4">
+<h4><span class="header-section-number">5.0.4.1</span> Omnibus test (ANOVA)</h4>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="comparing-means-between-conditions-or-groups.html#cb63-1"></a><span class="co">#Set the reference level, so that we know what the coefficients mean</span></span>
+<span id="cb63-2"><a href="comparing-means-between-conditions-or-groups.html#cb63-2"></a>essF<span class="op">$</span>cntry &lt;-<span class="st"> </span><span class="kw">factor</span>(essF<span class="op">$</span>cntry) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="dt">ref =</span> <span class="st">&quot;FR&quot;</span>)</span>
+<span id="cb63-3"><a href="comparing-means-between-conditions-or-groups.html#cb63-3"></a><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>cntry, <span class="dt">data =</span> essF) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = stflife ~ cntry, data = essF)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -7.6017 -0.9646  0.3983  1.3983  3.6054 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  6.39456    0.04612 138.663   &lt;2e-16 ***
+## cntryBE      1.05711    0.06651  15.893   &lt;2e-16 ***
+## cntryES      0.57006    0.06512   8.753   &lt;2e-16 ***
+## cntryIE      0.54832    0.06192   8.856   &lt;2e-16 ***
+## cntryNL      1.20711    0.06516  18.526   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.016 on 9896 degrees of freedom
+##   (19 observations deleted due to missingness)
+## Multiple R-squared:  0.04125,	Adjusted R-squared:  0.04086 
+## F-statistic: 106.4 on 4 and 9896 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Here we just want to see whether the country variable explains a significant share of the variance. That is shown by the last line, so that we would report: There was an overall effects of country on life satisfaction, <em>F</em>(4, 9869) = 106.4, <em>p</em>&lt;.001.</p>
+<p>If you are so inclined, note that this is identical to a one-way ANOVA. To see that, you can replace summary() by car::Anova() - however, this is only truly essential if you are a psychologist, most other disciplines prefer the plain linear models when they suffice.</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="comparing-means-between-conditions-or-groups.html#cb65-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(car)</span></code></pre></div>
+<pre><code>## Installing package into &#39;/home/runner/work/_temp/Library&#39;
+## (as &#39;lib&#39; is unspecified)</code></pre>
+<pre><code>## also installing the dependencies &#39;matrixStats&#39;, &#39;RcppArmadillo&#39;, &#39;zip&#39;, &#39;SparseM&#39;, &#39;MatrixModels&#39;, &#39;conquer&#39;, &#39;sp&#39;, &#39;data.table&#39;, &#39;openxlsx&#39;, &#39;minqa&#39;, &#39;nloptr&#39;, &#39;statmod&#39;, &#39;RcppEigen&#39;, &#39;carData&#39;, &#39;abind&#39;, &#39;pbkrtest&#39;, &#39;quantreg&#39;, &#39;maptools&#39;, &#39;rio&#39;, &#39;lme4&#39;</code></pre>
+<pre><code>## 
+## car installed</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="comparing-means-between-conditions-or-groups.html#cb69-1"></a><span class="kw">lm</span>(stflife <span class="op">~</span><span class="st"> </span>cntry, <span class="dt">data =</span> essF) <span class="op">%&gt;%</span><span class="st"> </span>car<span class="op">::</span><span class="kw">Anova</span>()</span></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: stflife
+##           Sum Sq   Df F value    Pr(&gt;F)    
+## cntry       1730    4  106.45 &lt; 2.2e-16 ***
+## Residuals  40218 9896                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="pairwise-comparisons" class="section level4">
+<h4><span class="header-section-number">5.0.4.2</span> Pairwise comparisons</h4>
+<p>Now that we know that some of the countries are different, we will want to locate the differences. That is where pairwise t-tests come in.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="comparing-means-between-conditions-or-groups.html#cb71-1"></a><span class="kw">pairwise.t.test</span>(essF<span class="op">$</span>stflife, essF<span class="op">$</span>cntry, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## 	Pairwise comparisons using t tests with pooled SD 
+## 
+## data:  essF$stflife and essF$cntry 
+## 
+##    FR      BE      ES      IE     
+## BE &lt; 2e-16 -       -       -      
+## ES &lt; 2e-16 2.4e-12 -       -      
+## IE &lt; 2e-16 1.0e-14 1.00    -      
+## NL &lt; 2e-16 0.24    &lt; 2e-16 &lt; 2e-16
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>This gives us <em>p</em>-values for all tests, that are adjusted for the fact that we are doing many (i.e. 10) comparisons and thus running a greater risk of getting a false positive. The bonferroni adjustment, selected here, multiplies each <em>p</em>-value by the number of comparisons, unless the resulting value would exceed 1 and thus be an impossible probability.</p>
+<p>Combining this with the descriptive statistics, we can say, for instance, that the people in the Netherlands and Belgium are more satisfied with life than those in any of the other countries, but that their satisfaction levels do not differ significantly from each other.</p>
+</div>
+</div>
+<div id="more-than-two-means-from-repeated-measures" class="section level3">
+<h3><span class="header-section-number">5.0.5</span> More than two means from repeated measures</h3>
+<p>Here I will revert to the simulated example from the video linked above. In that, the effect of four conditions during studying on test score was tested, namely whether participants were exposed to instrumental music, vocal music, white noise or silence.</p>
+<p>Note that the data for repeated measures analaysis in R generally needs to be formatted in a way that each row shows one observation rather than multiple observations from one participant (“long” format). If you have data in a “wide” format, you can reshape it with the <code>gather()</code> function.</p>
+<p>To analyse whether there are differences between the conditions, as always, we start with descriptive statistics.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="comparing-means-between-conditions-or-groups.html#cb73-1"></a>noiseData <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(condition) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="kw">mean</span>(score))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## [90m# A tibble: 4 x 2[39m
+##   condition    `mean(score)`
+##   [3m[90m&lt;chr&gt;[39m[23m                [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m instrumental          11.6
+## [90m2[39m silence               13.0
+## [90m3[39m vocals                10.8
+## [90m4[39m whiteNoise            13.5</code></pre>
+<p>It looks like there are some differences, but to be able to judge statistical significance, we would again be interested in omnibus tests and then pairwise comparisons.</p>
+<div id="omnibus-test" class="section level4">
+<h4><span class="header-section-number">5.0.5.1</span> Omnibus test</h4>
+<p>Testing whether the conditions make a difference is a little bit harder with repeated measures because the observations are not independent. Therefore, we need to run a model that takes into account the relationships between the observations taken from a single participant. This does not work with <code>lm()</code>; instead we need to use an additional package that allows for multi-level modeling where some observations are clustered together, <code>lme4</code> is the most frequently used such package for this purpose.</p>
+<p>In the case of repeated measures, we were comparing our model with the group variable as a predictor implicitly to the model that only has the overall mean as a predictor (that is what the <code>lm()</code> F-test is doing). Here, the null model uses each participant’s own overall mean as the prediction for their performance in any one condition. We need to set up that null model explicitly and then compare it to the model that considers groups.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="comparing-means-between-conditions-or-groups.html#cb76-1"></a>pacman<span class="op">::</span><span class="kw">p_load</span>(lme4)</span>
+<span id="cb76-2"><a href="comparing-means-between-conditions-or-groups.html#cb76-2"></a></span>
+<span id="cb76-3"><a href="comparing-means-between-conditions-or-groups.html#cb76-3"></a><span class="co">#Set reference level explicitly</span></span>
+<span id="cb76-4"><a href="comparing-means-between-conditions-or-groups.html#cb76-4"></a>noiseData<span class="op">$</span>condition &lt;-<span class="st"> </span>noiseData<span class="op">$</span>condition <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">factor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">relevel</span>(<span class="st">&quot;silence&quot;</span>)</span>
+<span id="cb76-5"><a href="comparing-means-between-conditions-or-groups.html#cb76-5"></a></span>
+<span id="cb76-6"><a href="comparing-means-between-conditions-or-groups.html#cb76-6"></a><span class="co">#Run null model - predicting only an individual intercept per participant</span></span>
+<span id="cb76-7"><a href="comparing-means-between-conditions-or-groups.html#cb76-7"></a>model0 &lt;-<span class="st"> </span><span class="kw">lmer</span>((score <span class="op">~</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>participantID)),	<span class="dt">data =</span> noiseData)</span>
+<span id="cb76-8"><a href="comparing-means-between-conditions-or-groups.html#cb76-8"></a></span>
+<span id="cb76-9"><a href="comparing-means-between-conditions-or-groups.html#cb76-9"></a><span class="co">#Run hypothesized model - adding the groups as a predictor</span></span>
+<span id="cb76-10"><a href="comparing-means-between-conditions-or-groups.html#cb76-10"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>((score <span class="op">~</span><span class="st"> </span>condition <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>participantID)),	<span class="dt">data =</span> noiseData)</span>
+<span id="cb76-11"><a href="comparing-means-between-conditions-or-groups.html#cb76-11"></a></span>
+<span id="cb76-12"><a href="comparing-means-between-conditions-or-groups.html#cb76-12"></a><span class="co">#Comparing the two models</span></span>
+<span id="cb76-13"><a href="comparing-means-between-conditions-or-groups.html#cb76-13"></a><span class="kw">anova</span>(model0, model1)</span></code></pre></div>
+<pre><code>## refitting model(s) with ML (instead of REML)</code></pre>
+<pre><code>## Data: noiseData
+## Models:
+## model0: score ~ (1 | participantID)
+## model1: score ~ condition + (1 | participantID)
+##        npar    AIC    BIC  logLik deviance  Chisq Df Pr(&gt;Chisq)    
+## model0    3 480.29 488.10 -237.14   474.29                         
+## model1    6 447.31 462.94 -217.66   435.31 38.978  3  1.754e-08 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Here we can see that the hypothesised model showed a significantly better fit. This is tested with a <span class="math inline">\(\chi^2\)</span>-test, which we will look at further later in the course.</p>
+</div>
+<div id="pairwise-comparisons-1" class="section level4">
+<h4><span class="header-section-number">5.0.5.2</span> Pairwise comparisons</h4>
+<p>Now that we know that there is a difference between some of the conditions, we will want to know which are different. For that, we can again run pairwise t-tests; we just need to specify that they are run on paired data by setting <code>paired = TRUE</code>.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="comparing-means-between-conditions-or-groups.html#cb79-1"></a><span class="kw">pairwise.t.test</span>(noiseData<span class="op">$</span>score, noiseData<span class="op">$</span>condition,	<span class="dt">p.adj =</span> <span class="st">&quot;bonferroni&quot;</span>, <span class="dt">paired=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## 	Pairwise comparisons using paired t tests 
+## 
+## data:  noiseData$score and noiseData$condition 
+## 
+##              silence instrumental vocals 
+## instrumental 0.045   -            -      
+## vocals       8.2e-06 0.423        -      
+## whiteNoise   1.000   0.001        2.0e-05
+## 
+## P value adjustment method: bonferroni</code></pre>
+<p>This indicates that the scores of participants in the white noise and silence conditions were not significantly different from each other, while the other comparisons were significant.</p>
+
+</div>
+</div>
+</div>
+<div class="psyteachr_footer">
+  
+</div>
+<script>
+
+/* update total correct if #total_correct exists */
+update_total_correct = function() {
+  if (t = document.getElementById("total_correct")) {
+    t.innerHTML =
+      document.getElementsByClassName("correct").length + " of " +
+      document.getElementsByClassName("solveme").length + " correct";
+  }
+}
+
+/* solution button toggling function */
+b_func = function() {
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "");
+  }
+  
+  if (my_answer !== "" & real_answers.includes(my_answer)) {
+    cl.add("correct");
+  } else {
+    cl.remove("correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol){
+    var tol = JSON.parse(this.dataset.tol);  
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("correct");
+    } else {
+      cl.remove("correct");
+    }  
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("correct");
+    }  
+  }
+  
+  update_total_correct();
+}
+
+window.onload = function() {
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+  
+  /* set up solveme inputs */
+  var solveme = document.getElementsByClassName("solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off"); 
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+    
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+    
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+  }
+  
+  update_total_correct();
+}
+
+</script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simple-and-multiple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interaction-terms-in-linear-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"],
+"google": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
