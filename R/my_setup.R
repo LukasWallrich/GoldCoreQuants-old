@@ -7,3 +7,5 @@ video <- function(url) {
 video_code <- function(code) {
   video(paste0("https://www.youtube.com/embed/", code, "?rel=0"))
 }
+
+if (!require("pacman")) install.packages("pacman")

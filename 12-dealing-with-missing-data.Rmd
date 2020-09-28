@@ -1,7 +1,7 @@
 # Dealing with missing data
 
 ```{r setup, include = FALSE}
-library(webex)
+pacman::p_load(webex)
 ```
 
 Missing data can pose serious problems for any data analysis.
@@ -13,9 +13,9 @@ Missing data can pose serious problems for any data analysis.
 Let's imagine that we want to analyse the effect of a mentoring programme on boys and girls. For that, they take a test (score1), then experience the mentoring, and then take another test (score2). Let's load the required packages.
 
 ```{r message=FALSE, warning=FALSE}
-library(tidyverse) #As always
-library(naniar) #To summarise and visualise missing data
-library(simputation) #For imputation of missing data
+pacman::p_load(tidyverse) #As always
+pacman::p_load(naniar) #To summarise and visualise missing data
+pacman::p_load(simputation) #For imputation of missing data
 ```
 
 I will simulate the data from our experiment as follows.

@@ -4,14 +4,16 @@ Watch this video for an introduction to interaction terms in linear models:
 
 `r video_code("coyXicRccSg")`
 
-
-
 The section below essentially contains the code needed for the examples in the video, with some further annotations. Before that, just one note on terminology:
 
 * Generally, if two variables interact, then the effect that one has on the predictor (the regression slope) depends on the value of the other. Mathematically, that relationship is symetrical - if A interacts with B, then B interacts with A.
 * For interpretation, we often designate one of the variables as the *moderator*. That just means that we are primarily interested in the effect of the other variable on the outcome and in how the moderator changes that effect. Often, demographic variables such as age or gender serve as moderators. 
 
 ## Example 1: Memory and chess
+
+```{r message=FALSE, warning=FALSE}
+pacman::p_load(tidyverse)
+```
 
 The first example draws on research by Gobet & Simon (1996) but uses simulated data.
 
@@ -53,7 +55,7 @@ The first model tests whether player level and position type interact. That is t
 mod <- lm(errors ~ player + type + player:type, obs)
 summary(mod)
 
-library(interactions)
+pacman::p_load(interactions)
 cat_plot(mod, pred="player", modx = "type", geom="line")
 
 ```
@@ -78,6 +80,8 @@ In this example, I considered the link between obesity and negative emotions in 
 
 ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
 
+install.packages("psych") #Unless you have used that package before
+
 a <- ess %>% select(cldgng, fltsd, enjlf, fltlnl, wrhpp, slprl, flteeff, fltdpr) %>% psych::alpha(check.keys = TRUE)
 
 ess$depr <- a$scores
@@ -95,6 +99,7 @@ ess$stflife <- haven::zap_labels(ess$stflife)
 The `lm()` output shows that there is a significant interaction between gender and BMI, with women having a stronger relationship between BMI and the frequency of experiencing negative emotions. This is again shown in an interaction plot - as the predictor variable is continuous, we now use the `interact_plot()` function.
 
 ```{r fig.cap='interact_plot shows different slope for men and women'}
+pacman::p_load(interactions)
 mod <- lm(depr ~ bmi + gndr + bmi:gndr, essDE)
 summary(mod)
 interact_plot(mod, pred="bmi", modx = "gndr")
@@ -131,6 +136,7 @@ interact_plot(mod, pred="wkhtot", modx = "hinctnta")
 Simple slopes analyses (`sim_slopes()`) offer similar information together with significance tests and thus help to decide which of the slopes should really be interpreted. They contain the Johnson-Neyman interval, which is the range of values of the moderator for which the predictor has a significant effect on the outcome.
 
 ```{r}
+pacman::p_load(interactions)
 sim_slopes(mod, pred="hinctnta", modx = "wkhtot")
 sim_slopes(mod, pred="wkhtot", modx = "hinctnta")
 ```

@@ -1,9 +1,9 @@
 # Simple and multiple linear regression
 
-This document recaps how we assess relationships between variables. It is work in progress and will be updated as we explore some further tests and special cases in the weeks to come.
+This document recaps how we assess relationships between variables when at least the outcome variable is continuous.
 
 ```{r message=FALSE, warning=FALSE}
-library(tidyverse)
+pacman::p_load(tidyverse)
 ```
 
 ## Simple linear regression

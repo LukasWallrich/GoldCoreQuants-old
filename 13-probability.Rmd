@@ -1,7 +1,7 @@
 # Probability in statistics and real life
 
 ```{r setup, include = FALSE}
-library(webex)
+pacman::p_load(webex)
 ```
 
 Much of statistics (namely *inferential* statistics) is about probability. Based on the data we have, is it likely that our hypothesis is true? But much of our other work as scientists, and much of everyday life, is also about probabilities. To be able to evaluate scientific claims, as well as news reporting and a range of other situations in life, it helps to have a basic understanding of probability. By the end of this, you should be able to find an answer to questions like the following:

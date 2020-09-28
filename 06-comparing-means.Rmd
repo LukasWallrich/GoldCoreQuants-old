@@ -1,7 +1,10 @@
 # Comparing means between conditions or groups
 
-Watch this video for an introduction to testing for differences between two means and the differences between repeated measures and independent samples:
+```{r message=FALSE, warning=FALSE}
+pacman::p_load(tidyverse)
+```
 
+Watch this video for an introduction to testing for differences between two means and the differences between repeated measures and independent samples:
 
 `r video_code("L69HyBnvQRQ")`
 
@@ -134,8 +137,7 @@ Testing whether the conditions make a difference is a little bit harder with rep
 In the case of repeated measures, we were comparing our model with the group variable as a predictor implicitly to the model that only has the overall mean as a predictor (that is what the `lm()` F-test is doing). Here, the null model uses each participant's own overall mean as the prediction for their performance in any one condition. We need to set up that null model explicitly and then compare it to the model that considers groups. 
 
 ```{r}
-#install.packages(lme4)
-library(lme4)
+pacman::p_load(lme4)
 
 #Set reference level explicitly
 noiseData$condition <- noiseData$condition %>% factor() %>% relevel("silence")

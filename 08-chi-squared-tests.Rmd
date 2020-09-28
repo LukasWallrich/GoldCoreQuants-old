@@ -8,10 +8,13 @@ When we want to see whether two categorical variables are associated with each o
 
 ## Tables of frequencies and proportions
 
+```{r message=FALSE, warning=FALSE}
+pacman::p_load(tidyverse)
+```
+
 With two categorical variables, the data we observe can best be shown in a frequency table - i.e. a table that shows how many observations fall into each combination of categories of the two variables. This is created with the ` table()` function. Let's look an example of the association between political parties and their winning candidates' gender in the 2019 UK general election. (Note that this is based on the official statistics published by the election authorities, who registered candidate gender as a binary variable.)
 
 ```{r echo=FALSE, warning=FALSE}
-require(tidyverse)
 constituencies <- read_csv(url("http://empower-training.de/Gold/ConstituencyData2019.csv"), col_types = "_cfddddfffddddfffdfdddd")
 
 #Excluding Northern Ireland due to different party landscape and creating new "nation" variable to show whether constituence is in England, Wales or Scotland
@@ -126,7 +129,7 @@ However, this does not allow us to answer questions about any specific parties. 
 To compare each cell to the expected value, we can use the `chisq.posthoc.test` package. This package contains the `chisq.posthoc.test()` function that takes a table as the input and computes standardised residuals (i.e. distances) and *p*-values for each cell. To avoid an inflated error rate, it can correct for multiple comparisons; by default the Bonferroni correction is used.
 
 ```{r}
-library(chisq.posthoc.test)
+pacman::p_load(chisq.posthoc.test)
 table(constituencies$ElectionWon, constituencies$WinnerGender) %>% chisq.posthoc.test(simulate.p.value = TRUE, method = "bonferroni")
 ```
  
@@ -141,7 +144,7 @@ As always, finding that the variables are related to a statistically significant
 **Cramer's V** describes a full table, and is scaled from 0 (no relationship) to 1 (one variable is entirely predictable by the other). It is often recommended that one should be weary of values greater than .5, as that suggests that the two variables might be redundant. Many packages offer functions to calculate Cramer's V, including the `effectsize` package that allows us to calculate it based on the $\chi^2$-value, the sample size, and the number of levels of each variable.
 
 ```{r}
-library(effectsize)
+pacman::p_load(effectsize)
 chisq_to_cramers_v(chisq = 48.5, n = 626, nrow=4, ncol=2)
 ```
 

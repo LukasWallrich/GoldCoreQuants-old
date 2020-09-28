@@ -8,7 +8,12 @@ A lot of social science research is done with surveys. In this video, I am talki
 
 Often, surveys use multiple items to measure the same construct. This is particularly common when participants might be either unable or unwilling to answer a direct question (e.g., how racist are you?). In such cases, asking several related questions can help to get an overall measure of the construct, while reducing measurement error, because the errors on different items will cancel each other out (to some extent).
 
-Once you have data on your items, the most common way of creating a scale is just to calculate the mean of the items. If some of them were worded in the opposite direction (known as reverse-coding, and often recommended to increase data quality), those items need to be reversed first, most easily by substracting their value from 1 + the scale maximum. ^[The `alpha()` function from the `psych` package can support reverse-coding - or even automate it. To learn more, look at `?psych::alpha`]
+Once you have data on your items, the most common way of creating a scale is just to calculate the mean of the items. If some of them were worded in the opposite direction (known as reverse-coding, and often recommended to increase data quality), those items need to be reversed first, most easily by subtracting their value from 1 + the scale maximum. ^[The `alpha()` function from the `psych` package can support reverse-coding - or even automate it. To learn more, look at `?psych::alpha`]
+
+```{r message=FALSE, warning=FALSE}
+pacman::p_load(psych, tidyverse)
+```
+
 
 ### Testing internal consistency
 

@@ -16,13 +16,13 @@ The functions that load data from tables need to establish the variable class fo
 
 ```{r, eval=FALSE}
 #readr is loaded with the tidyverse, but can be loaded separately as well if you don't need the other packages
-library(readr)
+pacman::p_load(readr)
 gapminder <- read_csv("./data/gapminder.csv", col_types = "finnnnnff")
 
-library(readxl)
+pacman::p_load(readxl)
 gapminder <- read_xlsx("./data/gapminder.xlsx") #Here col_types are not defined so that R will guess and print out the results - make sure to check whether the classes are what you would expect
 
-library(haven)
+pacman::p_load(haven)
 gapminder <- read_sav("./data/gapminder.sav") #SPSS files contain information on the class of each variable, so that col_types do not need to be defined
 ```
 
@@ -53,7 +53,7 @@ pasted <- read.table(file="clipboard", sep="\t", header = TRUE)
 When you start with a new dataset, there are some helpful functions to get a first look at the data: `glimpse()`gives a good overview of the variables contained in the dataset, while `head()` and `tail()` print the first and last lines. In the **Console** (but not really within scripts such as .Rmd files), you can also use `View()` to open up the whole dataset. Finally, you can have a look at data in the **Environment** pane in RStudio.
 
 ```{r}
-library(dslabs) #Load the gapminder teaching dataset
+pacman::p_load(dslabs) #Load the gapminder teaching dataset
 glimpse(gapminder)
 head(gapminder, n=5) #n defines number of rows shown
 tail(gapminder, n=5)
@@ -94,6 +94,7 @@ If we want to calculate the average income per capita in 2010 on each continent 
 *One thing to note:* you can split R code into multiple lines as long as each line is incomplete. Since the lines here end with `%>%`, R includes the next line into the same command. If that operator was moved to the start of the next line, the code would no longer work.
 
 ```{r}
+pacman::p_load(dplyr)
 gapminder %>% 
   filter(year == 2010) %>%
     mutate(gdpPerCap = gdp/population) %>%
@@ -143,6 +144,7 @@ min(gapminder2010$fertility)
 
 #Countries with highest and lowest fertility.
 #There are many ways to look this up - here is a simple dplyr pipe (Note that | means 'or' in the context of logical comparisons and == is needed to test for equality because = just assigns a value)
+pacman::p_load(dplyr) #Needs to be run only once per R session!
 gapminder2010 %>% 
   filter(fertility == max(fertility) | fertility == min(fertility)) %>% 
     select(country, fertility)

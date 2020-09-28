@@ -104,6 +104,14 @@ All these packages are loaded with the `library(tidyverse)` command. There are s
 * `stringr`: a package to manipulate strings 
 * `lubridate`: a package to convert, filter and analyse times and dates
 
+#### Using the `pacman` package
+
+As an alternative to `install.packages()` and `library()`, you can also use the `p_load` function in the `pacman` package. That function checks first whether the package is installed, installs it if needed, and then loads it. I am using it in the code here so that you easily copy-paste parts of it; in your own code, the choice is up to you. If you want to use `pacman`, just run `install.packages("pacman")` and then use `pacman::p_load(package1, package2)` to load your packages. 
+
+#### Using a single function in a package
+
+If you just need to use one function from a package, you do not need to load the whole package. You can also give R the whole address and use `package::function()`. I will only do that for `pacman::p_load()` since that is the only function from that package we will ever use in this course.
+
 ### RMarkdown
 
 A key strength of R are **reproducible analyses.** For that, we don't want to type commands and just write down the results, but rather create scripts that can produce results again and again. That also makes changes much less painful, for instance if you've made a mistake at the start.
