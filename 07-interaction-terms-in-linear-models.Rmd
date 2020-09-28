@@ -15,6 +15,11 @@ The section below essentially contains the code needed for the examples in the v
 pacman::p_load(tidyverse)
 ```
 
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+install.packages("sandwich")
+```
+
+
 The first example draws on research by Gobet & Simon (1996) but uses simulated data.
 
 ```{r webex.hide="Click here to see the code that simulates the data"}
