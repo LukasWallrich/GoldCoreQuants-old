@@ -83,7 +83,9 @@ ess <- read_rds(url("http://empower-training.de/Gold/round7.RDS"))
 
 install.packages("psych") #Unless you have used that package before
 
-a <- ess %>% select(cldgng, fltsd, enjlf, fltlnl, wrhpp, slprl, flteeff, fltdpr) %>% psych::alpha(check.keys = TRUE)
+a <- ess %>% select(cldgng, fltsd, enjlf, fltlnl, wrhpp, slprl, flteeff, fltdpr) %>% 
+  haven::zap_labels() %>% #This is sometimes needed when SPSS files have been imported with haven and errors related to data classes appear.
+  psych::alpha(check.keys = TRUE)
 
 ess$depr <- a$scores
 
