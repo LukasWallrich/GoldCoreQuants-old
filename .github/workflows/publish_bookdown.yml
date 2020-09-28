@@ -16,6 +16,8 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
+      - name: prep for tidyverse
+        run: sudo apt-get install xml2 libxml2-dev libssl-dev libcurl4-openssl-dev unixodbc-dev
       - name: Install rmarkdown
         run: Rscript -e 'options(repos = list(CRAN="http://cran.rstudio.com/")); install.packages(c("rmarkdown","bookdown", "webex", "tidyverse", "magrittr"))'
       - name: Build book
