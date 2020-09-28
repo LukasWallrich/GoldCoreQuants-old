@@ -89,6 +89,7 @@ Here we just want to see whether the country variable explains a significant sha
 If you are so inclined, note that this is identical to a one-way ANOVA. To see that, you can replace summary() by car::Anova() - however, this is only truly essential if you are a psychologist, most other disciplines prefer the plain linear models when they suffice.
 
 ```{r}
+pacman::p_load(car)
 lm(stflife ~ cntry, data = essF) %>% car::Anova()
 ```
 

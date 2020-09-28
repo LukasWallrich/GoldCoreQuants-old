@@ -64,6 +64,7 @@ Next we consider a third condition - chess positions that are neither quite real
 ```{r}
 mod <- lm(errors ~ player + type + player:type, obs2)
 summary(mod)
+pacman::p_load(car)
 car::Anova(mod, type=3)
 ```
 An interaction plot can then help again to understand what is going on. Here it shows that two of the three conditions are very similar.
