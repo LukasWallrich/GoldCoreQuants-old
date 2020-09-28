@@ -57,7 +57,7 @@ obs2 <- data.frame(player = "expert", type = "real", errors = ER, stringsAsFacto
 
 The first model tests whether player level and position type interact. That is the case, based on the very small *p*-value of the interaction term. Then we use a plot to understand the nature of that interaction further - because the predictor is categorical, we use the `cat_plot()` function.
 
-```{r fig.cap='Simple interaction plot - lines are not parallel'}
+```{r fig.cap='Simple interaction plot - lines are not parallel', message=FALSE}
 mod <- lm(errors ~ player + type + player:type, obs)
 summary(mod)
 
@@ -107,7 +107,7 @@ ess$stflife <- haven::zap_labels(ess$stflife)
 
 The `lm()` output shows that there is a significant interaction between gender and BMI, with women having a stronger relationship between BMI and the frequency of experiencing negative emotions. This is again shown in an interaction plot - as the predictor variable is continuous, we now use the `interact_plot()` function.
 
-```{r fig.cap='interact_plot shows different slope for men and women'}
+```{r fig.cap='interact_plot shows different slope for men and women', message=FALSE}
 pacman::p_load(interactions)
 mod <- lm(depr ~ bmi + gndr + bmi:gndr, essDE)
 summary(mod)
@@ -116,7 +116,7 @@ interact_plot(mod, pred="bmi", modx = "gndr")
 
 Note that `ggplot2` automatically includes an interaction when fitting regression lines when a categorical variable is mappes to the `colour` (or `linetype`) aesthetic.
 
-```{r fig.cap='ggplot automatically includes interaction'}
+```{r fig.cap='ggplot automatically includes interaction',message=FALSE}
 ggplot(essDE, aes(x=bmi, y=depr, colour=gndr)) + geom_smooth(method="lm", se=FALSE)
 ```
 

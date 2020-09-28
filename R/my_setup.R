@@ -9,3 +9,4 @@ video_code <- function(code) {
 }
 
 if (!require("pacman")) install.packages("pacman")
+options(repos = list(CRAN="http://cran.rstudio.com/"))

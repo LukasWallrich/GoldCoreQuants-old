@@ -13,28 +13,28 @@ The World Bank offers a rich dataset with a particular focus on indicators relev
 
 Here, I will explore the question whether life expectancy and literacy have increased in line with GDP in the BRICS countries (Brasil, Russia, India, China and South Africa, a group that has often been seen as representing emerging economies).
 
-```{r cache=TRUE}
+```{r message=FALSE}
 pacman::p_load(wbstats)
 
 #Download current list of indicators
-new_wb_cache <- wbcache()
+new_wb_cache <- wb_cache()
 
 #Search for indicators - you can best do this on data.worldbank.com and find the IndicatorID in the URL. The wbsearch() function often returns to many hits.
 
 #GDP per capita, purchasing power adjusted (to remove effect of exchange rates)
-wbsearch("gdp.*capita.*PPP", cache = new_wb_cache)
+wb_search("gdp.*capita.*PPP", cache = new_wb_cache)
 
 ```
 
 Once we know the names of the indicators, we can download them.
 
-```{r cache=TRUE}
+```{r message=FALSE}
 #Note: to get the country names, you can download all countries once and then check the names
 #wb_dat <- wb(indicator = c("NY.GDP.PCAP.PP.KD", "SI.POV.GINI"), country = "all")
 #wb_dat %>% count(iso2c, country) %>% view()            
                             
-wb_dat <- wb(indicator = c("NY.GDP.PCAP.PP.KD", "SP.DYN.LE00.IN", "SE.TER.ENRR"), 
-             country = c("IN", "BR", "CN", "ZA", "RU"))
+wb_dat <- wb_data(indicator = c("NY.GDP.PCAP.PP.KD", "SP.DYN.LE00.IN", "SE.TER.ENRR"), 
+             country = c("IN", "BR", "CN", "ZA", "RU"), return_wide = FALSE)
 
 ```
 
@@ -42,7 +42,7 @@ Now we have the data in a "long" format - with one combination of countries, ind
 
 A simple way of comparing the data is plotting the indicators side-by-side. One interesting take-away is that Brazil massively improved life expectancy and expanded education, even though  GDP growth was rather modest, while South Africa stagnated in comparison.
 
-```{r cache=TRUE}
+```{r fig.cap='Example plot from World Bank data'}
 #Our GDP series only starts in 1990 - so it does not make sense to consider earlier life expectancy
 wb_datF <- wb_dat %>% filter(as.numeric(date)>=1990)
 
@@ -65,7 +65,7 @@ Wikidata is based on data items that are connected by multiple relationships. So
 
 I got curious about what share of the world's population lives in countries with a female head of government, and how that varies by region. For that, I used the following code. (`gt` is a package to make nice tables easily.) **Note that a key step is missing: I did not clean the data.** It contains some duplicates, for instance because countries that span two continents are included twice in the Wikidata output. Data cleaning is a crucial part of analysing online data, but not the focus of this chapter. 
 
-```{r cache=TRUE}
+```{r message=FALSE}
 pacman::p_load(WikidataQueryServiceR, gt)
 
 headsOfGov <- query_wikidata('
@@ -86,21 +86,23 @@ regional <- headsOfGov %>% group_by(continentLabel, genderLabel) %>% summarise(p
 
 world <- data.frame(continentLabel = "World", 
                headsOfGov %>% group_by(genderLabel) %>%
-                 summarise(pop=sum(population), n=n()), stringsAsFactors = F
-               )
+                 summarise(pop=sum(population), n=n()), 
+               stringsAsFactors = FALSE)
 
 
 world %>% mutate(ShareOfCountries = n/sum(n)*100, ShareOfPopulation = pop/sum(pop)*100) %>% filter(genderLabel == "female") %>% select(ShareOfCountries, ShareOfPopulation) %>% round(1) %>% gt::gt() %>% gt::tab_header(title=gt::md("**Women rule** (%)"))
 
 regionalAndWorld <- rbind(regional, world)
 
+
+```
+```{r message=FALSE, fig.cap='Example plot from Wikidata'}
 ggplot(regionalAndWorld, aes(x=continentLabel, y=pop, fill=genderLabel)) + geom_col(position="fill") + 
     #Turns chart into bars rather than columns
     coord_flip() +
     #Show percentages rather than fractions on y-axis (now shown as x-axis)
     scale_y_continuous(labels=scales::percent) +
     labs(title="Only a small fraction of the world's population is ruled by women", subtitle="Source: WikiData, February 2020", x="", y="Share of population", fill="Head of government")
-
 ```
 
 ## Other data sources
